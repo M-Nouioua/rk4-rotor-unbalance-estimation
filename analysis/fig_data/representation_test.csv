@@ -1,0 +1,10 @@
+protocol,variant,r2_pred,phase_deg,slope,crosstalk
+condition,cartesian,0.6592,6.09,0.7877,5.651
+condition,equivariant,0.776,12.92,0.7725,6.941
+condition,icm_prior,0.6235,22.9,0.8884,11.824
+angle_sector,cartesian,-1.12,67.36,0.089,4.648
+angle_sector,equivariant,0.3373,28.49,0.4635,8.514
+angle_sector,icm_prior,0.6235,22.9,0.8884,11.824
+configuration,cartesian,-0.3926,10.11,0.3549,8.777
+configuration,equivariant,-0.105,23.79,0.3559,14.555
+configuration,icm_prior,0.6235,22.9,0.8884,11.824

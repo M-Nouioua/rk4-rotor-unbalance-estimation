@@ -1,0 +1,92 @@
+# =====================================================================
+# RK4 Digital Twin — rig + DAQ configuration
+# Edit device names to match NI MAX (Measurement & Automation Explorer).
+# =====================================================================
+
+daq:
+  sample_rate_hz: 12800        # per channel; 9234 valid rates = 51200/n
+  samples_per_read: 12800      # 1 s blocks
+  coupling: AC                 # proximity probes: AC (removes DC gap bias)
+  iepe_enabled: false          # proximity probes are NOT IEPE (accels would be true)
+  voltage_range_v: 5.0         # 9234 is ±5 V
+
+  # Channel map — two NI-9234 modules. Names must match NI MAX.
+  # Source = Bently Nevada RK-4 Proximitor Assembly buffered outputs (BNC)
+  # -> NI-9234. Confirmed from rig photos. Verify device names in NI MAX.
+  channels:
+    keyphasor:                       # <- Proximitor "Kø OUT" (yellow jack)
+      device: "cDAQ2Mod1/ai0"
+      type: tacho
+    plane1_x:                        # <- Proximitor "PROX 1 OUT"
+      device: "cDAQ2Mod1/ai1"
+      sensitivity_mV_per_um: 7.874   # 200 mV/mil = 7.874 mV/µm
+    plane1_y:                        # <- Proximitor "PROX 2 OUT"
+      device: "cDAQ2Mod1/ai2"
+      sensitivity_mV_per_um: 7.874
+    plane2_x:                        # <- Proximitor "PROX 3 OUT"  (3rd probe, on Module 1)
+      device: "cDAQ2Mod1/ai3"
+      sensitivity_mV_per_um: 7.874
+    plane2_y:                        # <- Proximitor "PROX 4 OUT"  (last probe, on the NEW 9234)
+      device: "cDAQ2Mod2/ai0"
+      sensitivity_mV_per_um: 7.874
+
+  keyphasor:
+    threshold_v: -1.0          # once-per-rev pulse is NEGATIVE-going (min ~-2.1 V, AC-coupled)
+    edge: falling              # verified live @1000 rpm: 33 pulses/2 s -> 990 rpm
+    pulses_per_rev: 1
+
+# Angular-domain processing
+order_tracking:
+  samples_per_rev: 256         # angular resampling resolution
+  orders: [1, 2, 3]            # harmonics to extract (1X imbalance, 2X misalignment)
+  min_rpm: 300
+  max_rpm: 15000
+
+# Safety limits (used by the acquisition GUI orbit trip indicator)
+safety:
+  orbit_trip_mils: 5.0         # peak orbit above this -> TRIP (set to ~half bearing clearance)
+
+# ---------------------------------------------------------------------
+# RK4 geometry (TODO: calibrate to your actual rig; these are typical).
+# Probe/disk axial locations are node indices along the shaft mesh.
+# ---------------------------------------------------------------------
+rotor:
+  shaft:
+    length_mm: 560
+    outer_diameter_mm: 10.0
+    n_elements: 28
+    material: steel
+  disks:
+    - name: disk1
+      node: 8
+      mass_kg: 0.8
+      outer_diameter_mm: 76
+      thickness_mm: 25
+      is_balancing_plane: true
+    - name: disk2
+      node: 20
+      mass_kg: 0.8
+      outer_diameter_mm: 76
+      thickness_mm: 25
+      is_balancing_plane: true
+  bearings:
+    - name: brg1
+      node: 2
+      kxx_N_per_m: 1000000.0
+      kyy_N_per_m: 1000000.0
+      cxx_Ns_per_m: 50
+      cyy_Ns_per_m: 50
+    - name: brg2
+      node: 26
+      kxx_N_per_m: 1000000.0
+      kyy_N_per_m: 1000000.0
+      cxx_Ns_per_m: 50
+      cyy_Ns_per_m: 50
+  measurement_planes:      # where probes sit (map to nearest shaft node)
+    plane1_node: 6
+    plane2_node: 22
+
+# Optional future DC module for shaft centerline (misalignment feature)
+dc_module:
+  present: false
+  device: "cDAQ2Mod3"

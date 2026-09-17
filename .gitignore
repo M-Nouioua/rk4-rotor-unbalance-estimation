@@ -1,0 +1,66 @@
+# ---------------------------------------------------------------------------
+# Manuscript. The paper is deliberately not in this repository.
+# ---------------------------------------------------------------------------
+paper/
+manuscript/
+RESEARCH_PAPER_PLAN.md
+CONCEPT.md
+*.pptx
+
+# Rendered manuscript figures. The CSV inputs in analysis/fig_data are kept, so
+# every figure can be regenerated with matlab/make_all_figures.m.
+analysis/figures/
+
+# ---------------------------------------------------------------------------
+# Raw acquisitions, 2.3 GB. These are archived on Zenodo, not here.
+# ---------------------------------------------------------------------------
+datasets/
+
+# ---------------------------------------------------------------------------
+# Private and machine-local files
+# ---------------------------------------------------------------------------
+*.zip
+unnamed.jpg
+ROTOR.code-workspace
+STATUS.md
+HANDOFF.md
+viz3d/NEXT_STEPS.md
+
+# ---------------------------------------------------------------------------
+# Environments, caches, build output
+# ---------------------------------------------------------------------------
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# MATLAB
+*.asv
+*.mex*
+slprj/
+
+# LaTeX build products, in case a manuscript is ever built in a working copy
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# OS and editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*~

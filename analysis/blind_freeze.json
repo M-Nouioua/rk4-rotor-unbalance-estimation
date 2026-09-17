@@ -1,0 +1,485 @@
+{
+  "frozen_at": "2026-09-17T05:35:04+00:00",
+  "provenance": "RETROSPECTIVE -- BLND01-10 were unsealed during the campaign (2026-07-26) before this manifest existed. This record fixes the artifacts as they stand; it does not by itself prove prediction preceded revelation. Treat BLND01-10 as SPENT: usable as reported evidence, not re-usable to confirm any model chosen after 2026-07-26.",
+  "canonical_root": "C:\\Users\\HP\\Desktop\\ROTOR",
+  "git_rev": null,
+  "versions": {
+    "python": "3.13.7",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "pandas": "3.0.3",
+    "sklearn": "1.8.0"
+  },
+  "code_sha256": {
+    "estimation/icm.py": "5a671f60d055dfeb6f9eabc0e7ffec0ba047540585efef03df84d9f62efdb02b",
+    "estimation/ml.py": "ffe9c498b00665ed2de1a0927d097bef8f8db6af0045031baf8dfc94b01600b6",
+    "estimation/twin.py": "9f3170704f9f81915208960cbef94fb5b367e9e9c9b65367e900e68476c4c9ee",
+    "estimation/stats.py": "f86df95cbb3ebbceca7b78cb2489b6a4adb79d60895c44a3885cc8311b7f7281",
+    "processing/order_tracking.py": "c1eba3cd2cd7cb3fcd8ccffa84eb7a38a80a3049a288b65d8d2425a754555145",
+    "processing/features.py": "f8b90256f4d1e14e036d369e4d6ea298ecf43070d5a5d787d591d0a8e5ef4d9f",
+    "scripts/build_features.py": "2efdf27faa24201440f9ab1160c1f3e3d91c0504a0eb77096c6ea1a937aa3955",
+    "scripts/benchmark.py": "036096d3cac476de7beece555b8afe37b59252997dbd0ad747c3f34435ff3c43"
+  },
+  "artifact_sha256": {
+    "analysis/features.csv": "a4a39e1287c40d831d077989c4fca43097bc9f9e39f55d9b40c57695b2224975",
+    "analysis/benchmark.json": "4815d9c585b531ef8015c9c1b22b0f2e12b76f5bce1d2515b929f43b5708a88b",
+    "analysis/blind_predictions.csv": "151e45f38b3d14ee484dc6e9e7bdd2a01c5211727904551020d2106e152535ee",
+    "datasets/conditions.csv": "8f646e962a0d81404bbd224b73d4b7b32ac34d94a9ac2f1e4ce82bf92abbe44a",
+    "datasets/index.csv": "5aba117db8b002b764a66be00e4c6cfbd8d755b2aad48e9ee7318926d25447fa",
+    "datasets/runout_slowroll.npz": "b15438e78429ec5ef34739a185162cbd857ddbda9663e7e92ca194751a4e18c9"
+  },
+  "blind_conditions": {
+    "BLND01": {
+      "acquired_records": 6,
+      "files": [
+        "BLND01_N1_m1_a1_1784830025.npz",
+        "BLND01_N1_m1_a2_1784830033.npz",
+        "BLND01_N1_m1_a3_1784830042.npz",
+        "BLND01_N2_m1_a1_1784830072.npz",
+        "BLND01_N2_m1_a2_1784830080.npz",
+        "BLND01_N2_m1_a3_1784830089.npz"
+      ],
+      "file_sha256": {
+        "BLND01_N1_m1_a1_1784830025.npz": "1df64dc46781df9bcc78c09a9f7d13070cd5a576eb813f316a306fa5f6cacddf",
+        "BLND01_N1_m1_a2_1784830033.npz": "ecc79ac9ab3351048d7d7906da00c06961026f6bec0e05f5251038e6cc42eada",
+        "BLND01_N1_m1_a3_1784830042.npz": "705ab2e67a18d8fe901f4197f5b5ffed049b8d48262d974944b7e752ad69b46e",
+        "BLND01_N2_m1_a1_1784830072.npz": "11a8dfda614f7732fd7378e9b12a7b4eb19c994f3aad0ad6e84e057f16b3dbb7",
+        "BLND01_N2_m1_a2_1784830080.npz": "dcfd1131329d1433036aa53af375fc0b2a03a2267ac3fe04ce4952074783ed55",
+        "BLND01_N2_m1_a3_1784830089.npz": "e1110bfe88110daa20caed093688cf6282641a5854a972b517970cd5637a24bd"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "2plane",
+        "disk1_gmm": 48.0,
+        "disk1_angle_deg": 180.0,
+        "disk2_gmm": 48.0,
+        "disk2_angle_deg": 135.0
+      },
+      "first_timestamp": "2026-07-23T21:07:05",
+      "last_timestamp": "2026-07-23T21:08:09"
+    },
+    "BLND02": {
+      "acquired_records": 6,
+      "files": [
+        "BLND02_N1_m1_a1_1784830253.npz",
+        "BLND02_N1_m1_a2_1784830262.npz",
+        "BLND02_N1_m1_a3_1784830270.npz",
+        "BLND02_N2_m1_a1_1784830212.npz",
+        "BLND02_N2_m1_a2_1784830220.npz",
+        "BLND02_N2_m1_a3_1784830229.npz"
+      ],
+      "file_sha256": {
+        "BLND02_N1_m1_a1_1784830253.npz": "d31bbf3f2b66276295f23903c8bf9f6d52e1edb06f8bd2a42e528c79a6412970",
+        "BLND02_N1_m1_a2_1784830262.npz": "d856faa5325b23ce8e5d41be3a5bc6e92170b045c604ebe0c0ce91c2e075ee4b",
+        "BLND02_N1_m1_a3_1784830270.npz": "5d3e804a65889e246a01e373e96fb5261011b1f1873a487c065308b7268efabc",
+        "BLND02_N2_m1_a1_1784830212.npz": "ade83ff25919c15feef882087122aeb098b372480a341c35d27c87c66e53105b",
+        "BLND02_N2_m1_a2_1784830220.npz": "f4e9040b4a75c938590275bfc34b42c444ad9f59fae5267e92dd1bfe2bae0404",
+        "BLND02_N2_m1_a3_1784830229.npz": "cd52b1a764a7d7a95d776041d0cec0c95b9ac0e08c9da56f59e80a7d3911ebfa"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "inphase",
+        "disk1_gmm": 3.0,
+        "disk1_angle_deg": 135.0,
+        "disk2_gmm": 48.0,
+        "disk2_angle_deg": 135.0
+      },
+      "first_timestamp": "2026-07-23T21:10:12",
+      "last_timestamp": "2026-07-23T21:11:10"
+    },
+    "BLND03": {
+      "acquired_records": 6,
+      "files": [
+        "BLND03_N1_m1_a1_1784830410.npz",
+        "BLND03_N1_m1_a2_1784830418.npz",
+        "BLND03_N1_m1_a3_1784830427.npz",
+        "BLND03_N2_m1_a1_1784830447.npz",
+        "BLND03_N2_m1_a2_1784830455.npz",
+        "BLND03_N2_m1_a3_1784830464.npz"
+      ],
+      "file_sha256": {
+        "BLND03_N1_m1_a1_1784830410.npz": "6672f2458eca7a8219f2693352448109af38581bed4fd966475967d026ecd7bf",
+        "BLND03_N1_m1_a2_1784830418.npz": "6b8c5857168174c1f5fcba7357ecc5adfe22575cff371d20995e48b282e2bc4e",
+        "BLND03_N1_m1_a3_1784830427.npz": "dda860f6b11c61be8c5128bb09c2cd6a7ef322751a4bc82033294225b8c5bd40",
+        "BLND03_N2_m1_a1_1784830447.npz": "333d23787b4be1ffe68766937169b6ba433d8840f1b6dbc68148edc38c926351",
+        "BLND03_N2_m1_a2_1784830455.npz": "4bd5aec5b4b17aaf18ab8ce34a43f1c200552e09892351444be6e4038128522d",
+        "BLND03_N2_m1_a3_1784830464.npz": "9d6f2667a1d59b2f08c396a0be86ded214204ec1e3e06307dcaf90bac0065a2b"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "2plane",
+        "disk1_gmm": 6.0,
+        "disk1_angle_deg": 225.0,
+        "disk2_gmm": 12.0,
+        "disk2_angle_deg": 270.0
+      },
+      "first_timestamp": "2026-07-23T21:13:30",
+      "last_timestamp": "2026-07-23T21:14:24"
+    },
+    "BLND04": {
+      "acquired_records": 6,
+      "files": [
+        "BLND04_N1_m1_a1_1784830740.npz",
+        "BLND04_N1_m1_a2_1784830749.npz",
+        "BLND04_N1_m1_a3_1784830757.npz",
+        "BLND04_N2_m1_a1_1784830786.npz",
+        "BLND04_N2_m1_a2_1784830795.npz",
+        "BLND04_N2_m1_a3_1784830803.npz"
+      ],
+      "file_sha256": {
+        "BLND04_N1_m1_a1_1784830740.npz": "03f70b2b0c17b74edefacf2b7e63ef735b23b0bbd29e5153394fb008265890c7",
+        "BLND04_N1_m1_a2_1784830749.npz": "7f5d13113053561ceabde660df496e20dfd212a88b5a8226b3eefe830883e07f",
+        "BLND04_N1_m1_a3_1784830757.npz": "3005b4752f577b6b69638b4e22dd0eac80bccce785ab70f2c5c1a136e6891e4e",
+        "BLND04_N2_m1_a1_1784830786.npz": "83361bc6e8146bb8af79baf23f97a008f9840d10fcaf1ca799c04bebe26f3f68",
+        "BLND04_N2_m1_a2_1784830795.npz": "a516e8f5705310af78d49c2c3ab897c405c4cc443357ae6e5c70f4badc89cbd5",
+        "BLND04_N2_m1_a3_1784830803.npz": "99cf3f8222fe31eed61dbc5d80f3da93f688ffb3da21a1b068f45e115777de76"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "2plane",
+        "disk1_gmm": 36.0,
+        "disk1_angle_deg": 157.0,
+        "disk2_gmm": 6.0,
+        "disk2_angle_deg": 67.5
+      },
+      "first_timestamp": "2026-07-23T21:19:00",
+      "last_timestamp": "2026-07-23T21:20:03"
+    },
+    "BLND05": {
+      "acquired_records": 6,
+      "files": [
+        "BLND05_N1_m1_a1_1784830988.npz",
+        "BLND05_N1_m1_a2_1784830997.npz",
+        "BLND05_N1_m1_a3_1784831005.npz",
+        "BLND05_N2_m1_a1_1784830940.npz",
+        "BLND05_N2_m1_a2_1784830948.npz",
+        "BLND05_N2_m1_a3_1784830957.npz"
+      ],
+      "file_sha256": {
+        "BLND05_N1_m1_a1_1784830988.npz": "a3eb14d48961b2e9b4c4b78d34b12526dd2d967308d50afd66a6de7ecf55a7ee",
+        "BLND05_N1_m1_a2_1784830997.npz": "df7a26c55ad351de603cd2395e0c7ab9f4ec004680325b26f9bef7d94fc3a28c",
+        "BLND05_N1_m1_a3_1784831005.npz": "fe8c2f24401767b2f6e1e1ecc7219e095d5f92434468d4d0a246944a7c04b6ee",
+        "BLND05_N2_m1_a1_1784830940.npz": "216f10db26ba034f1f01f430cf57dc12288cf670a2ee800c018fbc236e20430b",
+        "BLND05_N2_m1_a2_1784830948.npz": "6a9fd49bf71bd8e1bf2593a7df18d4eac415e2cee7748aa39a4e498c35a03f22",
+        "BLND05_N2_m1_a3_1784830957.npz": "fe6a665b23e1aecb0f99e78a6b0bd7906ade1268f6c2ec7602aaa53d83529770"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "2plane",
+        "disk1_gmm": 36.0,
+        "disk1_angle_deg": 157.5,
+        "disk2_gmm": 24.0,
+        "disk2_angle_deg": 247.5
+      },
+      "first_timestamp": "2026-07-23T21:22:20",
+      "last_timestamp": "2026-07-23T21:23:25"
+    },
+    "BLND06": {
+      "acquired_records": 6,
+      "files": [
+        "BLND06_N1_m1_a1_1784831099.npz",
+        "BLND06_N1_m1_a2_1784831108.npz",
+        "BLND06_N1_m1_a3_1784831116.npz",
+        "BLND06_N2_m1_a1_1784831311.npz",
+        "BLND06_N2_m1_a2_1784831320.npz",
+        "BLND06_N2_m1_a3_1784831328.npz"
+      ],
+      "file_sha256": {
+        "BLND06_N1_m1_a1_1784831099.npz": "773acf7eeb0ce5930a6997cb8d2f3a0fe4089c12516b3cd67993537738157399",
+        "BLND06_N1_m1_a2_1784831108.npz": "3cb3a423d5c31d199a84a7da1d2888fbab1d1f5c4c49d691fd3682b6f6700aad",
+        "BLND06_N1_m1_a3_1784831116.npz": "f27c8cd101b31673b92742546f2b76c62da4b42eb2cc9ed3b1ac45c2e7632bfc",
+        "BLND06_N2_m1_a1_1784831311.npz": "833b7c1093e510102fe16ddc90f8b46cda47fba4d2498478d88f35d2e282178e",
+        "BLND06_N2_m1_a2_1784831320.npz": "499789e02579aa191b207318c9ee38299e9c22c8aafbbf381beb4e5f38beda30",
+        "BLND06_N2_m1_a3_1784831328.npz": "9d6e530e68720b0f1f2de39a53e69b4a42b4c4ec5b68f5874566a6fd5b90a78d"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "balanced",
+        "disk1_gmm": 0.0,
+        "disk1_angle_deg": 0.0,
+        "disk2_gmm": 0.0,
+        "disk2_angle_deg": 0.0
+      },
+      "first_timestamp": "2026-07-23T21:24:59",
+      "last_timestamp": "2026-07-23T21:28:48"
+    },
+    "BLND07": {
+      "acquired_records": 3,
+      "files": [
+        "BLND07_N2_m1_a1_1784831232.npz",
+        "BLND07_N2_m1_a2_1784831240.npz",
+        "BLND07_N2_m1_a3_1784831249.npz"
+      ],
+      "file_sha256": {
+        "BLND07_N2_m1_a1_1784831232.npz": "9ac147bc3108f0af2837895d30020b248bc167a4fbf55e26cb8e0724e6ea51dc",
+        "BLND07_N2_m1_a2_1784831240.npz": "32c4ddc28a495462f9db168270fedf3885286dbc5aea6f4de46921a6bc48ff4a",
+        "BLND07_N2_m1_a3_1784831249.npz": "4ed40c5eebbc70d041efe4e6d775700fd388e3c4c24da00a44a6f293f483c969"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "balanced",
+        "disk1_gmm": 0.0,
+        "disk1_angle_deg": 0.0,
+        "disk2_gmm": 0.0,
+        "disk2_angle_deg": 0.0
+      },
+      "first_timestamp": "2026-07-23T21:27:12",
+      "last_timestamp": "2026-07-23T21:27:29"
+    },
+    "BLND08": {
+      "acquired_records": 3,
+      "files": [
+        "BLND08_N2_m1_a1_1784831206.npz",
+        "BLND08_N2_m1_a2_1784831214.npz",
+        "BLND08_N2_m1_a3_1784831223.npz"
+      ],
+      "file_sha256": {
+        "BLND08_N2_m1_a1_1784831206.npz": "c724fc1fafffaed82fcfb8627047b7ab54521ffbe816ec3e42297850259e8c44",
+        "BLND08_N2_m1_a2_1784831214.npz": "ca910ddad03ed767caf06e82681ed036b575f2ecf7195239a0c18a1ea62061b2",
+        "BLND08_N2_m1_a3_1784831223.npz": "33f8093afab94cdde94ae0d6c7fb787e23a365f3e081eeafad112b8b44459766"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "balanced",
+        "disk1_gmm": 0.0,
+        "disk1_angle_deg": 0.0,
+        "disk2_gmm": 0.0,
+        "disk2_angle_deg": 0.0
+      },
+      "first_timestamp": "2026-07-23T21:26:46",
+      "last_timestamp": "2026-07-23T21:27:03"
+    },
+    "BLND09": {
+      "acquired_records": 3,
+      "files": [
+        "BLND09_N2_m1_a1_1784831179.npz",
+        "BLND09_N2_m1_a2_1784831188.npz",
+        "BLND09_N2_m1_a3_1784831196.npz"
+      ],
+      "file_sha256": {
+        "BLND09_N2_m1_a1_1784831179.npz": "5119b6639672a35a621daff23e5000fbd7aaa83eeaa10a4c8543fefb28729b5e",
+        "BLND09_N2_m1_a2_1784831188.npz": "a8083d9260af56c3630e3355f3135c1aec375e97aac26c8b731c4356671b235e",
+        "BLND09_N2_m1_a3_1784831196.npz": "440debf2046b6367a11a5e070ebf01be4eaeb16cb107a075aa25c7390705917b"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "balanced",
+        "disk1_gmm": 0.0,
+        "disk1_angle_deg": 0.0,
+        "disk2_gmm": 0.0,
+        "disk2_angle_deg": 0.0
+      },
+      "first_timestamp": "2026-07-23T21:26:19",
+      "last_timestamp": "2026-07-23T21:26:36"
+    },
+    "BLND10": {
+      "acquired_records": 6,
+      "files": [
+        "BLND10_N1_m1_a1_1784831409.npz",
+        "BLND10_N1_m1_a2_1784831417.npz",
+        "BLND10_N1_m1_a3_1784831426.npz",
+        "BLND10_N2_m1_a1_1784831152.npz",
+        "BLND10_N2_m1_a2_1784831161.npz",
+        "BLND10_N2_m1_a3_1784831169.npz"
+      ],
+      "file_sha256": {
+        "BLND10_N1_m1_a1_1784831409.npz": "92eecb6a77904cbc1aac66aed8ffc37482cfae299397343201472e32309d15f5",
+        "BLND10_N1_m1_a2_1784831417.npz": "daf35c055da80b6ff25cd7162b851d42bf36b51098aee5470d48314a3c02bbb1",
+        "BLND10_N1_m1_a3_1784831426.npz": "a13ee7e3f263ac975159e915fa4e62c6049d9f447f3af50feef72df6531277e8",
+        "BLND10_N2_m1_a1_1784831152.npz": "59faee3938b38920d237b2cbe4a104c3918af04b6f7abf78bbd6045aa946a757",
+        "BLND10_N2_m1_a2_1784831161.npz": "9bd20b01fd9a9c1efc4b3f465e89a474753d907034a8a164fea102603617b27b",
+        "BLND10_N2_m1_a3_1784831169.npz": "8985b1fc603e422363019998e95bbca39acb555e05a9f14ec82d150ec01c1867"
+      },
+      "revealed": true,
+      "truth": {
+        "config": "balanced",
+        "disk1_gmm": 0.0,
+        "disk1_angle_deg": 0.0,
+        "disk2_gmm": 0.0,
+        "disk2_angle_deg": 0.0
+      },
+      "first_timestamp": "2026-07-23T21:25:52",
+      "last_timestamp": "2026-07-23T21:30:26"
+    },
+    "BLND11": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND12": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND13": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND14": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND15": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND16": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND17": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND18": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND19": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND20": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND21": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND22": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND23": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    },
+    "BLND24": {
+      "acquired_records": 0,
+      "files": [],
+      "file_sha256": {},
+      "revealed": false,
+      "truth": null,
+      "first_timestamp": null,
+      "last_timestamp": null
+    }
+  },
+  "summary": {
+    "revealed_with_data": [
+      "BLND01",
+      "BLND02",
+      "BLND03",
+      "BLND04",
+      "BLND05",
+      "BLND06",
+      "BLND07",
+      "BLND08",
+      "BLND09",
+      "BLND10"
+    ],
+    "sealed": [
+      "BLND11",
+      "BLND12",
+      "BLND13",
+      "BLND14",
+      "BLND15",
+      "BLND16",
+      "BLND17",
+      "BLND18",
+      "BLND19",
+      "BLND20",
+      "BLND21",
+      "BLND22",
+      "BLND23",
+      "BLND24"
+    ],
+    "defined_but_not_acquired": [
+      "BLND11",
+      "BLND12",
+      "BLND13",
+      "BLND14",
+      "BLND15",
+      "BLND16",
+      "BLND17",
+      "BLND18",
+      "BLND19",
+      "BLND20",
+      "BLND21",
+      "BLND22",
+      "BLND23",
+      "BLND24"
+    ],
+    "n_revealed": 10,
+    "n_sealed": 14
+  },
+  "rules": [
+    "Never re-tune on BLND01-10 and then report them as confirmatory.",
+    "Any post-hoc model change is exploratory until validated on a new block.",
+    "Re-run with --verify before submission; any hash change invalidates the reported blind numbers until re-audited."
+  ]
+}

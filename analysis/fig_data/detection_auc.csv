@@ -1,0 +1,4 @@
+method,roc_auc,pr_auc,trivial_acc
+physics,0.8933,0.9283,0.561
+ml,0.8564,0.8751,0.561
+hybrid,0.9183,0.9356,0.561

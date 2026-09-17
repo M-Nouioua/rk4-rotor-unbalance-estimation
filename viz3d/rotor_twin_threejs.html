@@ -1,0 +1,263 @@
+<!doctype html><html lang=en><head><meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>RK-4 Rotor 3D Twin (three.js)</title>
+<style>
+  :root{--bg:#0c1118;--panel:#141c26;--ink:#e8eef5;--mut:#8b98a8;--acc:#2bb7c6;
+    --d1:#4f9dff;--d2:#2fc39a;--probe:#f2a24b;--heavy:#ff5b52;--line:#26313d;
+    --mono:"Cascadia Code",Consolas,monospace;--ui:system-ui,"Segoe UI",sans-serif;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ui);overflow:hidden}
+  #app{position:fixed;inset:0}
+  canvas{display:block}
+  .panel{position:fixed;top:14px;left:14px;width:290px;background:rgba(20,28,38,.92);
+    border:1px solid var(--line);border-radius:12px;padding:14px 15px;backdrop-filter:blur(6px)}
+  .eyebrow{font:600 10.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+  h1{font-size:16px;margin:6px 0 2px;font-weight:650}
+  .sub{font-size:11.5px;color:var(--mut);margin-bottom:12px}
+  label{display:block;font-size:11px;color:var(--mut);margin:11px 0 4px;letter-spacing:.02em;text-transform:uppercase}
+  select,input[type=range]{width:100%}
+  select{background:#0f1620;color:var(--ink);border:1px solid var(--line);border-radius:7px;
+    padding:6px 8px;font-family:var(--ui);font-size:13px}
+  .row{display:flex;gap:8px;align-items:center}
+  .row>*{flex:1}
+  button{background:#0f1620;color:var(--ink);border:1px solid var(--line);border-radius:7px;
+    padding:7px;font-family:var(--mono);font-size:12px;cursor:pointer}
+  button:hover{border-color:var(--acc);color:var(--acc)}
+  button.on{background:var(--acc);color:#00252a;border-color:var(--acc);font-weight:700}
+  .val{font-family:var(--mono);font-size:11px;color:var(--ink);float:right}
+  .hud{position:fixed;bottom:14px;left:14px;background:rgba(20,28,38,.92);border:1px solid var(--line);
+    border-radius:12px;padding:12px 15px;font-family:var(--mono);font-size:12px;min-width:290px}
+  .hud .k{color:var(--mut)}
+  .hud b{color:var(--ink);font-weight:600}
+  .legend{position:fixed;top:14px;right:14px;background:rgba(20,28,38,.92);border:1px solid var(--line);
+    border-radius:12px;padding:12px 14px;font-size:11.5px}
+  .legend div{display:flex;align-items:center;gap:8px;margin:3px 0;color:var(--mut)}
+  .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .note{font-size:10.5px;color:var(--mut);margin-top:10px;line-height:1.4}
+</style></head><body>
+<div id="app"></div>
+
+<div class="panel">
+  <div class="eyebrow">KFUPM · IMR — digital twin</div>
+  <h1>RK-4 Rotor · 3D Twin</h1>
+  <div class="sub">Motion driven by measured 1X/2X/3X vectors — a faithful whirl, not an animation.</div>
+
+  <label>Condition</label>
+  <select id="cond"></select>
+  <label>Speed</label>
+  <select id="speed"></select>
+
+  <label>Whirl amplification <span class="val" id="ampV"></span></label>
+  <input type="range" id="amp" min="200" max="8000" step="100" value="2500">
+  <label>Animation speed <span class="val" id="rpsV"></span></label>
+  <input type="range" id="rps" min="0" max="3" step="0.05" value="0.6">
+  <div class="row" style="margin-top:12px">
+    <button id="play" class="on">⏸ Pause</button>
+    <button id="trail">Orbit trail</button>
+    <button id="reset">Reset view</button>
+  </div>
+  <div class="note">Drag to orbit · scroll to zoom. Deflection is shown ×amplification
+  (real orbits are ~0.1–0.7 mil). Heavy-spot marker = mounted screw.</div>
+</div>
+
+<div class="legend">
+  <div><span class="sw" style="background:var(--d1)"></span>disk 1</div>
+  <div><span class="sw" style="background:var(--d2)"></span>disk 2</div>
+  <div><span class="sw" style="background:var(--probe)"></span>probe plane</div>
+  <div><span class="sw" style="background:var(--heavy)"></span>heavy spot</div>
+</div>
+
+<div class="hud" id="hud"></div>
+
+<script src="lib/three.min.js"></script>
+<script src="lib/OrbitControls.js"></script>
+<script>
+const DATA = {"geom":{"shaft":{"length":560.0,"od":10.0},"disks":[{"name":"disk1","z":160.0,"od":76.0,"thick":25.0},{"name":"disk2","z":400.0,"od":76.0,"thick":25.0}],"bearings":[40.0,520.0],"planes":[{"name":"plane1","z":120.0},{"name":"plane2","z":440.0}],"balance_radius":30.0,"n_holes":8},"conditions":{"BASE|N1":{"id":"BASE","speed":"N1","config":"baseline","rpm":1003.9,"U1":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.03556,-0.13018],[-0.01051,-0.00249],[-0.00466,0.00013]],"y":[[0.00095,-0.18771],[0.01149,0.01685],[-0.00225,-0.00096]]},"plane2":{"x":[[0.34869,-0.15954],[-0.01609,0.00708],[-0.00015,-0.00599]],"y":[[-0.11303,-0.30509],[0.01342,0.02938],[-0.00225,0.00115]]}}},"BASE|N2":{"id":"BASE","speed":"N2","config":"baseline","rpm":1205.1,"U1":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.07868,-0.23621],[-0.02008,-0.00957],[-0.00537,-0.00606]],"y":[[-0.01454,-0.36743],[0.01059,0.0164],[-0.00396,-0.0037]]},"plane2":{"x":[[0.71801,-0.28938],[-0.00741,0.00391],[-0.00211,-0.00945]],"y":[[-0.20761,-0.62314],[0.00774,0.02031],[-0.00447,-0.00277]]}}},"A002|N1":{"id":"A002","speed":"N1","config":"D1","rpm":1004.2,"U1":{"mag_gmm":6.0,"mass_g":0.2,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.04098,-0.09869],[-0.01271,0.00299],[-0.002,-0.00517]],"y":[[0.02135,-0.18865],[0.0088,0.01809],[-0.00148,-0.00434]]},"plane2":{"x":[[0.35324,-0.12535],[-0.01617,0.00849],[-7e-05,-0.00862]],"y":[[-0.0841,-0.3012],[0.01101,0.03115],[-0.00139,-0.00263]]}}},"A002|N2":{"id":"A002","speed":"N2","config":"D1","rpm":1209.4,"U1":{"mag_gmm":6.0,"mass_g":0.2,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.10508,-0.20228],[-0.02678,-0.01391],[-0.00412,-0.00082]],"y":[[0.04915,-0.38464],[0.00586,0.01562],[-0.00355,0.00112]]},"plane2":{"x":[[0.75333,-0.22113],[-0.00989,0.0033],[-0.00333,-0.00536]],"y":[[-0.11033,-0.65492],[0.00331,0.01943],[-0.00389,0.00305]]}}},"A004|N1":{"id":"A004","speed":"N1","config":"D1","rpm":1004.1,"U1":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.07309,-0.05015],[-0.0076,-0.00169],[-0.00469,-0.00878]],"y":[[0.10944,-0.19858],[0.00315,0.01332],[-0.00315,-0.00348]]},"plane2":{"x":[[0.39524,0.0116],[-0.01906,0.00773],[0.00015,-0.00873]],"y":[[0.04697,-0.33382],[0.00688,0.02518],[-0.00272,-0.00247]]}}},"A004|N2":{"id":"A004","speed":"N2","config":"D1","rpm":1206.7,"U1":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.15589,-0.11776],[-0.01201,-0.02021],[-0.00685,-0.00697]],"y":[[0.20863,-0.38722],[-0.00168,0.01516],[-0.00232,0.00103]]},"plane2":{"x":[[0.82793,0.05748],[-0.00989,0.00744],[-0.00016,-0.00602]],"y":[[0.13939,-0.68909],[0.00092,0.01794],[-0.00231,0.0015]]}}},"A006|N1":{"id":"A006","speed":"N1","config":"D1","rpm":1008.1,"U1":{"mag_gmm":36.0,"mass_g":1.2,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.10548,-0.0581],[-0.00229,-0.00246],[-0.00613,-0.00819]],"y":[[0.15799,-0.19502],[0.0073,0.0179],[-0.00385,-0.00289]]},"plane2":{"x":[[0.42675,0.09233],[-0.01446,0.01092],[-0.00103,-0.008]],"y":[[0.11802,-0.34799],[0.01235,0.02972],[-0.00407,-0.00142]]}}},"A006|N2":{"id":"A006","speed":"N2","config":"D1","rpm":1208.3,"U1":{"mag_gmm":36.0,"mass_g":1.2,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.21771,-0.12313],[-0.00298,-0.02986],[-0.00731,-0.00716]],"y":[[0.31136,-0.40244],[-0.00344,0.01259],[-0.00341,0.0013]]},"plane2":{"x":[[0.88919,0.2245],[-0.00822,0.00649],[-0.00142,-0.00554]],"y":[[0.29831,-0.75256],[0.00295,0.01394],[-0.00328,0.0019]]}}},"A008|N1":{"id":"A008","speed":"N1","config":"D1","rpm":1004.1,"U1":{"mag_gmm":60.0,"mass_g":2.0,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.16769,-0.03399],[-0.00055,-0.00941],[-0.00443,-0.00642]],"y":[[0.28285,-0.19123],[-0.00129,0.0135],[-0.00118,4e-05]]},"plane2":{"x":[[0.47506,0.31197],[-0.01528,0.00763],[-0.00065,-0.0074]],"y":[[0.31176,-0.36437],[0.00656,0.02653],[-5e-05,0.00123]]}}},"A008|N2":{"id":"A008","speed":"N2","config":"D1","rpm":1204.4,"U1":{"mag_gmm":60.0,"mass_g":2.0,"ang_deg":0.0},"U2":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.35045,-0.07739],[0.01778,-0.03101],[-0.00719,-0.00786]],"y":[[0.55381,-0.39201],[-0.01761,0.00596],[-0.00057,0.00072]]},"plane2":{"x":[[1.00498,0.66631],[-0.00737,0.01049],[-0.00027,-0.00777]],"y":[[0.68552,-0.77963],[0.00029,0.01123],[0.00152,0.00062]]}}},"A012|N1":{"id":"A012","speed":"N1","config":"D2","rpm":1005.7,"U1":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"U2":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.06456,-0.05482],[-0.00687,0.00259],[-0.00123,-0.00561]],"y":[[0.08989,-0.20261],[0.00486,0.01602],[-0.00069,-0.00101]]},"plane2":{"x":[[0.41055,0.03414],[-0.01813,0.00961],[0.00247,-0.00647]],"y":[[0.06237,-0.34423],[0.00804,0.02766],[2e-05,0.00068]]}}},"A012|N2":{"id":"A012","speed":"N2","config":"D2","rpm":1204.3,"U1":{"mag_gmm":0.0,"mass_g":0.0,"ang_deg":0.0},"U2":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.14674,-0.12326],[-0.01069,-0.01854],[-0.00866,-0.00771]],"y":[[0.186,-0.38866],[0.00236,0.01666],[-0.00404,2e-05]]},"plane2":{"x":[[0.84317,0.08929],[-0.00821,0.00817],[-0.00204,-0.00617]],"y":[[0.1727,-0.69924],[0.00407,0.01911],[-0.00452,0.00118]]}}},"A020|N1":{"id":"A020","speed":"N1","config":"inphase","rpm":1003.9,"U1":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"U2":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.10675,-0.03528],[-0.00025,-0.00234],[-0.00446,-0.01208]],"y":[[0.189,-0.20344],[0.00301,0.01903],[-0.00192,-0.00376]]},"plane2":{"x":[[0.45083,0.20558],[-0.01718,0.01085],[0.001,-0.0093]],"y":[[0.21299,-0.37116],[0.00964,0.03365],[-0.00136,-0.00334]]}}},"A020|N2":{"id":"A020","speed":"N2","config":"inphase","rpm":1204.4,"U1":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"U2":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"planes":{"plane1":{"x":[[0.23479,-0.08427],[0.00902,-0.02778],[-0.01103,-0.01447]],"y":[[0.38057,-0.38612],[-0.00531,0.01431],[-0.00458,-0.0016]]},"plane2":{"x":[[0.94397,0.43769],[-0.00895,0.01045],[-0.00169,-0.0086]],"y":[[0.47646,-0.7447],[0.0051,0.01673],[-0.00378,-0.00185]]}}},"A028|N1":{"id":"A028","speed":"N1","config":"antiphase","rpm":1005.6,"U1":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"U2":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":180.0},"planes":{"plane1":{"x":[[0.03463,-0.0613],[-0.0073,0.00685],[-0.00496,-0.00558]],"y":[[0.02223,-0.19778],[0.00811,0.01467],[-0.00507,-0.00267]]},"plane2":{"x":[[0.34003,-0.18606],[-0.01632,0.00847],[-0.00123,-0.00756]],"y":[[-0.13252,-0.3031],[0.01023,0.02683],[-0.00508,-0.00109]]}}},"A028|N2":{"id":"A028","speed":"N2","config":"antiphase","rpm":1212.6,"U1":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":0.0},"U2":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":180.0},"planes":{"plane1":{"x":[[0.08288,-0.15729],[-0.02311,-0.00943],[-0.00592,-0.00431]],"y":[[0.03651,-0.3964],[0.00899,0.01497],[-0.00321,-0.00121]]},"plane2":{"x":[[0.724,-0.33474],[-0.00773,0.00345],[-0.00139,-0.00719]],"y":[[-0.20284,-0.65233],[0.00619,0.01989],[-0.00397,0.00035]]}}},"BLND01|N1":{"id":"BLND01","speed":"N1","config":"2plane","rpm":1002.2,"U1":{"mag_gmm":48.0,"mass_g":1.6,"ang_deg":180.0},"U2":{"mag_gmm":48.0,"mass_g":1.6,"ang_deg":135.0},"planes":{"plane1":{"x":[[-0.11334,-0.28348],[-0.0221,0.02297],[-0.00384,-0.00026]],"y":[[-0.32491,-0.30914],[0.02131,0.02001],[0.00213,-0.00416]]},"plane2":{"x":[[0.45422,-0.89506],[-0.01768,0.00548],[0.00225,-0.00791]],"y":[[-0.72159,-0.46366],[0.01453,0.03837],[0.00057,-0.00209]]}}},"BLND01|N2":{"id":"BLND01","speed":"N2","config":"2plane","rpm":1204.1,"U1":{"mag_gmm":48.0,"mass_g":1.6,"ang_deg":180.0},"U2":{"mag_gmm":48.0,"mass_g":1.6,"ang_deg":135.0},"planes":{"plane1":{"x":[[-0.2189,-0.53919],[-0.05792,0.04995],[-0.01751,0.00195]],"y":[[-0.69213,-0.6466],[0.04018,0.0116],[0.00339,-0.00176]]},"plane2":{"x":[[0.89946,-1.79599],[-0.01607,-0.01701],[-0.00183,-0.00688]],"y":[[-1.47679,-0.97187],[0.01273,0.03448],[-0.00218,0.0011]]}}},"BLND05|N1":{"id":"BLND05","speed":"N1","config":"2plane","rpm":1002.0,"U1":{"mag_gmm":36.0,"mass_g":1.2,"ang_deg":157.5},"U2":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":247.5},"planes":{"plane1":{"x":[[-0.0712,-0.15205],[-0.01241,0.01164],[-0.00293,0.00141]],"y":[[-0.16811,-0.15278],[0.01344,0.01686],[-0.00018,-0.00333]]},"plane2":{"x":[[0.12905,-0.44629],[-0.01907,0.00845],[0.00142,-0.00759]],"y":[[-0.37466,-0.1489],[0.01254,0.03211],[-0.00067,-0.00092]]}}},"BLND05|N2":{"id":"BLND05","speed":"N2","config":"2plane","rpm":1205.9,"U1":{"mag_gmm":36.0,"mass_g":1.2,"ang_deg":157.5},"U2":{"mag_gmm":24.0,"mass_g":0.8,"ang_deg":247.5},"planes":{"plane1":{"x":[[-0.12746,-0.27363],[-0.02471,0.01712],[-0.0095,0.0061]],"y":[[-0.33943,-0.29176],[0.01765,0.00798],[-0.00166,-0.00075]]},"plane2":{"x":[[0.28512,-0.87557],[-0.01501,-0.00089],[-0.00128,-0.00561]],"y":[[-0.71733,-0.32393],[0.00963,0.0203],[-0.00367,0.00224]]}}}},"order":["BASE|N1","BASE|N2","A002|N1","A002|N2","A004|N1","A004|N2","A006|N1","A006|N2","A008|N1","A008|N2","A012|N1","A012|N2","A020|N1","A020|N2","A028|N1","A028|N2","BLND01|N1","BLND01|N2","BLND05|N1","BLND05|N2"]};
+const MIL_MM = 0.0254, ZC = [DATA.geom.bearings[0], DATA.geom.planes[0].z,
+                             DATA.geom.planes[1].z, DATA.geom.bearings[1]];
+const L = DATA.geom.shaft.length, HALF = L/2;
+const COL = k=>getComputedStyle(document.documentElement).getPropertyValue('--'+k).trim();
+
+// ---------- physics ----------
+function deflAt(pl, th){                 // -> {y:vertical(mils), z:horizontal(mils)}
+  let Z=0, Y=0;
+  for(let k=1;k<=3;k++){const vx=pl.x[k-1], vy=pl.y[k-1];
+    Z += vx[0]*Math.cos(k*th) - vx[1]*Math.sin(k*th);
+    Y += vy[0]*Math.cos(k*th) - vy[1]*Math.sin(k*th);}
+  return {y:Y, z:Z};
+}
+function lag(v, u){                       // Lagrange cubic through the 4 ZC control points
+  let s=0; for(let i=0;i<4;i++){let t=v[i]; for(let j=0;j<4;j++) if(j!==i) t*=(u-ZC[j])/(ZC[i]-ZC[j]); s+=t;} return s;
+}
+function centerlineVecs(cond, th, amp){
+  const d1=deflAt(cond.planes.plane1,th), d2=deflAt(cond.planes.plane2,th), sc=MIL_MM*amp;
+  return {vY:[0,d1.y*sc,d2.y*sc,0], vZ:[0,d1.z*sc,d2.z*sc,0]};
+}
+
+// ---------- scene ----------
+const app=document.getElementById('app');
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(devicePixelRatio); app.appendChild(renderer.domElement);
+const scene=new THREE.Scene(); scene.background=new THREE.Color(COL('bg'));
+const camera=new THREE.PerspectiveCamera(42,1,1,5000);
+const CAM0=new THREE.Vector3(150,190,560);
+camera.position.copy(CAM0);
+const controls=new THREE.OrbitControls(camera,renderer.domElement);
+controls.enableDamping=true;
+scene.add(new THREE.AmbientLight(0xffffff,0.65));
+const dir=new THREE.DirectionalLight(0xffffff,0.8); dir.position.set(200,400,300); scene.add(dir);
+const dir2=new THREE.DirectionalLight(0x88aaff,0.3); dir2.position.set(-200,-100,-200); scene.add(dir2);
+// ground grid
+const grid=new THREE.GridHelper(900,18,0x223040,0x1a2530); grid.position.y=-90; scene.add(grid);
+
+const mat=(c,metal=0.4,rough=0.45,op=1)=>new THREE.MeshStandardMaterial(
+  {color:c,metalness:metal,roughness:rough,transparent:op<1,opacity:op});
+const steel=mat(0x9fb0c0,0.7,0.35);
+
+// shaft (tube rebuilt each frame)
+let shaft=new THREE.Mesh(new THREE.BufferGeometry(), steel); scene.add(shaft);
+const shaftR=Math.max(4, DATA.geom.shaft.od/2);
+
+// disks + holes
+const diskColors=[COL('d1'),COL('d2')];
+const disks=DATA.geom.disks.map((d,i)=>{
+  const g=new THREE.Group();
+  const cyl=new THREE.Mesh(new THREE.CylinderGeometry(d.od/2,d.od/2,d.thick,48),
+                           mat(new THREE.Color(diskColors[i]),0.35,0.5,0.92));
+  cyl.rotation.z=Math.PI/2;              // cylinder axis -> local X (shaft axis)
+  g.add(cyl);
+  // rim
+  const rim=new THREE.Mesh(new THREE.TorusGeometry(d.od/2,1.1,8,48),mat(0xffffff,0.2,0.6));
+  rim.rotation.y=Math.PI/2; g.add(rim);
+  // 8 holes on the face at balance radius
+  const holes=[];
+  for(let h=0;h<DATA.geom.n_holes;h++){
+    const a=h*2*Math.PI/DATA.geom.n_holes;
+    const m=new THREE.Mesh(new THREE.SphereGeometry(3.4,12,12),mat(0x2a3644,0.2,0.7));
+    m.position.set(d.thick/2+1, DATA.geom.balance_radius*Math.cos(a), DATA.geom.balance_radius*Math.sin(a));
+    m.userData.a=a; g.add(m); holes.push(m);
+  }
+  g.userData={holes, node:d};
+  scene.add(g); return g;
+});
+
+// bearings (fixed pillow blocks)
+DATA.geom.bearings.forEach(z=>{
+  const b=new THREE.Mesh(new THREE.BoxGeometry(26,60,60),mat(0x2b3644,0.3,0.7));
+  b.position.set(z-HALF,-30,0); scene.add(b);
+  const cap=new THREE.Mesh(new THREE.CylinderGeometry(16,16,28,24),mat(0x3a4757,0.4,0.5));
+  cap.rotation.z=Math.PI/2; cap.position.set(z-HALF,0,0); scene.add(cap);
+});
+
+// probes (x=horizontal->+Z, y=vertical->+Y) at each plane
+DATA.geom.planes.forEach(p=>{
+  [[0,0,46],[0,46,0]].forEach(off=>{
+    const pr=new THREE.Mesh(new THREE.CylinderGeometry(3,3,26,16),mat(new THREE.Color(COL('probe')),0.5,0.4));
+    const v=new THREE.Vector3(off[0],off[1],off[2]);
+    pr.position.set(p.z-HALF, v.y?v.y-13:0, v.z?v.z-13:0);
+    if(v.z) pr.rotation.x=Math.PI/2;
+    scene.add(pr);
+  });
+});
+
+// orbit trail rings (per plane)
+const trails=DATA.geom.planes.map(()=> {
+  const l=new THREE.Line(new THREE.BufferGeometry(),
+    new THREE.LineBasicMaterial({color:COL('acc'),transparent:true,opacity:0.55}));
+  l.visible=false; scene.add(l); return l;
+});
+
+// ---------- state ----------
+let cond=null, th=0, playing=true, amp=2500, rps=0.6, showTrail=false, last=performance.now();
+
+function rebuildShaft(vY,vZ){
+  const pts=[]; for(let i=0;i<=64;i++){const u=ZC[0]+(ZC[3]-ZC[0])*i/64; pts.push(new THREE.Vector3(u-HALF, lag(vY,u), lag(vZ,u)));}
+  const curve=new THREE.CatmullRomCurve3(pts);
+  shaft.geometry.dispose();
+  shaft.geometry=new THREE.TubeGeometry(curve,64,shaftR,12,false);
+}
+function tangent(vY,vZ,u){const e=2; return new THREE.Vector3(1,(lag(vY,u+e)-lag(vY,u-e))/(2*e),(lag(vZ,u+e)-lag(vZ,u-e))/(2*e)).normalize();}
+
+function updateTrails(){
+  DATA.geom.planes.forEach((p,i)=>{
+    trails[i].visible=showTrail; if(!showTrail) return;
+    const pl=cond.planes[p.name==='plane1'?'plane1':'plane2'], sc=MIL_MM*amp, pts=[];
+    for(let a=0;a<=64;a++){const t=a/64*2*Math.PI, d=deflAt(pl,t);
+      pts.push(new THREE.Vector3(p.z-HALF, d.y*sc, d.z*sc));}
+    trails[i].geometry.dispose(); trails[i].geometry=new THREE.BufferGeometry().setFromPoints(pts);
+  });
+}
+
+function frame(now){
+  const dt=Math.min(0.05,(now-last)/1000); last=now;
+  if(playing) th=(th+rps*2*Math.PI*dt)%(2*Math.PI);
+  if(cond){
+    const {vY,vZ}=centerlineVecs(cond,th,amp);
+    rebuildShaft(vY,vZ);
+    disks.forEach(g=>{
+      const u=g.userData.node.z, c=new THREE.Vector3(u-HALF,lag(vY,u),lag(vZ,u));
+      g.position.copy(c);
+      const T=tangent(vY,vZ,u);
+      const q=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(1,0,0),T);
+      const qs=new THREE.Quaternion().setFromAxisAngle(T,th);
+      g.quaternion.copy(qs.multiply(q));
+    });
+  }
+  controls.update(); renderer.render(scene,camera);
+  requestAnimationFrame(frame);
+}
+
+function setHeavySpots(){
+  const U=[cond.U1,cond.U2];
+  disks.forEach((g,i)=>{
+    const loaded=U[i].mag_gmm>0.1, a=U[i].ang_deg*Math.PI/180;
+    g.userData.holes.forEach(h=>{
+      const isHeavy=loaded && Math.abs(((h.userData.a-a+Math.PI)%(2*Math.PI))-Math.PI)<0.2;
+      h.material.color.set(isHeavy?COL('heavy'):0x2a3644);
+      h.scale.setScalar(isHeavy?1.8:1);
+    });
+  });
+}
+function hud(){
+  const p1=cond.planes.plane1, p2=cond.planes.plane2;
+  const amp1x=(pl)=>Math.hypot(Math.hypot(pl.x[0][0],pl.x[0][1]),Math.hypot(pl.y[0][0],pl.y[0][1]));
+  document.getElementById('hud').innerHTML=
+    `<span class="k">condition</span> <b>${cond.id}</b> · ${cond.config} &nbsp; `+
+    `<span class="k">rpm</span> <b>${cond.rpm.toFixed(0)}</b> (${cond.speed})<br>`+
+    `<span class="k">unbalance</span> D1 <b>${cond.U1.mag_gmm} g·mm∠${cond.U1.ang_deg}°</b> · `+
+    `D2 <b>${cond.U2.mag_gmm} g·mm∠${cond.U2.ang_deg}°</b><br>`+
+    `<span class="k">1X orbit</span> plane1 <b>${amp1x(p1).toFixed(3)}</b> · `+
+    `plane2 <b>${amp1x(p2).toFixed(3)}</b> mil (pk)`;
+}
+function load(){
+  const key=document.getElementById('cond').value+'|'+document.getElementById('speed').value;
+  cond=DATA.conditions[key]||DATA.conditions[DATA.order[0]];
+  setHeavySpots(); updateTrails(); hud();
+}
+
+// ---------- UI ----------
+(function(){
+  const cs=document.getElementById('cond'), sp=document.getElementById('speed');
+  const ids=[...new Set(DATA.order.map(k=>k.split('|')[0]))];
+  const cfgOf=id=>{const k=DATA.order.find(x=>x.startsWith(id+'|')); return DATA.conditions[k].config;};
+  ids.forEach(id=>{const o=document.createElement('option');o.value=id;o.textContent=id+' · '+cfgOf(id);cs.appendChild(o);});
+  [...new Set(DATA.order.map(k=>k.split('|')[1]))].forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;sp.appendChild(o);});
+  cs.value=ids.includes('A008')?'A008':ids[0];
+  cs.onchange=sp.onchange=load;
+  const ampEl=document.getElementById('amp'), rpsEl=document.getElementById('rps');
+  const ampV=document.getElementById('ampV'), rpsV=document.getElementById('rpsV');
+  const syncLabels=()=>{ampV.textContent='×'+amp; rpsV.textContent=rps.toFixed(2)+' rev/s';};
+  ampEl.oninput=()=>{amp=+ampEl.value; syncLabels(); updateTrails(); hud();};
+  rpsEl.oninput=()=>{rps=+rpsEl.value; syncLabels();};
+  syncLabels();
+  const play=document.getElementById('play');
+  play.onclick=()=>{playing=!playing; play.textContent=playing?'⏸ Pause':'▶ Play'; play.classList.toggle('on',playing);};
+  const trail=document.getElementById('trail');
+  trail.onclick=()=>{showTrail=!showTrail; trail.classList.toggle('on',showTrail); updateTrails();};
+  document.getElementById('reset').onclick=()=>{camera.position.copy(CAM0); controls.target.set(0,0,0);};
+})();
+
+function resize(){const w=innerWidth,h=innerHeight; renderer.setSize(w,h); camera.aspect=w/h; camera.updateProjectionMatrix();}
+addEventListener('resize',resize); resize(); load();
+requestAnimationFrame(frame);
+</script></body></html>

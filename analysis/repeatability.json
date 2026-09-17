@@ -1,0 +1,18 @@
+{
+  "absolute": {
+    "measure": "per-probe standard deviation of the first-order amplitude across the three repeats of one condition and speed",
+    "unit": "micrometre",
+    "n_probe_group_pairs": 680,
+    "median": 0.0277,
+    "p95": 0.0738
+  },
+  "relative": {
+    "measure": "||V - Vbar|| / ||Vbar|| per record, Vbar the complex mean of the repeats; balanced conditions excluded",
+    "n_records": 504,
+    "n_condition_speed_groups": 168,
+    "n_records_excluded_balanced": 6,
+    "median": 0.011,
+    "p90": 0.0485
+  },
+  "note": "Back-to-back only. The three repeats share one mounting of the added mass, so remounting variance is not included. Section 2.6 of the manuscript states this limitation."
+}

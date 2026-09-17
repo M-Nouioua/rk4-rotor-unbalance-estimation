@@ -1,0 +1,503 @@
+{
+  "gate": "RESEARCH_PAPER_PLAN.md section 6.7, judged on angle_sector",
+  "calibration_parity_note": "The PINN identifies its operator from the labeled training fold (~68 conditions); the ICM uses three runs. The like-for-like comparison is against the Extra-Trees baselines, which consume the same campaign.",
+  "n_invariant_features": 35,
+  "protocols": {
+    "random_acquisition": "LEAKY NEGATIVE CONTROL -- repeats of one condition straddle folds. Included only to quantify what the field's default split buys.",
+    "condition": "Interpolation to unseen mass/angle COMBINATIONS on the sampled grid.",
+    "magnitude_interpolating": "Leave-one-severity-level-out. The held-out level is BRACKETED by trained levels, so this is interpolation, not extrapolation.",
+    "magnitude_extrapolating": "Train on total U<36 g.mm, test on >=36. The deployment question the blind two-plane cases actually posed.",
+    "configuration": "Leave-one-configuration-out (D1 / D2 / in-phase / anti-phase).",
+    "angle_sector": "Leave-one-angle-sector-out. Only 4 distinct angles exist at U>=24 g.mm, so on-grid phase scores cannot be read as generalization."
+  },
+  "variants": {
+    "iso": {
+      "random_acquisition": {
+        "r2_pred": 0.9457,
+        "r2_line": 0.955,
+        "slope": 1.02,
+        "rmse": 3.346,
+        "mae": 1.811,
+        "phase_hi": 5.32,
+        "phase_hi_n": 64,
+        "crosstalk": 1.918,
+        "localization": 0.9268,
+        "n_points": 164
+      },
+      "condition": {
+        "r2_pred": 0.9445,
+        "r2_line": 0.9543,
+        "slope": 1.0198,
+        "rmse": 3.384,
+        "mae": 1.904,
+        "phase_hi": 5.86,
+        "phase_hi_n": 64,
+        "crosstalk": 1.96,
+        "localization": 0.9268,
+        "n_points": 164
+      },
+      "magnitude_interpolating": {
+        "r2_pred": 0.9435,
+        "r2_line": 0.9531,
+        "slope": 1.0185,
+        "rmse": 3.413,
+        "mae": 1.969,
+        "phase_hi": 5.8,
+        "phase_hi_n": 64,
+        "crosstalk": 2.176,
+        "localization": 0.9146,
+        "n_points": 164
+      },
+      "magnitude_extrapolating": {
+        "r2_pred": 0.8334,
+        "r2_line": 0.8993,
+        "slope": 1.1142,
+        "rmse": 4.829,
+        "mae": 2.838,
+        "phase_hi": 6.4,
+        "phase_hi_n": 48,
+        "crosstalk": 3.169,
+        "localization": 0.9615,
+        "n_points": 52
+      },
+      "configuration": {
+        "r2_pred": 0.9354,
+        "r2_line": 0.9521,
+        "slope": 0.9707,
+        "rmse": 3.651,
+        "mae": 2.317,
+        "phase_hi": 5.92,
+        "phase_hi_n": 64,
+        "crosstalk": 2.073,
+        "localization": 0.9268,
+        "n_points": 164
+      },
+      "angle_sector": {
+        "r2_pred": 0.9383,
+        "r2_line": 0.9492,
+        "slope": 1.026,
+        "rmse": 3.567,
+        "mae": 2.003,
+        "phase_hi": 6.66,
+        "phase_hi_n": 64,
+        "crosstalk": 2.258,
+        "localization": 0.939,
+        "n_points": 164
+      }
+    },
+    "aniso": {
+      "random_acquisition": {
+        "r2_pred": 0.8109,
+        "r2_line": 0.88,
+        "slope": 0.9716,
+        "rmse": 6.246,
+        "mae": 3.909,
+        "phase_hi": 5.54,
+        "phase_hi_n": 64,
+        "crosstalk": 3.428,
+        "localization": 0.8293,
+        "n_points": 164
+      },
+      "condition": {
+        "r2_pred": 0.8597,
+        "r2_line": 0.9031,
+        "slope": 1.0079,
+        "rmse": 5.379,
+        "mae": 3.175,
+        "phase_hi": 6.94,
+        "phase_hi_n": 64,
+        "crosstalk": 3.258,
+        "localization": 0.8415,
+        "n_points": 164
+      },
+      "magnitude_interpolating": {
+        "r2_pred": 0.8643,
+        "r2_line": 0.9015,
+        "slope": 1.0134,
+        "rmse": 5.291,
+        "mae": 2.928,
+        "phase_hi": 11.32,
+        "phase_hi_n": 64,
+        "crosstalk": 3.046,
+        "localization": 0.8659,
+        "n_points": 164
+      },
+      "magnitude_extrapolating": {
+        "r2_pred": -1.1939,
+        "r2_line": 0.1682,
+        "slope": 0.4475,
+        "rmse": 17.525,
+        "mae": 12.001,
+        "phase_hi": 28.21,
+        "phase_hi_n": 48,
+        "crosstalk": 23.13,
+        "localization": 0.7692,
+        "n_points": 52
+      },
+      "configuration": {
+        "r2_pred": 0.7203,
+        "r2_line": 0.8084,
+        "slope": 0.9182,
+        "rmse": 7.595,
+        "mae": 4.345,
+        "phase_hi": 15.71,
+        "phase_hi_n": 64,
+        "crosstalk": 2.133,
+        "localization": 0.8659,
+        "n_points": 164
+      },
+      "angle_sector": {
+        "r2_pred": 0.3472,
+        "r2_line": 0.6433,
+        "slope": 1.0112,
+        "rmse": 11.604,
+        "mae": 7.07,
+        "phase_hi": 22.17,
+        "phase_hi_n": 64,
+        "crosstalk": 5.158,
+        "localization": 0.6829,
+        "n_points": 164
+      }
+    },
+    "aniso+res": {
+      "random_acquisition": {
+        "r2_pred": 0.9557,
+        "r2_line": 0.9614,
+        "slope": 1.0063,
+        "rmse": 3.023,
+        "mae": 1.434,
+        "phase_hi": 3.93,
+        "phase_hi_n": 64,
+        "crosstalk": 1.812,
+        "localization": 0.9146,
+        "n_points": 164
+      },
+      "condition": {
+        "r2_pred": 0.9251,
+        "r2_line": 0.9361,
+        "slope": 1.0213,
+        "rmse": 3.931,
+        "mae": 2.087,
+        "phase_hi": 5.62,
+        "phase_hi_n": 64,
+        "crosstalk": 2.088,
+        "localization": 0.8902,
+        "n_points": 164
+      },
+      "magnitude_interpolating": {
+        "r2_pred": 0.9405,
+        "r2_line": 0.9478,
+        "slope": 1.0048,
+        "rmse": 3.504,
+        "mae": 1.91,
+        "phase_hi": 5.38,
+        "phase_hi_n": 64,
+        "crosstalk": 2.195,
+        "localization": 0.9146,
+        "n_points": 164
+      },
+      "magnitude_extrapolating": {
+        "r2_pred": 0.6303,
+        "r2_line": 0.7883,
+        "slope": 1.0853,
+        "rmse": 7.194,
+        "mae": 4.902,
+        "phase_hi": 13.54,
+        "phase_hi_n": 48,
+        "crosstalk": 2.321,
+        "localization": 0.9615,
+        "n_points": 52
+      },
+      "configuration": {
+        "r2_pred": 0.889,
+        "r2_line": 0.9065,
+        "slope": 0.9651,
+        "rmse": 4.785,
+        "mae": 2.805,
+        "phase_hi": 6.79,
+        "phase_hi_n": 64,
+        "crosstalk": 2.767,
+        "localization": 0.9268,
+        "n_points": 164
+      },
+      "angle_sector": {
+        "r2_pred": 0.725,
+        "r2_line": 0.7847,
+        "slope": 0.9865,
+        "rmse": 7.532,
+        "mae": 4.079,
+        "phase_hi": 12.21,
+        "phase_hi_n": 64,
+        "crosstalk": 3.871,
+        "localization": 0.8293,
+        "n_points": 164
+      }
+    },
+    "aniso+unlab": {
+      "random_acquisition": {
+        "r2_pred": 0.9433,
+        "r2_line": 0.9549,
+        "slope": 0.9997,
+        "rmse": 3.419,
+        "mae": 2.007,
+        "phase_hi": 4.28,
+        "phase_hi_n": 64,
+        "crosstalk": 1.911,
+        "localization": 0.9268,
+        "n_points": 164
+      },
+      "condition": {
+        "r2_pred": 0.9416,
+        "r2_line": 0.9537,
+        "slope": 1.0048,
+        "rmse": 3.47,
+        "mae": 2.108,
+        "phase_hi": 5.13,
+        "phase_hi_n": 64,
+        "crosstalk": 2.009,
+        "localization": 0.939,
+        "n_points": 164
+      },
+      "magnitude_interpolating": {
+        "r2_pred": 0.8041,
+        "r2_line": 0.8463,
+        "slope": 0.9423,
+        "rmse": 6.356,
+        "mae": 3.226,
+        "phase_hi": 8.68,
+        "phase_hi_n": 64,
+        "crosstalk": 3.107,
+        "localization": 0.8537,
+        "n_points": 164
+      },
+      "magnitude_extrapolating": {
+        "r2_pred": 0.6519,
+        "r2_line": 0.8071,
+        "slope": 1.1487,
+        "rmse": 6.981,
+        "mae": 4.081,
+        "phase_hi": 5.55,
+        "phase_hi_n": 48,
+        "crosstalk": 5.46,
+        "localization": 0.9231,
+        "n_points": 52
+      },
+      "configuration": {
+        "r2_pred": 0.7486,
+        "r2_line": 0.8225,
+        "slope": 0.9386,
+        "rmse": 7.201,
+        "mae": 3.985,
+        "phase_hi": 14.15,
+        "phase_hi_n": 64,
+        "crosstalk": 2.054,
+        "localization": 0.8415,
+        "n_points": 164
+      },
+      "angle_sector": {
+        "r2_pred": 0.1472,
+        "r2_line": 0.3883,
+        "slope": 0.5449,
+        "rmse": 13.263,
+        "mae": 6.867,
+        "phase_hi": 21.28,
+        "phase_hi_n": 64,
+        "crosstalk": 5.602,
+        "localization": 0.7317,
+        "n_points": 164
+      }
+    }
+  },
+  "identifiability": {
+    "iso": {
+      "parameters": {
+        "physics_active": 42,
+        "physics_inert": 36,
+        "residual": 0,
+        "total_active": 42
+      },
+      "poles": {
+        "w_rpm": [
+          1647.2,
+          1742.1,
+          4955.2
+        ],
+        "w_prior_rpm": [
+          1648.0,
+          1750.0,
+          4944.0
+        ],
+        "zeta": [
+          0.04,
+          0.04,
+          0.05
+        ],
+        "zeta_prior": [
+          0.04,
+          0.04,
+          0.05
+        ],
+        "caveat": "prior-anchored; 2 sub-critical speeds cannot identify poles"
+      },
+      "anisotropy_strength": 0.0,
+      "final_losses": {
+        "sup": 0.040551,
+        "phys": 0.011024,
+        "prior": 2.1e-05,
+        "restarts": 3,
+        "best_train_loss": 0.051786
+      }
+    },
+    "aniso": {
+      "parameters": {
+        "physics_active": 78,
+        "physics_inert": 0,
+        "residual": 0,
+        "total_active": 78
+      },
+      "poles": {
+        "w_rpm": [
+          1653.3,
+          1741.1,
+          4934.3
+        ],
+        "w_prior_rpm": [
+          1648.0,
+          1750.0,
+          4944.0
+        ],
+        "zeta": [
+          0.04,
+          0.04,
+          0.05
+        ],
+        "zeta_prior": [
+          0.04,
+          0.04,
+          0.05
+        ],
+        "caveat": "prior-anchored; 2 sub-critical speeds cannot identify poles"
+      },
+      "anisotropy_strength": 0.0196,
+      "final_losses": {
+        "sup": 0.069034,
+        "phys": 0.01094,
+        "prior": 3.7e-05,
+        "restarts": 3,
+        "best_train_loss": 0.08034
+      }
+    },
+    "aniso+res": {
+      "parameters": {
+        "physics_active": 78,
+        "physics_inert": 0,
+        "residual": 644,
+        "total_active": 722
+      },
+      "poles": {
+        "w_rpm": [
+          1645.4,
+          1748.0,
+          4942.6
+        ],
+        "w_prior_rpm": [
+          1648.0,
+          1750.0,
+          4944.0
+        ],
+        "zeta": [
+          0.04,
+          0.04,
+          0.05
+        ],
+        "zeta_prior": [
+          0.04,
+          0.04,
+          0.05
+        ],
+        "caveat": "prior-anchored; 2 sub-critical speeds cannot identify poles"
+      },
+      "anisotropy_strength": 0.0372,
+      "final_losses": {
+        "sup": 0.031116,
+        "phys": 0.017265,
+        "prior": 4e-06,
+        "restarts": 3,
+        "best_train_loss": 0.050699
+      }
+    },
+    "aniso+unlab": {
+      "parameters": {
+        "physics_active": 78,
+        "physics_inert": 0,
+        "residual": 0,
+        "total_active": 78
+      },
+      "poles": {
+        "w_rpm": [
+          1644.2,
+          1745.2,
+          4946.6
+        ],
+        "w_prior_rpm": [
+          1648.0,
+          1750.0,
+          4944.0
+        ],
+        "zeta": [
+          0.04,
+          0.04,
+          0.05
+        ],
+        "zeta_prior": [
+          0.04,
+          0.04,
+          0.05
+        ],
+        "caveat": "prior-anchored; 2 sub-critical speeds cannot identify poles"
+      },
+      "anisotropy_strength": 0.0281,
+      "final_losses": {
+        "sup": 0.048474,
+        "phys": 0.013661,
+        "prior": 1.3e-05,
+        "restarts": 3,
+        "best_train_loss": 0.062263
+      }
+    }
+  },
+  "verdict": {
+    "best_variant_on_angle": "iso",
+    "angle_sector": {
+      "r2_pred": 0.9383,
+      "r2_line": 0.9492,
+      "slope": 1.026,
+      "rmse": 3.567,
+      "mae": 2.003,
+      "phase_hi": 6.66,
+      "phase_hi_n": 64,
+      "crosstalk": 2.258,
+      "localization": 0.939,
+      "n_points": 164
+    },
+    "condition": {
+      "r2_pred": 0.9445,
+      "r2_line": 0.9543,
+      "slope": 1.0198,
+      "rmse": 3.384,
+      "mae": 1.904,
+      "phase_hi": 5.86,
+      "phase_hi_n": 64,
+      "crosstalk": 1.96,
+      "localization": 0.9268,
+      "n_points": 164
+    },
+    "icm_reference": {
+      "r2_pred": 0.6235,
+      "phase_hi": 22.9,
+      "slope": 0.8884
+    },
+    "beats_icm_off_grid": true,
+    "beats_hybrid_in_grid": true
+  }
+}

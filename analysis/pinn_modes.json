@@ -1,0 +1,111 @@
+{
+  "design": "isotropic operator, condition-grouped 5-fold; forward prediction uses the known unbalance as an input",
+  "rank_note": "M=1 gives a rank-one residue per disk pair, so the inverse cannot separate the two planes while the forward direction is unaffected",
+  "modes": {
+    "1": {
+      "n_parameters_active": 14,
+      "pole_priors_rpm": [
+        1648.0
+      ],
+      "inverse": {
+        "r2_pred": -0.2455,
+        "slope": 0.5073,
+        "rmse": 16.028,
+        "phase_hi": 31.77,
+        "crosstalk": 9.14,
+        "localization": 0.4512
+      },
+      "forward": {
+        "response_r2_pred": 0.9354,
+        "rel_error_median_loaded": 0.3865
+      }
+    },
+    "2": {
+      "n_parameters_active": 28,
+      "pole_priors_rpm": [
+        1648.0,
+        1750.0
+      ],
+      "inverse": {
+        "r2_pred": 0.9364,
+        "slope": 0.9912,
+        "rmse": 3.621,
+        "phase_hi": 5.88,
+        "crosstalk": 2.004,
+        "localization": 0.9512
+      },
+      "forward": {
+        "response_r2_pred": 0.9407,
+        "rel_error_median_loaded": 0.3918
+      }
+    },
+    "3": {
+      "n_parameters_active": 42,
+      "pole_priors_rpm": [
+        1648.0,
+        1750.0,
+        4944.0
+      ],
+      "inverse": {
+        "r2_pred": 0.9445,
+        "slope": 1.0198,
+        "rmse": 3.384,
+        "phase_hi": 5.86,
+        "crosstalk": 1.96,
+        "localization": 0.9268
+      },
+      "forward": {
+        "response_r2_pred": 0.9562,
+        "rel_error_median_loaded": 0.2994
+      }
+    },
+    "4": {
+      "n_parameters_active": 56,
+      "pole_priors_rpm": [
+        1648.0,
+        1750.0,
+        4944.0,
+        8240.0
+      ],
+      "inverse": {
+        "r2_pred": 0.9432,
+        "slope": 1.0152,
+        "rmse": 3.423,
+        "phase_hi": 5.77,
+        "crosstalk": 1.99,
+        "localization": 0.9268
+      },
+      "forward": {
+        "response_r2_pred": 0.9522,
+        "rel_error_median_loaded": 0.3145
+      }
+    },
+    "6": {
+      "n_parameters_active": 84,
+      "pole_priors_rpm": [
+        1648.0,
+        1750.0,
+        4944.0,
+        8240.0,
+        11536.0,
+        14832.0
+      ],
+      "inverse": {
+        "r2_pred": 0.9444,
+        "slope": 1.0251,
+        "rmse": 3.388,
+        "phase_hi": 5.78,
+        "crosstalk": 1.968,
+        "localization": 0.9146
+      },
+      "forward": {
+        "response_r2_pred": 0.9627,
+        "rel_error_median_loaded": 0.2796
+      }
+    }
+  },
+  "chosen": {
+    "n_modes": 3,
+    "reason": "best condition-level inverse predictive R2; M=2 is the minimum for two-plane separation and M=3 adds a weakly anchored residual-flexibility term"
+  }
+}

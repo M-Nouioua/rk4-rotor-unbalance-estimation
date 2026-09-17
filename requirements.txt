@@ -1,0 +1,13 @@
+numpy>=1.24
+scipy>=1.10
+pandas>=2.0
+matplotlib>=3.7
+pyyaml>=6.0
+scikit-learn>=1.3     # ML + hybrid unbalance estimators (estimation/ml.py, twin.py)
+nidaqmx>=0.9          # NI-DAQmx Python API (needs NI-DAQmx runtime installed)
+ross-rotordynamics>=1.3   # rotordynamic FE modelling
+
+# --- acquisition GUI (optional) ---
+pyqt5>=5.15           # GUI toolkit
+pyqtgraph>=0.13       # real-time orbit / plot widgets
+torch>=2.0   # estimation/pinn.py (CPU is sufficient)

@@ -1,0 +1,9 @@
+arm,tag,n_train_conditions,r2_pred,phase_hi
+unseen_angle,sector 2 (=90 deg) withheld,69,-1.9257,73.72
+unseen_angle,sector 4 (=180 deg) withheld,69,-1.6107,67.13
+unseen_angle,sector 6 (=270 deg) withheld,69,-2.1113,65.78
+size_matched_random,random draw 1,69,0.612,3.23
+size_matched_random,random draw 2,69,0.785,4.42
+size_matched_random,random draw 3,69,0.7183,2.36
+size_matched_random,random draw 4,69,0.8116,3.53
+size_matched_random,random draw 5,69,0.8288,0.32

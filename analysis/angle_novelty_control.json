@@ -1,0 +1,90 @@
+{
+  "design": "one 16-condition angle sector withheld vs 16 random conditions withheld; identical n_train, model and scoring",
+  "sector_condition_counts": {
+    "0": 198,
+    "1": 6,
+    "2": 96,
+    "3": 6,
+    "4": 96,
+    "5": 6,
+    "6": 96,
+    "7": 6
+  },
+  "unseen_angle": [
+    {
+      "tag": "sector 2 (=90 deg) withheld",
+      "n_train_conditions": 69,
+      "n_test_conditions": 16,
+      "r2_pred": -1.9257,
+      "phase_hi": 73.72,
+      "phase_hi_n": 12
+    },
+    {
+      "tag": "sector 4 (=180 deg) withheld",
+      "n_train_conditions": 69,
+      "n_test_conditions": 16,
+      "r2_pred": -1.6107,
+      "phase_hi": 67.13,
+      "phase_hi_n": 12
+    },
+    {
+      "tag": "sector 6 (=270 deg) withheld",
+      "n_train_conditions": 69,
+      "n_test_conditions": 16,
+      "r2_pred": -2.1113,
+      "phase_hi": 65.78,
+      "phase_hi_n": 12
+    }
+  ],
+  "size_matched_random": [
+    {
+      "tag": "random draw 1",
+      "n_train_conditions": 69,
+      "n_test_conditions": 16,
+      "r2_pred": 0.612,
+      "phase_hi": 3.23,
+      "phase_hi_n": 14
+    },
+    {
+      "tag": "random draw 2",
+      "n_train_conditions": 69,
+      "n_test_conditions": 16,
+      "r2_pred": 0.785,
+      "phase_hi": 4.42,
+      "phase_hi_n": 10
+    },
+    {
+      "tag": "random draw 3",
+      "n_train_conditions": 69,
+      "n_test_conditions": 16,
+      "r2_pred": 0.7183,
+      "phase_hi": 2.36,
+      "phase_hi_n": 14
+    },
+    {
+      "tag": "random draw 4",
+      "n_train_conditions": 69,
+      "n_test_conditions": 16,
+      "r2_pred": 0.8116,
+      "phase_hi": 3.53,
+      "phase_hi_n": 14
+    },
+    {
+      "tag": "random draw 5",
+      "n_train_conditions": 69,
+      "n_test_conditions": 16,
+      "r2_pred": 0.8288,
+      "phase_hi": 0.32,
+      "phase_hi_n": 13
+    }
+  ],
+  "verdict": {
+    "unseen_angle_r2_pred": -1.8826,
+    "unseen_angle_phase": 68.88,
+    "random_r2_pred": 0.7511,
+    "random_phase": 2.77,
+    "delta_r2_pred_from_angle_novelty": -2.6337,
+    "delta_phase_from_angle_novelty": 66.1,
+    "reading": "Both arms train on the same number of conditions, so the gap is attributable to angle novelty rather than to reduced training data."
+  }
+}

@@ -1,0 +1,708 @@
+{
+  "blind": {
+    "status": "REPORTED EVIDENCE, NOT CONFIRMATORY -- BLND01-10 were unsealed 2026-07-26 and the operator family was chosen after that date. A confirmatory claim needs a new, prospectively frozen block.",
+    "conditions": [
+      "BLND01",
+      "BLND02",
+      "BLND03",
+      "BLND04",
+      "BLND05",
+      "BLND06",
+      "BLND07",
+      "BLND08",
+      "BLND09",
+      "BLND10"
+    ],
+    "methods": {
+      "pinn_iso": {
+        "mae": 3.41,
+        "rmse": 3.76,
+        "mae_loaded": 3.27,
+        "detect_acc": 0.9,
+        "detect_acc_wilson95": [
+          0.699,
+          0.9721
+        ],
+        "detect_acc_cluster95": [
+          0.75,
+          1.0
+        ],
+        "specificity": 0.9091,
+        "sensitivity": 0.8889,
+        "roc_auc": 0.9798,
+        "phase_err_hi": 3.2,
+        "phase_err_hi_n": 6,
+        "confusion": {
+          "tp": 8,
+          "fp": 1,
+          "fn": 1,
+          "tn": 10
+        },
+        "points": [
+          {
+            "cid": "BLND01",
+            "disk": 1,
+            "true": 48.0,
+            "est": 43.3,
+            "true_ang": 180.0,
+            "est_ang": 176.0
+          },
+          {
+            "cid": "BLND01",
+            "disk": 2,
+            "true": 48.0,
+            "est": 49.7,
+            "true_ang": 135.0,
+            "est_ang": 140.0
+          },
+          {
+            "cid": "BLND02",
+            "disk": 1,
+            "true": 3.0,
+            "est": 8.0,
+            "true_ang": 135.0,
+            "est_ang": -18.0
+          },
+          {
+            "cid": "BLND02",
+            "disk": 2,
+            "true": 48.0,
+            "est": 52.4,
+            "true_ang": 135.0,
+            "est_ang": 137.0
+          },
+          {
+            "cid": "BLND03",
+            "disk": 1,
+            "true": 6.0,
+            "est": 5.6,
+            "true_ang": 225.0,
+            "est_ang": -120.0
+          },
+          {
+            "cid": "BLND03",
+            "disk": 2,
+            "true": 12.0,
+            "est": 9.9,
+            "true_ang": 270.0,
+            "est_ang": -91.0
+          },
+          {
+            "cid": "BLND04",
+            "disk": 1,
+            "true": 36.0,
+            "est": 29.9,
+            "true_ang": 157.0,
+            "est_ang": 155.0
+          },
+          {
+            "cid": "BLND04",
+            "disk": 2,
+            "true": 6.0,
+            "est": 6.0,
+            "true_ang": 67.5,
+            "est_ang": 96.0
+          },
+          {
+            "cid": "BLND05",
+            "disk": 1,
+            "true": 36.0,
+            "est": 31.7,
+            "true_ang": 157.5,
+            "est_ang": 154.0
+          },
+          {
+            "cid": "BLND05",
+            "disk": 2,
+            "true": 24.0,
+            "est": 29.7,
+            "true_ang": 247.5,
+            "est_ang": -115.0
+          },
+          {
+            "cid": "BLND06",
+            "disk": 1,
+            "true": 0.0,
+            "est": 2.8,
+            "true_ang": 0.0,
+            "est_ang": -38.0
+          },
+          {
+            "cid": "BLND06",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.5,
+            "true_ang": 0.0,
+            "est_ang": 110.0
+          },
+          {
+            "cid": "BLND07",
+            "disk": 1,
+            "true": 0.0,
+            "est": 4.2,
+            "true_ang": 0.0,
+            "est_ang": -28.0
+          },
+          {
+            "cid": "BLND07",
+            "disk": 2,
+            "true": 0.0,
+            "est": 3.8,
+            "true_ang": 0.0,
+            "est_ang": 118.0
+          },
+          {
+            "cid": "BLND08",
+            "disk": 1,
+            "true": 0.0,
+            "est": 4.3,
+            "true_ang": 0.0,
+            "est_ang": -29.0
+          },
+          {
+            "cid": "BLND08",
+            "disk": 2,
+            "true": 0.0,
+            "est": 3.9,
+            "true_ang": 0.0,
+            "est_ang": 120.0
+          },
+          {
+            "cid": "BLND09",
+            "disk": 1,
+            "true": 0.0,
+            "est": 4.1,
+            "true_ang": 0.0,
+            "est_ang": -22.0
+          },
+          {
+            "cid": "BLND09",
+            "disk": 2,
+            "true": 0.0,
+            "est": 3.6,
+            "true_ang": 0.0,
+            "est_ang": 125.0
+          },
+          {
+            "cid": "BLND10",
+            "disk": 1,
+            "true": 0.0,
+            "est": 2.4,
+            "true_ang": 0.0,
+            "est_ang": -44.0
+          },
+          {
+            "cid": "BLND10",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.2,
+            "true_ang": 0.0,
+            "est_ang": 105.0
+          }
+        ]
+      },
+      "pinn_aniso": {
+        "mae": 3.21,
+        "rmse": 3.58,
+        "mae_loaded": 3.66,
+        "detect_acc": 0.85,
+        "detect_acc_wilson95": [
+          0.6396,
+          0.9476
+        ],
+        "detect_acc_cluster95": [
+          0.7,
+          1.0
+        ],
+        "specificity": 0.9091,
+        "sensitivity": 0.7778,
+        "roc_auc": 0.9545,
+        "phase_err_hi": 6.0,
+        "phase_err_hi_n": 6,
+        "confusion": {
+          "tp": 7,
+          "fp": 1,
+          "fn": 2,
+          "tn": 10
+        },
+        "points": [
+          {
+            "cid": "BLND01",
+            "disk": 1,
+            "true": 48.0,
+            "est": 44.2,
+            "true_ang": 180.0,
+            "est_ang": 169.0
+          },
+          {
+            "cid": "BLND01",
+            "disk": 2,
+            "true": 48.0,
+            "est": 42.4,
+            "true_ang": 135.0,
+            "est_ang": 143.0
+          },
+          {
+            "cid": "BLND02",
+            "disk": 1,
+            "true": 3.0,
+            "est": 7.8,
+            "true_ang": 135.0,
+            "est_ang": 30.0
+          },
+          {
+            "cid": "BLND02",
+            "disk": 2,
+            "true": 48.0,
+            "est": 46.3,
+            "true_ang": 135.0,
+            "est_ang": 141.0
+          },
+          {
+            "cid": "BLND03",
+            "disk": 1,
+            "true": 6.0,
+            "est": 3.8,
+            "true_ang": 225.0,
+            "est_ang": -123.0
+          },
+          {
+            "cid": "BLND03",
+            "disk": 2,
+            "true": 12.0,
+            "est": 10.9,
+            "true_ang": 270.0,
+            "est_ang": -94.0
+          },
+          {
+            "cid": "BLND04",
+            "disk": 1,
+            "true": 36.0,
+            "est": 30.2,
+            "true_ang": 157.0,
+            "est_ang": 153.0
+          },
+          {
+            "cid": "BLND04",
+            "disk": 2,
+            "true": 6.0,
+            "est": 4.5,
+            "true_ang": 67.5,
+            "est_ang": 86.0
+          },
+          {
+            "cid": "BLND05",
+            "disk": 1,
+            "true": 36.0,
+            "est": 29.7,
+            "true_ang": 157.5,
+            "est_ang": 155.0
+          },
+          {
+            "cid": "BLND05",
+            "disk": 2,
+            "true": 24.0,
+            "est": 28.9,
+            "true_ang": 247.5,
+            "est_ang": -117.0
+          },
+          {
+            "cid": "BLND06",
+            "disk": 1,
+            "true": 0.0,
+            "est": 2.4,
+            "true_ang": 0.0,
+            "est_ang": -5.0
+          },
+          {
+            "cid": "BLND06",
+            "disk": 2,
+            "true": 0.0,
+            "est": 1.6,
+            "true_ang": 0.0,
+            "est_ang": 134.0
+          },
+          {
+            "cid": "BLND07",
+            "disk": 1,
+            "true": 0.0,
+            "est": 3.8,
+            "true_ang": 0.0,
+            "est_ang": 8.0
+          },
+          {
+            "cid": "BLND07",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.4,
+            "true_ang": 0.0,
+            "est_ang": 148.0
+          },
+          {
+            "cid": "BLND08",
+            "disk": 1,
+            "true": 0.0,
+            "est": 3.9,
+            "true_ang": 0.0,
+            "est_ang": 5.0
+          },
+          {
+            "cid": "BLND08",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.6,
+            "true_ang": 0.0,
+            "est_ang": 147.0
+          },
+          {
+            "cid": "BLND09",
+            "disk": 1,
+            "true": 0.0,
+            "est": 4.1,
+            "true_ang": 0.0,
+            "est_ang": 14.0
+          },
+          {
+            "cid": "BLND09",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.5,
+            "true_ang": 0.0,
+            "est_ang": 161.0
+          },
+          {
+            "cid": "BLND10",
+            "disk": 1,
+            "true": 0.0,
+            "est": 2.0,
+            "true_ang": 0.0,
+            "est_ang": 0.0
+          },
+          {
+            "cid": "BLND10",
+            "disk": 2,
+            "true": 0.0,
+            "est": 1.1,
+            "true_ang": 0.0,
+            "est_ang": 149.0
+          }
+        ]
+      },
+      "pinn_aniso+res": {
+        "mae": 3.0,
+        "rmse": 3.32,
+        "mae_loaded": 2.7,
+        "detect_acc": 0.95,
+        "detect_acc_wilson95": [
+          0.7639,
+          0.9911
+        ],
+        "detect_acc_cluster95": [
+          0.85,
+          1.0
+        ],
+        "specificity": 1.0,
+        "sensitivity": 0.8889,
+        "roc_auc": 0.9899,
+        "phase_err_hi": 1.8,
+        "phase_err_hi_n": 6,
+        "confusion": {
+          "tp": 8,
+          "fp": 0,
+          "fn": 1,
+          "tn": 11
+        },
+        "points": [
+          {
+            "cid": "BLND01",
+            "disk": 1,
+            "true": 48.0,
+            "est": 45.9,
+            "true_ang": 180.0,
+            "est_ang": 176.0
+          },
+          {
+            "cid": "BLND01",
+            "disk": 2,
+            "true": 48.0,
+            "est": 48.2,
+            "true_ang": 135.0,
+            "est_ang": 134.0
+          },
+          {
+            "cid": "BLND02",
+            "disk": 1,
+            "true": 3.0,
+            "est": 5.6,
+            "true_ang": 135.0,
+            "est_ang": -22.0
+          },
+          {
+            "cid": "BLND02",
+            "disk": 2,
+            "true": 48.0,
+            "est": 51.4,
+            "true_ang": 135.0,
+            "est_ang": 135.0
+          },
+          {
+            "cid": "BLND03",
+            "disk": 1,
+            "true": 6.0,
+            "est": 5.3,
+            "true_ang": 225.0,
+            "est_ang": -120.0
+          },
+          {
+            "cid": "BLND03",
+            "disk": 2,
+            "true": 12.0,
+            "est": 10.3,
+            "true_ang": 270.0,
+            "est_ang": -90.0
+          },
+          {
+            "cid": "BLND04",
+            "disk": 1,
+            "true": 36.0,
+            "est": 30.4,
+            "true_ang": 157.0,
+            "est_ang": 157.0
+          },
+          {
+            "cid": "BLND04",
+            "disk": 2,
+            "true": 6.0,
+            "est": 7.1,
+            "true_ang": 67.5,
+            "est_ang": 81.0
+          },
+          {
+            "cid": "BLND05",
+            "disk": 1,
+            "true": 36.0,
+            "est": 30.7,
+            "true_ang": 157.5,
+            "est_ang": 153.0
+          },
+          {
+            "cid": "BLND05",
+            "disk": 2,
+            "true": 24.0,
+            "est": 28.2,
+            "true_ang": 247.5,
+            "est_ang": -114.0
+          },
+          {
+            "cid": "BLND06",
+            "disk": 1,
+            "true": 0.0,
+            "est": 2.7,
+            "true_ang": 0.0,
+            "est_ang": -39.0
+          },
+          {
+            "cid": "BLND06",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.6,
+            "true_ang": 0.0,
+            "est_ang": 111.0
+          },
+          {
+            "cid": "BLND07",
+            "disk": 1,
+            "true": 0.0,
+            "est": 3.8,
+            "true_ang": 0.0,
+            "est_ang": -33.0
+          },
+          {
+            "cid": "BLND07",
+            "disk": 2,
+            "true": 0.0,
+            "est": 4.0,
+            "true_ang": 0.0,
+            "est_ang": 115.0
+          },
+          {
+            "cid": "BLND08",
+            "disk": 1,
+            "true": 0.0,
+            "est": 3.9,
+            "true_ang": 0.0,
+            "est_ang": -33.0
+          },
+          {
+            "cid": "BLND08",
+            "disk": 2,
+            "true": 0.0,
+            "est": 4.1,
+            "true_ang": 0.0,
+            "est_ang": 116.0
+          },
+          {
+            "cid": "BLND09",
+            "disk": 1,
+            "true": 0.0,
+            "est": 3.8,
+            "true_ang": 0.0,
+            "est_ang": -26.0
+          },
+          {
+            "cid": "BLND09",
+            "disk": 2,
+            "true": 0.0,
+            "est": 3.8,
+            "true_ang": 0.0,
+            "est_ang": 121.0
+          },
+          {
+            "cid": "BLND10",
+            "disk": 1,
+            "true": 0.0,
+            "est": 2.4,
+            "true_ang": 0.0,
+            "est_ang": -36.0
+          },
+          {
+            "cid": "BLND10",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.1,
+            "true_ang": 0.0,
+            "est_ang": 115.0
+          }
+        ]
+      }
+    }
+  },
+  "forward": {
+    "what": "held-out response prediction from the KNOWN unbalance; the label is an input here, not a target",
+    "response_r2_pred": 0.9562,
+    "rel_error_median_all": 0.3328,
+    "rel_error_median_loaded": 0.2994,
+    "rel_error_median_unloaded": 0.5475,
+    "n_rows": 492,
+    "n_conditions": 82,
+    "note": "relative error is inflated on near-balanced conditions because the denominator is the small measured amplitude; read the loaded column"
+  },
+  "nested_selection": {
+    "random_acquisition": {
+      "r2_pred": 0.9457,
+      "r2_line": 0.955,
+      "slope": 1.02,
+      "rmse": 3.346,
+      "mae": 1.811,
+      "phase_hi": 5.32,
+      "phase_hi_n": 64,
+      "crosstalk": 1.918,
+      "localization": 0.9268,
+      "n_points": 164,
+      "chosen_per_fold": [
+        "iso",
+        "iso",
+        "iso",
+        "iso",
+        "iso"
+      ],
+      "selection_stable": true
+    },
+    "condition": {
+      "r2_pred": 0.9445,
+      "r2_line": 0.9543,
+      "slope": 1.0198,
+      "rmse": 3.384,
+      "mae": 1.904,
+      "phase_hi": 5.86,
+      "phase_hi_n": 64,
+      "crosstalk": 1.96,
+      "localization": 0.9268,
+      "n_points": 164,
+      "chosen_per_fold": [
+        "iso",
+        "iso",
+        "iso",
+        "iso",
+        "iso"
+      ],
+      "selection_stable": true
+    },
+    "magnitude_interpolating": {
+      "r2_pred": 0.9435,
+      "r2_line": 0.9531,
+      "slope": 1.0185,
+      "rmse": 3.413,
+      "mae": 1.969,
+      "phase_hi": 5.8,
+      "phase_hi_n": 64,
+      "crosstalk": 2.176,
+      "localization": 0.9146,
+      "n_points": 164,
+      "chosen_per_fold": [
+        "iso",
+        "iso",
+        "iso",
+        "iso",
+        "iso"
+      ],
+      "selection_stable": true
+    },
+    "magnitude_extrapolating": {
+      "r2_pred": 0.8334,
+      "r2_line": 0.8993,
+      "slope": 1.1142,
+      "rmse": 4.829,
+      "mae": 2.838,
+      "phase_hi": 6.4,
+      "phase_hi_n": 48,
+      "crosstalk": 3.169,
+      "localization": 0.9615,
+      "n_points": 52,
+      "chosen_per_fold": [
+        "iso"
+      ],
+      "selection_stable": true
+    },
+    "configuration": {
+      "r2_pred": 0.9354,
+      "r2_line": 0.9521,
+      "slope": 0.9707,
+      "rmse": 3.651,
+      "mae": 2.317,
+      "phase_hi": 5.92,
+      "phase_hi_n": 64,
+      "crosstalk": 2.073,
+      "localization": 0.9268,
+      "n_points": 164,
+      "chosen_per_fold": [
+        "iso",
+        "iso",
+        "iso",
+        "iso",
+        "iso"
+      ],
+      "selection_stable": true
+    },
+    "angle_sector": {
+      "r2_pred": 0.9383,
+      "r2_line": 0.9492,
+      "slope": 1.026,
+      "rmse": 3.567,
+      "mae": 2.003,
+      "phase_hi": 6.66,
+      "phase_hi_n": 64,
+      "crosstalk": 2.258,
+      "localization": 0.939,
+      "n_points": 164,
+      "chosen_per_fold": [
+        "iso",
+        "iso",
+        "iso",
+        "iso",
+        "iso"
+      ],
+      "selection_stable": true
+    }
+  }
+}

@@ -1,0 +1,2 @@
+what,response_r2_pred,rel_error_median_all,rel_error_median_loaded,rel_error_median_unloaded,n_rows,n_conditions,note
+"held-out response prediction from the KNOWN unbalance; the label is an input here, not a target",0.9562,0.3328,0.2994,0.5475,492,82,relative error is inflated on near-balanced conditions because the denominator is the small measured amplitude; read the loaded column

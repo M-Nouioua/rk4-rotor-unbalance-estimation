@@ -1,0 +1,161 @@
+{
+  "question": "Is the angle collapse a capacity defect or a representation defect? Model capacity, folds and hyperparameters are held fixed; the input-output representation changes.",
+  "n_invariant_features": 51,
+  "invariant_features": [
+    "plane1_x_1x_amp",
+    "plane1_x_2x_amp",
+    "plane1_x_3x_amp",
+    "plane1_x_2x_ratio",
+    "plane1_x_3x_ratio",
+    "plane1_y_1x_amp",
+    "plane1_y_2x_amp",
+    "plane1_y_3x_amp",
+    "plane1_y_2x_ratio",
+    "plane1_y_3x_ratio",
+    "plane2_x_1x_amp",
+    "plane2_x_2x_amp",
+    "plane2_x_3x_amp",
+    "plane2_x_2x_ratio",
+    "plane2_x_3x_ratio",
+    "plane2_y_1x_amp",
+    "plane2_y_2x_amp",
+    "plane2_y_3x_amp",
+    "plane2_y_2x_ratio",
+    "plane2_y_3x_ratio",
+    "plane1_smajor",
+    "plane1_sminor",
+    "plane1_ellipticity",
+    "plane1_whirl",
+    "plane2_smajor",
+    "plane2_sminor",
+    "plane2_ellipticity",
+    "plane2_whirl",
+    "plane1_x_resp_amp",
+    "plane1_y_resp_amp",
+    "plane2_x_resp_amp",
+    "plane2_y_resp_amp",
+    "rpm",
+    "plane_amp_ratio",
+    "plane_phase_diff",
+    "phys_U1_absmag",
+    "phys_U2_absmag",
+    "phys_dphi_cos",
+    "phys_dphi_sin",
+    "plane1_x_relphase_cos",
+    "plane1_x_relphase_sin",
+    "plane1_x_absamp",
+    "plane1_y_relphase_cos",
+    "plane1_y_relphase_sin",
+    "plane1_y_absamp",
+    "plane2_x_relphase_cos",
+    "plane2_x_relphase_sin",
+    "plane2_x_absamp",
+    "plane2_y_relphase_cos",
+    "plane2_y_relphase_sin",
+    "plane2_y_absamp"
+  ],
+  "note_tilt_excluded": "plane*_tilt_deg is equivariant, not invariant, so it is excluded from the invariant feature set.",
+  "protocols": {
+    "condition": {
+      "cartesian": {
+        "r2_pred": 0.6592,
+        "r2_line": 0.8079,
+        "slope": 0.7877,
+        "rmse": 8.384,
+        "phase_hi": 6.09,
+        "phase_hi_n": 64,
+        "crosstalk": 5.651,
+        "n_points": 164
+      },
+      "equivariant": {
+        "r2_pred": 0.776,
+        "r2_line": 0.835,
+        "slope": 0.7725,
+        "rmse": 6.798,
+        "phase_hi": 12.92,
+        "phase_hi_n": 64,
+        "crosstalk": 6.941,
+        "n_points": 164
+      },
+      "icm_prior": {
+        "r2_pred": 0.6235,
+        "r2_line": 0.7161,
+        "slope": 0.8884,
+        "rmse": 8.813,
+        "phase_hi": 22.9,
+        "phase_hi_n": 64,
+        "crosstalk": 11.824,
+        "n_points": 164
+      }
+    },
+    "angle_sector": {
+      "cartesian": {
+        "r2_pred": -1.12,
+        "r2_line": 0.0834,
+        "slope": 0.089,
+        "rmse": 20.911,
+        "phase_hi": 67.36,
+        "phase_hi_n": 64,
+        "crosstalk": 4.648,
+        "n_points": 164
+      },
+      "equivariant": {
+        "r2_pred": 0.3373,
+        "r2_line": 0.4714,
+        "slope": 0.4635,
+        "rmse": 11.692,
+        "phase_hi": 28.49,
+        "phase_hi_n": 64,
+        "crosstalk": 8.514,
+        "n_points": 164
+      },
+      "icm_prior": {
+        "r2_pred": 0.6235,
+        "r2_line": 0.7161,
+        "slope": 0.8884,
+        "rmse": 8.813,
+        "phase_hi": 22.9,
+        "phase_hi_n": 64,
+        "crosstalk": 11.824,
+        "n_points": 164
+      }
+    },
+    "configuration": {
+      "cartesian": {
+        "r2_pred": -0.3926,
+        "r2_line": 0.3932,
+        "slope": 0.3549,
+        "rmse": 16.948,
+        "phase_hi": 10.11,
+        "phase_hi_n": 64,
+        "crosstalk": 8.777,
+        "n_points": 164
+      },
+      "equivariant": {
+        "r2_pred": -0.105,
+        "r2_line": 0.4425,
+        "slope": 0.3559,
+        "rmse": 15.097,
+        "phase_hi": 23.79,
+        "phase_hi_n": 64,
+        "crosstalk": 14.555,
+        "n_points": 164
+      },
+      "icm_prior": {
+        "r2_pred": 0.6235,
+        "r2_line": 0.7161,
+        "slope": 0.8884,
+        "rmse": 8.813,
+        "phase_hi": 22.9,
+        "phase_hi_n": 64,
+        "crosstalk": 11.824,
+        "n_points": 164
+      }
+    }
+  },
+  "conclusion": {
+    "representation_defect_confirmed": true,
+    "equivariant_beats_physics_off_grid": false,
+    "reading": "A rotation-aligned input-output representation removes the collapse under angle holdout without increasing model capacity. Because both features and targets change, the result does not isolate either component. The representation still does not beat the influence coefficient method off-grid."
+  }
+}
