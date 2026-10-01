@@ -3,8 +3,8 @@ function fig_threshold()
 %   Panel (a) plane-localization accuracy against threshold, showing that the
 %   ranking between estimator families inverts rather than being a fixed property.
 %   Panel (b) sensitivity (solid) and specificity (dashed). Panel (c)
-%   threshold-free areas under the curve, with the always-loaded accuracy as a
-%   dashed reference.
+%   threshold-free areas under the curve. ROC and precision-recall have different
+%   no-skill references, so no shared horizontal baseline is drawn.
 d = rk_load('threshold_sweep.csv');
 a = rk_load('detection_auc.csv');
 C = rk_colors();
@@ -52,10 +52,6 @@ end
 b = bar(ax, Y, 'grouped', 'EdgeColor', 'none', 'BarWidth', 0.85);
 b(1).FaceColor = C.physics;
 b(2).FaceColor = C.pinn;
-r = a(strcmp(a.method, 'physics'), :);
-if ~isempty(r)
-    yline(ax, r.trivial_acc(1), '--', 'Color', C.neutral, 'LineWidth', 0.9);
-end
 set(ax, 'XTick', 1:numel(methods), ...
         'XTickLabel', {'Influence coeff.', 'Tree ensemble', 'Physics-aug.'}, ...
         'XTickLabelRotation', 25);

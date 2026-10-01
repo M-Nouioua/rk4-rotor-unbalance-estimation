@@ -50,11 +50,12 @@ from sklearn.model_selection import GroupKFold, LeaveOneGroupOut
 
 from config import ROOT
 from estimation.ml import TARGETS, LOAD_THRESH
-from estimation.twin import augment_with_physics, CALIB
+from estimation.twin import augment_with_physics, influence_matrices, CALIB
 from estimation.stats import (aggregate_conditions, r2_pred, angdiff, wilson,
                               cluster_bootstrap_proportion, roc_auc)
 from estimation.pinn import PINNRegressor, pinn_design_matrix
-from scripts.benchmark import _protocols
+from scripts.benchmark import (_protocols, _protocol_splits,
+                               _fixture_angle_valid)
 from scripts.pinn_gate import invariant_columns, score
 
 ANALYSIS = ROOT / "analysis"
@@ -97,13 +98,7 @@ def nested_selection(lab, Xp, Xi, Y, scored, inner_splits=3) -> dict:
     for pname, spec in _protocols(lab).items():
         pred = np.full_like(Y, np.nan, dtype=float)
         chosen = []
-        if spec["kind"] == "holdout":
-            folds = [(np.where(spec["mask"])[0], np.where(~spec["mask"])[0])]
-        elif spec["kind"] == "kfold":
-            from sklearn.model_selection import KFold
-            folds = list(KFold(n_splits=5, shuffle=True, random_state=0).split(Y))
-        else:
-            folds = list(_splitter(spec["groups"]))
+        folds = _protocol_splits(len(lab), spec)
         for tr, te in folds:
             # inner selection, grouped by condition (see module docstring)
             best, best_score = None, -np.inf
@@ -167,13 +162,15 @@ def blind_scoring(aug, lab, Xp, Xi, Y, scored) -> dict:
                 tang = float(c[f"disk{disk}_angle_deg"] or 0)
                 u = P[sel, 2 * (disk - 1)] + 1j * P[sel, 2 * (disk - 1) + 1]
                 z = u.mean()                       # complex average of repeats
-                pts.append(dict(cid=cid, disk=disk, true=round(tmag, 1),
-                                est=round(float(abs(z)), 1), true_ang=tang,
-                                est_ang=round(float(np.degrees(np.angle(z))), 0)))
+                pts.append(dict(cid=cid, disk=disk, true=float(tmag),
+                                est=float(abs(z)), true_ang=float(tang),
+                                est_ang=float(np.degrees(np.angle(z))),
+                                phase_label_valid=_fixture_angle_valid(tang)))
                 rows.append(dict(variant=vname, condition_id=cid, disk=disk,
                                  true_gmm=tmag, est_gmm=float(abs(z)),
                                  true_ang=tang,
                                  est_ang=float(np.degrees(np.angle(z))),
+                                 phase_label_valid=int(_fixture_angle_valid(tang)),
                                  balanced=int(tmag < 1e-6)))
         t = np.array([p["true"] for p in pts]); e = np.array([p["est"] for p in pts])
         tl, el = t >= LOAD_THRESH, e >= LOAD_THRESH
@@ -182,7 +179,7 @@ def blind_scoring(aug, lab, Xp, Xi, Y, scored) -> dict:
         det = cluster_bootstrap_proportion(
             (tl == el).astype(float), [p["cid"] for p in pts])
         pe = [abs(float(angdiff(p["est_ang"], p["true_ang"])))
-              for p in pts if p["true"] >= HIGH_U]
+              for p in pts if p["true"] >= HIGH_U and p["phase_label_valid"]]
         res["methods"][f"pinn_{vname}"] = {
             "mae": round(float(np.mean(np.abs(e - t))), 2),
             "rmse": round(float(np.sqrt(np.mean((e - t) ** 2))), 2),
@@ -201,6 +198,15 @@ def blind_scoring(aug, lab, Xp, Xi, Y, scored) -> dict:
         print(f"  {vname:10s} MAE={s['mae']:5.1f} loadedMAE={s['mae_loaded']:5.1f} "
               f"detect={s['detect_acc']*100:4.0f}% spec={s['specificity']*100:4.0f}% "
               f"phase={s['phase_err_hi']}")
+    # Record which reference angles were dropped from the phase figures, so the
+    # exclusion is auditable rather than implicit. Every variant scores the same
+    # points, so the first one carries the list.
+    res["phase_exclusions"] = [
+        {"condition_id": p["cid"], "disk": p["disk"],
+         "angle_deg": p["true_ang"],
+         "reason": "reference angle is not on the 22.5-degree fixture grid"}
+        for p in next(iter(res["methods"].values()))["points"]
+        if not p["phase_label_valid"]]
     FIGDATA.mkdir(exist_ok=True)
     pd.DataFrame(rows).to_csv(FIGDATA / "pinn_blind.csv", index=False)
     return res
@@ -211,44 +217,87 @@ def blind_scoring(aug, lab, Xp, Xi, Y, scored) -> dict:
 # --------------------------------------------------------------------------- #
 
 def forward_validation(lab, Xp, Y, scored) -> dict:
-    """Predict the measured response of held-out conditions from the known unbalance."""
+    """Predict response from known unbalance with the operator and fixed ICM."""
     cid = lab.condition_id.to_numpy()
     pred = np.full((len(Y), 8), np.nan)
     for tr, te in _splitter(cid):
         m = _fit(_variants(0)["iso"], Xp[tr], Y[tr], FINAL_EPOCHS)
         pred[te] = m.predict_response(Xp[te], Y[te])
-    m0 = _fit(_variants(0)["iso"], Xp, Y, FINAL_EPOCHS)
-    meas = m0.measured_response(Xp)
+
+    # The design matrix stores all real response components followed by all
+    # imaginary components.  Pack them in the interleaved representation used by
+    # the operator and by the forward score without fitting an unnecessary model.
+    meas = np.empty((len(Xp), 8), dtype=float)
+    meas[:, 0::2] = Xp[:, :4]
+    meas[:, 1::2] = Xp[:, 4:8]
+
+    # Eq. (1) is also a forward model.  The ICM coefficients are calibrated once
+    # from BASE/A007/A015 and then evaluated on the same observations as the
+    # condition-held-out operator predictions.
+    mats = influence_matrices(lab)
+    icm_pred = np.full_like(pred, np.nan)
+    for i, row in lab.iterrows():
+        mat = mats.get(row["speed_id"])
+        if mat is None:
+            continue
+        u = np.array([Y[i, 0] + 1j * Y[i, 1],
+                      Y[i, 2] + 1j * Y[i, 3]])
+        v = mat["A"] @ u
+        icm_pred[i, 0::2] = v.real
+        icm_pred[i, 1::2] = v.imag
+
     keep = scored & np.isfinite(pred).all(axis=1)
-    Vp, Vm = pred[keep], meas[keep]
-    amp = np.linalg.norm(Vm, axis=1)
-    rel = np.linalg.norm(Vp - Vm, axis=1) / np.maximum(amp, 1e-12)
+    Vp, Vi, Vm = pred[keep], icm_pred[keep], meas[keep]
     loaded = (np.abs(Y[keep, 0] + 1j * Y[keep, 1])
-              + np.abs(Y[keep, 2] + 1j * Y[keep, 3])) > LOAD_THRESH
-    d = pd.DataFrame(dict(condition_id=cid[keep],
-                          response_amp=amp, rel_error=rel, loaded=loaded.astype(int)))
-    by = d.groupby("condition_id").agg(rel_error=("rel_error", "median"),
-                                       response_amp=("response_amp", "mean"),
-                                       loaded=("loaded", "max")).reset_index()
+              + np.abs(Y[keep, 2] + 1j * Y[keep, 3])) >= LOAD_THRESH
+
+    def summarize(P):
+        amp = np.linalg.norm(Vm, axis=1)
+        rel = np.linalg.norm(P - Vm, axis=1) / np.maximum(amp, 1e-12)
+        d = pd.DataFrame(dict(condition_id=cid[keep], response_amp=amp,
+                              rel_error=rel, loaded=loaded.astype(int)))
+        by = d.groupby("condition_id").agg(
+            rel_error=("rel_error", "median"),
+            response_amp=("response_amp", "mean"),
+            loaded=("loaded", "max")).reset_index()
+        bl = by.loaded.astype(bool).to_numpy()
+        return {
+            "response_r2_pred": round(float(r2_pred(Vm.ravel(), P.ravel())), 4),
+            "rel_error_median_all": round(float(np.median(by.rel_error)), 4),
+            "rel_error_median_loaded": round(
+                float(np.median(by.loc[bl, "rel_error"])), 4),
+            "rel_error_median_unloaded": round(
+                float(np.median(by.loc[~bl, "rel_error"])) if (~bl).any()
+                else float("nan"), 4),
+            "n_rows": int(keep.sum()),
+            "n_conditions": int(by.condition_id.nunique()),
+        }
+
+    operator = summarize(Vp)
+    icm = summarize(Vi)
     FIGDATA.mkdir(exist_ok=True)
     pd.DataFrame(dict(condition_id=cid[keep],
                       **{f"meas_{i}": Vm[:, i] for i in range(8)},
-                      **{f"pred_{i}": Vp[:, i] for i in range(8)})
+                      **{f"pred_{i}": Vp[:, i] for i in range(8)},
+                      **{f"icm_pred_{i}": Vi[:, i] for i in range(8)})
                  ).to_csv(FIGDATA / "pinn_forward.csv", index=False)
     out = {"what": "held-out response prediction from the KNOWN unbalance; the label "
                    "is an input here, not a target",
-           "response_r2_pred": round(float(r2_pred(Vm.ravel(), Vp.ravel())), 4),
-           "rel_error_median_all": round(float(np.median(rel)), 4),
-           "rel_error_median_loaded": round(float(np.median(rel[loaded])), 4),
-           "rel_error_median_unloaded": round(float(np.median(rel[~loaded]))
-                                              if (~loaded).any() else float("nan"), 4),
-           "n_rows": int(keep.sum()), "n_conditions": int(by.condition_id.nunique()),
+           "response_r2_pred": operator["response_r2_pred"],
+           "rel_error_median_all": operator["rel_error_median_all"],
+           "rel_error_median_loaded": operator["rel_error_median_loaded"],
+           "rel_error_median_unloaded": operator["rel_error_median_unloaded"],
+           "n_rows": operator["n_rows"],
+           "n_conditions": operator["n_conditions"],
+           "methods": {"operator": operator, "icm": icm},
            "note": "relative error is inflated on near-balanced conditions because the "
-                   "denominator is the small measured amplitude; read the loaded column"}
-    print(f"  response R2pred={out['response_r2_pred']:.3f}  "
-          f"median rel.err loaded={out['rel_error_median_loaded']:.3f} "
-          f"unloaded={out['rel_error_median_unloaded']:.3f} "
-          f"(n={out['n_conditions']} conditions)")
+                   "denominator is the small measured amplitude; relative-error "
+                   "medians are first aggregated within condition"}
+    for name, s in out["methods"].items():
+        print(f"  {name:8s} response R2pred={s['response_r2_pred']:.3f}  "
+              f"median rel.err loaded={s['rel_error_median_loaded']:.3f} "
+              f"unloaded={s['rel_error_median_unloaded']:.3f} "
+              f"(n={s['n_conditions']} conditions)")
     return out
 
 

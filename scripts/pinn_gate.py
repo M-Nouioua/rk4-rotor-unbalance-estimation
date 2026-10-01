@@ -39,7 +39,7 @@ import numpy as np
 import pandas as pd
 
 from config import ROOT
-from estimation.ml import TARGETS
+from estimation.ml import TARGETS, LOAD_THRESH
 from estimation.twin import augment_with_physics, CALIB
 from estimation.stats import aggregate_conditions, r2_pred, r2_line, angdiff
 from estimation.pinn import PINNRegressor, pinn_design_matrix
@@ -84,8 +84,8 @@ def score(lab, scored, pred, tag) -> dict:
     C = aggregate_conditions(P)
     L = C[C.loaded]
     hi = L[L.true_mag >= HIGH_U]
-    est = (C.est_mag > 6.0).astype(int).to_numpy()
-    tru = (C.true_mag > 6.0).astype(int).to_numpy()
+    est = (C.est_mag >= LOAD_THRESH).astype(int).to_numpy()
+    tru = (C.true_mag >= LOAD_THRESH).astype(int).to_numpy()
     ok = pd.DataFrame({"cid": C.cid, "hit": est == tru}).groupby("cid").hit.all()
     return {"r2_pred": round(float(r2_pred(L.true_mag, L.est_mag)), 4),
             "r2_line": round(float(r2_line(L.true_mag, L.est_mag)), 4),
@@ -168,18 +168,18 @@ def main():
         for pname, s in (fm.get(mname) or {}).items():
             if s:
                 rows.append(dict(method=mname, protocol=pname, **s))
-    pi = (fm.get("physics") or {}).get("protocol_invariant")
-    if pi:
-        for pname in specs:
+    physics_by_protocol = fm.get("physics") or {}
+    for pname, s in physics_by_protocol.items():
+        if s and pname in specs:
             rows.append(dict(method="physics", protocol=pname,
-                             **{k: v for k, v in pi.items() if k != "note"}))
+                             **{k: v for k, v in s.items() if k != "note"}))
 
     FIGDATA.mkdir(exist_ok=True)
     tbl = pd.DataFrame(rows)
     tbl.to_csv(FIGDATA / "pinn_gate.csv", index=False)
 
     # ---- verdict ----
-    icm = pi or {}
+    icm = physics_by_protocol.get("angle_sector") or {}
     best = max(("iso", "aniso", "aniso+res"),
                key=lambda v: (out["variants"][v].get("angle_sector") or {}).get("r2_pred", -9))
     a = out["variants"][best].get("angle_sector") or {}

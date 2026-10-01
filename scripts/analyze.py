@@ -123,7 +123,7 @@ def main():
             by_cid.setdefault(r["cid"], {}).setdefault("t", set()); by_cid[r["cid"]].setdefault("e", set())
             if r["loaded"]:
                 by_cid[r["cid"]]["t"].add(r["disk"])
-            if r["est_mag"] > LOAD_THRESH:
+            if r["est_mag"] >= LOAD_THRESH:
                 by_cid[r["cid"]]["e"].add(r["disk"])
         loc_ok = sum(1 for v in by_cid.values() if v["t"] == v["e"])
         print(f"\n===== {s} =====   ({len(by_cid)} test conditions, {len(loaded)} loaded points)")

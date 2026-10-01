@@ -84,12 +84,12 @@ def factor_matrix():
                                  phase_deg=s["phase_hi"], slope=s["slope"],
                                  crosstalk=s["crosstalk"],
                                  localization=s["localization"]))
-    pi = (fm.get("physics") or {}).get("protocol_invariant")
-    if pi:
-        rows.append(dict(method="physics", protocol="protocol_invariant",
-                         r2_pred=pi["r2_pred"], phase_deg=pi["phase_hi"],
-                         slope=pi["slope"], crosstalk=pi["crosstalk"],
-                         localization=pi["localization"]))
+    for proto, s in (fm.get("physics") or {}).items():
+        if s:
+            rows.append(dict(method="physics", protocol=proto,
+                             r2_pred=s["r2_pred"], phase_deg=s["phase_hi"],
+                             slope=s["slope"], crosstalk=s["crosstalk"],
+                             localization=s["localization"]))
     g = _load("pinn_gate.json")
     if g:
         for v, protos in (g.get("variants") or {}).items():
@@ -173,11 +173,13 @@ def blind():
     rows = []
     for m, pts in bv["points"].items():
         for x in pts:
+            phase_valid = bool(x.get("phase_label_valid", True))
             rows.append(dict(method=m, condition_id=x["cid"], disk=x["disk"],
                              true_gmm=x["true"], est_gmm=x["est"],
                              true_ang=x["true_ang"], est_ang=x["est_ang"],
-                             ang_err=(np.nan if x["est_ang"] is None
+                             ang_err=(np.nan if x["est_ang"] is None or not phase_valid
                                       else abs(float(angdiff(x["est_ang"], x["true_ang"])))),
+                             phase_label_valid=int(phase_valid),
                              balanced=int(x["true"] < 1e-6)))
     _write(pd.DataFrame(rows), "blind_points.csv")
     summ = [dict(method=m, **{k: v for k, v in s.items()
@@ -211,8 +213,13 @@ def pinn_forward_and_modes():
     n = 0
     v = _load("pinn_validate.json")
     if v and "forward" in v:
-        _write(pd.DataFrame([v["forward"]]), "pinn_forward_summary.csv")
-        n += 1
+        methods = v["forward"].get("methods", {})
+        rows = [dict(method=name, **metrics) for name, metrics in methods.items()]
+        if not rows:
+            rows = [dict(method="operator", **{k: x for k, x in v["forward"].items()
+                                                if not isinstance(x, (dict, list))})]
+        _write(pd.DataFrame(rows), "pinn_forward_summary.csv")
+        n += len(rows)
     if v and v.get("blind", {}).get("methods"):
         rows = []
         for m, s in v["blind"]["methods"].items():

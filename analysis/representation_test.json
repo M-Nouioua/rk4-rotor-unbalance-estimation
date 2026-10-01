@@ -90,23 +90,23 @@
     },
     "angle_sector": {
       "cartesian": {
-        "r2_pred": -1.12,
-        "r2_line": 0.0834,
-        "slope": 0.089,
-        "rmse": 20.911,
+        "r2_pred": -1.1201,
+        "r2_line": 0.0835,
+        "slope": 0.0891,
+        "rmse": 20.912,
         "phase_hi": 67.36,
         "phase_hi_n": 64,
-        "crosstalk": 4.648,
+        "crosstalk": 4.652,
         "n_points": 164
       },
       "equivariant": {
-        "r2_pred": 0.3373,
+        "r2_pred": 0.3374,
         "r2_line": 0.4714,
-        "slope": 0.4635,
-        "rmse": 11.692,
+        "slope": 0.4634,
+        "rmse": 11.691,
         "phase_hi": 28.49,
         "phase_hi_n": 64,
-        "crosstalk": 8.514,
+        "crosstalk": 8.484,
         "n_points": 164
       },
       "icm_prior": {

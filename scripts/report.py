@@ -49,7 +49,7 @@ def localization(rows, speed):
         by.setdefault(r["condition"], {"t": set(), "e": set()})
         if float(r["true_gmm"]) > 1e-6:
             by[r["condition"]]["t"].add(r["disk"])
-        if float(r["est_gmm"]) > 6.0:
+        if float(r["est_gmm"]) >= 6.0:
             by[r["condition"]]["e"].add(r["disk"])
     ok = sum(1 for v in by.values() if v["t"] == v["e"])
     return ok, len(by)

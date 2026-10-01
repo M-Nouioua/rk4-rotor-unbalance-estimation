@@ -52,10 +52,22 @@ def main() -> int:
         checks.append((label, s, s in body))
 
     # --- condition-level baselines -------------------------------------------
+    # Localisation and the threshold-free areas are checked as well as the
+    # predictive scores. An earlier version of this script asserted only the
+    # r2_pred values, so a change to the load-threshold comparison moved every
+    # localisation and ROC figure in Table 2 while this audit still reported a
+    # clean run.
     if bench:
         for m, name in (("physics", "ICM"), ("ml", "trees"), ("hybrid", "physics-augmented")):
-            o = bench["methods"][m]["condition"]["overall"]
+            c = bench["methods"][m]["condition"]
+            o = c["overall"]
             chk(f"{name} r2_pred", o["r2_pred"])
+            chk(f"{name} localisation %", 100.0 * c["localization_acc"], "{:.1f}")
+            det = c.get("detection") or {}
+            if det.get("roc_auc") is not None:
+                chk(f"{name} ROC-AUC", det["roc_auc"])
+            if det.get("trivial_acc") is not None:
+                chk("all-loaded baseline %", 100.0 * det["trivial_acc"], "{:.1f}")
         fm = bench.get("factor_matrix", {}).get("methods", {})
         h = (fm.get("hybrid") or {})
         for p in ("condition", "angle_sector", "magnitude_extrapolating"):

@@ -5,9 +5,9 @@
   "protocols": {
     "random_acquisition": "LEAKY NEGATIVE CONTROL -- repeats of one condition straddle folds. Included only to quantify what the field's default split buys.",
     "condition": "Interpolation to unseen mass/angle COMBINATIONS on the sampled grid.",
-    "magnitude_interpolating": "Leave-one-severity-level-out. The held-out level is BRACKETED by trained levels, so this is interpolation, not extrapolation.",
-    "magnitude_extrapolating": "Train on total U<36 g.mm, test on >=36. The deployment question the blind two-plane cases actually posed.",
-    "configuration": "Leave-one-configuration-out (D1 / D2 / in-phase / anti-phase).",
+    "magnitude_interpolating": "Leave one interior total-unbalance level out at a time. Endpoint levels are excluded, so every scored level is bracketed by lower and higher levels in training.",
+    "magnitude_extrapolating": "Train on total U<36 g.mm and test on total U>=36 g.mm. This is a high-total-unbalance holdout; loading composition is not matched.",
+    "configuration": "Leave-one-loaded-configuration-out (D1 / D2 / in-phase / anti-phase); the baseline-only calibration group is not scored.",
     "angle_sector": "Leave-one-angle-sector-out. Only 4 distinct angles exist at U>=24 g.mm, so on-grid phase scores cannot be read as generalization."
   },
   "variants": {
@@ -21,7 +21,7 @@
         "phase_hi": 5.32,
         "phase_hi_n": 64,
         "crosstalk": 1.918,
-        "localization": 0.9268,
+        "localization": 0.8049,
         "n_points": 164
       },
       "condition": {
@@ -33,20 +33,20 @@
         "phase_hi": 5.86,
         "phase_hi_n": 64,
         "crosstalk": 1.96,
-        "localization": 0.9268,
+        "localization": 0.8049,
         "n_points": 164
       },
       "magnitude_interpolating": {
-        "r2_pred": 0.9435,
-        "r2_line": 0.9531,
-        "slope": 1.0185,
-        "rmse": 3.413,
-        "mae": 1.969,
-        "phase_hi": 5.8,
-        "phase_hi_n": 64,
-        "crosstalk": 2.176,
-        "localization": 0.9146,
-        "n_points": 164
+        "r2_pred": 0.9276,
+        "r2_line": 0.9389,
+        "slope": 0.9895,
+        "rmse": 3.403,
+        "mae": 1.897,
+        "phase_hi": 6.04,
+        "phase_hi_n": 60,
+        "crosstalk": 2.093,
+        "localization": 0.8,
+        "n_points": 160
       },
       "magnitude_extrapolating": {
         "r2_pred": 0.8334,
@@ -69,19 +69,19 @@
         "phase_hi": 5.92,
         "phase_hi_n": 64,
         "crosstalk": 2.073,
-        "localization": 0.9268,
+        "localization": 0.7927,
         "n_points": 164
       },
       "angle_sector": {
         "r2_pred": 0.9383,
         "r2_line": 0.9492,
-        "slope": 1.026,
+        "slope": 1.0259,
         "rmse": 3.567,
-        "mae": 2.003,
+        "mae": 2.001,
         "phase_hi": 6.66,
         "phase_hi_n": 64,
-        "crosstalk": 2.258,
-        "localization": 0.939,
+        "crosstalk": 2.259,
+        "localization": 0.7927,
         "n_points": 164
       }
     },
@@ -95,7 +95,7 @@
         "phase_hi": 5.54,
         "phase_hi_n": 64,
         "crosstalk": 3.428,
-        "localization": 0.8293,
+        "localization": 0.6707,
         "n_points": 164
       },
       "condition": {
@@ -107,20 +107,20 @@
         "phase_hi": 6.94,
         "phase_hi_n": 64,
         "crosstalk": 3.258,
-        "localization": 0.8415,
+        "localization": 0.6951,
         "n_points": 164
       },
       "magnitude_interpolating": {
-        "r2_pred": 0.8643,
-        "r2_line": 0.9015,
-        "slope": 1.0134,
-        "rmse": 5.291,
-        "mae": 2.928,
-        "phase_hi": 11.32,
-        "phase_hi_n": 64,
-        "crosstalk": 3.046,
-        "localization": 0.8659,
-        "n_points": 164
+        "r2_pred": 0.6681,
+        "r2_line": 0.7601,
+        "slope": 0.9253,
+        "rmse": 7.286,
+        "mae": 3.704,
+        "phase_hi": 16.68,
+        "phase_hi_n": 60,
+        "crosstalk": 2.85,
+        "localization": 0.6875,
+        "n_points": 160
       },
       "magnitude_extrapolating": {
         "r2_pred": -1.1939,
@@ -143,19 +143,19 @@
         "phase_hi": 15.71,
         "phase_hi_n": 64,
         "crosstalk": 2.133,
-        "localization": 0.8659,
+        "localization": 0.6951,
         "n_points": 164
       },
       "angle_sector": {
-        "r2_pred": 0.3472,
-        "r2_line": 0.6433,
-        "slope": 1.0112,
-        "rmse": 11.604,
-        "mae": 7.07,
+        "r2_pred": 0.3458,
+        "r2_line": 0.6444,
+        "slope": 1.0131,
+        "rmse": 11.616,
+        "mae": 7.115,
         "phase_hi": 22.17,
         "phase_hi_n": 64,
-        "crosstalk": 5.158,
-        "localization": 0.6829,
+        "crosstalk": 5.289,
+        "localization": 0.561,
         "n_points": 164
       }
     },
@@ -169,7 +169,7 @@
         "phase_hi": 3.93,
         "phase_hi_n": 64,
         "crosstalk": 1.812,
-        "localization": 0.9146,
+        "localization": 0.8049,
         "n_points": 164
       },
       "condition": {
@@ -181,20 +181,20 @@
         "phase_hi": 5.62,
         "phase_hi_n": 64,
         "crosstalk": 2.088,
-        "localization": 0.8902,
+        "localization": 0.7927,
         "n_points": 164
       },
       "magnitude_interpolating": {
-        "r2_pred": 0.9405,
-        "r2_line": 0.9478,
-        "slope": 1.0048,
-        "rmse": 3.504,
-        "mae": 1.91,
-        "phase_hi": 5.38,
-        "phase_hi_n": 64,
-        "crosstalk": 2.195,
-        "localization": 0.9146,
-        "n_points": 164
+        "r2_pred": 0.9371,
+        "r2_line": 0.9446,
+        "slope": 0.9817,
+        "rmse": 3.171,
+        "mae": 1.684,
+        "phase_hi": 5.6,
+        "phase_hi_n": 60,
+        "crosstalk": 2.009,
+        "localization": 0.8,
+        "n_points": 160
       },
       "magnitude_extrapolating": {
         "r2_pred": 0.6303,
@@ -217,19 +217,19 @@
         "phase_hi": 6.79,
         "phase_hi_n": 64,
         "crosstalk": 2.767,
-        "localization": 0.9268,
+        "localization": 0.7683,
         "n_points": 164
       },
       "angle_sector": {
         "r2_pred": 0.725,
-        "r2_line": 0.7847,
-        "slope": 0.9865,
+        "r2_line": 0.7848,
+        "slope": 0.9866,
         "rmse": 7.532,
-        "mae": 4.079,
+        "mae": 4.077,
         "phase_hi": 12.21,
         "phase_hi_n": 64,
-        "crosstalk": 3.871,
-        "localization": 0.8293,
+        "crosstalk": 3.874,
+        "localization": 0.7317,
         "n_points": 164
       }
     },
@@ -243,7 +243,7 @@
         "phase_hi": 4.28,
         "phase_hi_n": 64,
         "crosstalk": 1.911,
-        "localization": 0.9268,
+        "localization": 0.8049,
         "n_points": 164
       },
       "condition": {
@@ -255,20 +255,20 @@
         "phase_hi": 5.13,
         "phase_hi_n": 64,
         "crosstalk": 2.009,
-        "localization": 0.939,
+        "localization": 0.8049,
         "n_points": 164
       },
       "magnitude_interpolating": {
-        "r2_pred": 0.8041,
-        "r2_line": 0.8463,
-        "slope": 0.9423,
-        "rmse": 6.356,
-        "mae": 3.226,
-        "phase_hi": 8.68,
-        "phase_hi_n": 64,
-        "crosstalk": 3.107,
-        "localization": 0.8537,
-        "n_points": 164
+        "r2_pred": 0.903,
+        "r2_line": 0.921,
+        "slope": 0.946,
+        "rmse": 3.939,
+        "mae": 2.214,
+        "phase_hi": 7.07,
+        "phase_hi_n": 60,
+        "crosstalk": 1.998,
+        "localization": 0.8,
+        "n_points": 160
       },
       "magnitude_extrapolating": {
         "r2_pred": 0.6519,
@@ -291,7 +291,7 @@
         "phase_hi": 14.15,
         "phase_hi_n": 64,
         "crosstalk": 2.054,
-        "localization": 0.8415,
+        "localization": 0.6951,
         "n_points": 164
       },
       "angle_sector": {
@@ -299,11 +299,11 @@
         "r2_line": 0.3883,
         "slope": 0.5449,
         "rmse": 13.263,
-        "mae": 6.867,
+        "mae": 6.868,
         "phase_hi": 21.28,
         "phase_hi_n": 64,
-        "crosstalk": 5.602,
-        "localization": 0.7317,
+        "crosstalk": 5.608,
+        "localization": 0.6098,
         "n_points": 164
       }
     }
@@ -471,13 +471,13 @@
     "angle_sector": {
       "r2_pred": 0.9383,
       "r2_line": 0.9492,
-      "slope": 1.026,
+      "slope": 1.0259,
       "rmse": 3.567,
-      "mae": 2.003,
+      "mae": 2.001,
       "phase_hi": 6.66,
       "phase_hi_n": 64,
-      "crosstalk": 2.258,
-      "localization": 0.939,
+      "crosstalk": 2.259,
+      "localization": 0.7927,
       "n_points": 164
     },
     "condition": {
@@ -489,7 +489,7 @@
       "phase_hi": 5.86,
       "phase_hi_n": 64,
       "crosstalk": 1.96,
-      "localization": 0.9268,
+      "localization": 0.8049,
       "n_points": 164
     },
     "icm_reference": {

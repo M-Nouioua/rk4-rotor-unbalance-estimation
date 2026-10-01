@@ -79,7 +79,7 @@ def main():
         Vp, Vm = fwd[k], meas[k]
         rel = np.linalg.norm(Vp - Vm, axis=1) / np.maximum(np.linalg.norm(Vm, axis=1), 1e-12)
         loaded = (np.abs(Y[k, 0] + 1j * Y[k, 1])
-                  + np.abs(Y[k, 2] + 1j * Y[k, 3])) > LOAD_THRESH
+                  + np.abs(Y[k, 2] + 1j * Y[k, 3])) >= LOAD_THRESH
         npar = int(14 * M)          # 2 poles + 8 sensor + 4 disk residue reals
         rec = {"n_parameters_active": npar,
                "pole_priors_rpm": np.round(pole_priors(M)[0] / (2 * np.pi / 60), 0).tolist(),

@@ -37,13 +37,12 @@ import json
 import numpy as np
 import pandas as pd
 
-from sklearn.model_selection import GroupKFold, LeaveOneGroupOut
-
 from config import ROOT
 from estimation.ml import build_regressor, feature_columns, TARGETS
 from estimation.twin import augment_with_physics, CALIB
 from estimation.stats import aggregate_conditions, r2_pred, r2_line, angdiff
 from processing.features import SENSORS
+from scripts.benchmark import _protocols, _cv_predict
 
 ANALYSIS = ROOT / "analysis"
 HIGH_U = 24.0
@@ -102,34 +101,28 @@ def build_frames(df: pd.DataFrame):
 
 
 def protocols(lab: pd.DataFrame) -> dict:
-    ang = np.where(lab.U1_mag.to_numpy() >= lab.U2_mag.to_numpy(),
-                   lab.U1_ang.fillna(0).to_numpy(), lab.U2_ang.fillna(0).to_numpy())
-    return {"condition": lab.condition_id.to_numpy(),
-            "angle_sector": np.round(ang / 45).astype(int) % 8,
-            "configuration": lab.config.astype(str).to_numpy()}
+    shared = _protocols(lab)
+    return {k: shared[k] for k in ("condition", "angle_sector", "configuration")}
 
 
-def cv(X, Y, groups):
-    g = np.asarray(groups)
-    sp = GroupKFold(n_splits=5) if len(np.unique(g)) > 5 else LeaveOneGroupOut()
-    P = np.zeros_like(Y)
-    for tr, te in sp.split(X, Y, g):
-        P[te] = build_regressor("et").fit(X[tr], Y[tr]).predict(X[te])
-    return P
+def cv(X, Y, spec):
+    return _cv_predict(X, Y, spec, factory=lambda: build_regressor("et"))
 
 
 def score(lab, scored, u1h, u2h, truth) -> dict:
     U1, U2 = truth
-    cid = lab.condition_id.to_numpy()[scored]
+    keep = (scored & np.isfinite(u1h.real) & np.isfinite(u1h.imag)
+            & np.isfinite(u2h.real) & np.isfinite(u2h.imag))
+    cid = lab.condition_id.to_numpy()[keep]
     P = pd.concat([
         pd.DataFrame(dict(cid=cid, disk=1,
-                          true_mag=np.abs(U1)[scored], est_mag=np.abs(u1h)[scored],
-                          true_ang=np.degrees(np.angle(U1))[scored],
-                          est_ang=np.degrees(np.angle(u1h))[scored])),
+                          true_mag=np.abs(U1)[keep], est_mag=np.abs(u1h)[keep],
+                          true_ang=np.degrees(np.angle(U1))[keep],
+                          est_ang=np.degrees(np.angle(u1h))[keep])),
         pd.DataFrame(dict(cid=cid, disk=2,
-                          true_mag=np.abs(U2)[scored], est_mag=np.abs(u2h)[scored],
-                          true_ang=np.degrees(np.angle(U2))[scored],
-                          est_ang=np.degrees(np.angle(u2h))[scored]))],
+                          true_mag=np.abs(U2)[keep], est_mag=np.abs(u2h)[keep],
+                          true_ang=np.degrees(np.angle(U2))[keep],
+                          est_ang=np.degrees(np.angle(u2h))[keep]))],
         ignore_index=True)
     P["ang_err"] = np.abs(angdiff(P.est_ang, P.true_ang))
     P["loaded"] = P.true_mag > 1e-6

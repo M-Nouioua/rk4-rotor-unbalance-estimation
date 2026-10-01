@@ -13,11 +13,16 @@ try
     p = p(strcmp(p.variant, 'iso'), :);
     pin = table(repmat({'pinn'}, height(p), 1), p.condition_id, p.disk, ...
                 p.true_gmm, p.est_gmm, p.true_ang, p.est_ang, ...
-                abs(mod(p.est_ang - p.true_ang + 180, 360) - 180), p.balanced, ...
+                abs(mod(p.est_ang - p.true_ang + 180, 360) - 180), ...
+                p.phase_label_valid, p.balanced, ...
                 'VariableNames', d.Properties.VariableNames);
     d = [d; pin];
-catch
-    warning('fig_blind:nopinn', 'pinn_blind.csv not found; plotting baselines only');
+catch err
+    % Report why the operator series is missing. A bare "not found" message
+    % here previously hid a column-count mismatch, and the figure was published
+    % silently without the operator.
+    warning('fig_blind:nopinn', ...
+            'operator series omitted: %s', err.message);
 end
 
 methods = {'physics', 'hybrid', 'pinn'};

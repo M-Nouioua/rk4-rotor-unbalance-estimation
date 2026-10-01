@@ -18,193 +18,6 @@
         "mae": 3.41,
         "rmse": 3.76,
         "mae_loaded": 3.27,
-        "detect_acc": 0.9,
-        "detect_acc_wilson95": [
-          0.699,
-          0.9721
-        ],
-        "detect_acc_cluster95": [
-          0.75,
-          1.0
-        ],
-        "specificity": 0.9091,
-        "sensitivity": 0.8889,
-        "roc_auc": 0.9798,
-        "phase_err_hi": 3.2,
-        "phase_err_hi_n": 6,
-        "confusion": {
-          "tp": 8,
-          "fp": 1,
-          "fn": 1,
-          "tn": 10
-        },
-        "points": [
-          {
-            "cid": "BLND01",
-            "disk": 1,
-            "true": 48.0,
-            "est": 43.3,
-            "true_ang": 180.0,
-            "est_ang": 176.0
-          },
-          {
-            "cid": "BLND01",
-            "disk": 2,
-            "true": 48.0,
-            "est": 49.7,
-            "true_ang": 135.0,
-            "est_ang": 140.0
-          },
-          {
-            "cid": "BLND02",
-            "disk": 1,
-            "true": 3.0,
-            "est": 8.0,
-            "true_ang": 135.0,
-            "est_ang": -18.0
-          },
-          {
-            "cid": "BLND02",
-            "disk": 2,
-            "true": 48.0,
-            "est": 52.4,
-            "true_ang": 135.0,
-            "est_ang": 137.0
-          },
-          {
-            "cid": "BLND03",
-            "disk": 1,
-            "true": 6.0,
-            "est": 5.6,
-            "true_ang": 225.0,
-            "est_ang": -120.0
-          },
-          {
-            "cid": "BLND03",
-            "disk": 2,
-            "true": 12.0,
-            "est": 9.9,
-            "true_ang": 270.0,
-            "est_ang": -91.0
-          },
-          {
-            "cid": "BLND04",
-            "disk": 1,
-            "true": 36.0,
-            "est": 29.9,
-            "true_ang": 157.0,
-            "est_ang": 155.0
-          },
-          {
-            "cid": "BLND04",
-            "disk": 2,
-            "true": 6.0,
-            "est": 6.0,
-            "true_ang": 67.5,
-            "est_ang": 96.0
-          },
-          {
-            "cid": "BLND05",
-            "disk": 1,
-            "true": 36.0,
-            "est": 31.7,
-            "true_ang": 157.5,
-            "est_ang": 154.0
-          },
-          {
-            "cid": "BLND05",
-            "disk": 2,
-            "true": 24.0,
-            "est": 29.7,
-            "true_ang": 247.5,
-            "est_ang": -115.0
-          },
-          {
-            "cid": "BLND06",
-            "disk": 1,
-            "true": 0.0,
-            "est": 2.8,
-            "true_ang": 0.0,
-            "est_ang": -38.0
-          },
-          {
-            "cid": "BLND06",
-            "disk": 2,
-            "true": 0.0,
-            "est": 2.5,
-            "true_ang": 0.0,
-            "est_ang": 110.0
-          },
-          {
-            "cid": "BLND07",
-            "disk": 1,
-            "true": 0.0,
-            "est": 4.2,
-            "true_ang": 0.0,
-            "est_ang": -28.0
-          },
-          {
-            "cid": "BLND07",
-            "disk": 2,
-            "true": 0.0,
-            "est": 3.8,
-            "true_ang": 0.0,
-            "est_ang": 118.0
-          },
-          {
-            "cid": "BLND08",
-            "disk": 1,
-            "true": 0.0,
-            "est": 4.3,
-            "true_ang": 0.0,
-            "est_ang": -29.0
-          },
-          {
-            "cid": "BLND08",
-            "disk": 2,
-            "true": 0.0,
-            "est": 3.9,
-            "true_ang": 0.0,
-            "est_ang": 120.0
-          },
-          {
-            "cid": "BLND09",
-            "disk": 1,
-            "true": 0.0,
-            "est": 4.1,
-            "true_ang": 0.0,
-            "est_ang": -22.0
-          },
-          {
-            "cid": "BLND09",
-            "disk": 2,
-            "true": 0.0,
-            "est": 3.6,
-            "true_ang": 0.0,
-            "est_ang": 125.0
-          },
-          {
-            "cid": "BLND10",
-            "disk": 1,
-            "true": 0.0,
-            "est": 2.4,
-            "true_ang": 0.0,
-            "est_ang": -44.0
-          },
-          {
-            "cid": "BLND10",
-            "disk": 2,
-            "true": 0.0,
-            "est": 2.2,
-            "true_ang": 0.0,
-            "est_ang": 105.0
-          }
-        ]
-      },
-      "pinn_aniso": {
-        "mae": 3.21,
-        "rmse": 3.58,
-        "mae_loaded": 3.66,
         "detect_acc": 0.85,
         "detect_acc_wilson95": [
           0.6396,
@@ -216,9 +29,9 @@
         ],
         "specificity": 0.9091,
         "sensitivity": 0.7778,
-        "roc_auc": 0.9545,
-        "phase_err_hi": 6.0,
-        "phase_err_hi_n": 6,
+        "roc_auc": 0.9798,
+        "phase_err_hi": 3.3,
+        "phase_err_hi_n": 5,
         "confusion": {
           "tp": 7,
           "fp": 1,
@@ -230,167 +43,394 @@
             "cid": "BLND01",
             "disk": 1,
             "true": 48.0,
-            "est": 44.2,
+            "est": 43.27890898114765,
             "true_ang": 180.0,
-            "est_ang": 169.0
+            "est_ang": 176.21174223018693,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND01",
             "disk": 2,
             "true": 48.0,
-            "est": 42.4,
+            "est": 49.668095884544584,
             "true_ang": 135.0,
-            "est_ang": 143.0
+            "est_ang": 139.6924493408192,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND02",
             "disk": 1,
             "true": 3.0,
-            "est": 7.8,
+            "est": 8.01925722807411,
             "true_ang": 135.0,
-            "est_ang": 30.0
+            "est_ang": -17.885838796461247,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND02",
             "disk": 2,
             "true": 48.0,
-            "est": 46.3,
+            "est": 52.42285256882908,
             "true_ang": 135.0,
-            "est_ang": 141.0
+            "est_ang": 137.0615949376597,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND03",
             "disk": 1,
             "true": 6.0,
-            "est": 3.8,
+            "est": 5.638632724615361,
             "true_ang": 225.0,
-            "est_ang": -123.0
+            "est_ang": -119.7319154645569,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND03",
             "disk": 2,
             "true": 12.0,
-            "est": 10.9,
+            "est": 9.904309475530678,
             "true_ang": 270.0,
-            "est_ang": -94.0
+            "est_ang": -90.81904202628455,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND04",
             "disk": 1,
             "true": 36.0,
-            "est": 30.2,
+            "est": 29.92592930196733,
             "true_ang": 157.0,
-            "est_ang": 153.0
+            "est_ang": 154.65357048737167,
+            "phase_label_valid": false
           },
           {
             "cid": "BLND04",
             "disk": 2,
             "true": 6.0,
-            "est": 4.5,
+            "est": 5.96945312548104,
             "true_ang": 67.5,
-            "est_ang": 86.0
+            "est_ang": 96.04062482979995,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND05",
             "disk": 1,
             "true": 36.0,
-            "est": 29.7,
+            "est": 31.673614015225315,
             "true_ang": 157.5,
-            "est_ang": 155.0
+            "est_ang": 154.050250449603,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND05",
             "disk": 2,
             "true": 24.0,
-            "est": 28.9,
+            "est": 29.7156551650739,
             "true_ang": 247.5,
-            "est_ang": -117.0
+            "est_ang": -114.96476481186738,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND06",
             "disk": 1,
             "true": 0.0,
-            "est": 2.4,
+            "est": 2.771147704850723,
             "true_ang": 0.0,
-            "est_ang": -5.0
+            "est_ang": -37.90168314588179,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND06",
             "disk": 2,
             "true": 0.0,
-            "est": 1.6,
+            "est": 2.496155953164944,
             "true_ang": 0.0,
-            "est_ang": 134.0
+            "est_ang": 110.19988330607218,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND07",
             "disk": 1,
             "true": 0.0,
-            "est": 3.8,
+            "est": 4.157562468473681,
             "true_ang": 0.0,
-            "est_ang": 8.0
+            "est_ang": -28.371835918660757,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND07",
             "disk": 2,
             "true": 0.0,
-            "est": 2.4,
+            "est": 3.798058946694362,
             "true_ang": 0.0,
-            "est_ang": 148.0
+            "est_ang": 118.16826872841915,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND08",
             "disk": 1,
             "true": 0.0,
-            "est": 3.9,
+            "est": 4.2686110432904565,
             "true_ang": 0.0,
-            "est_ang": 5.0
+            "est_ang": -28.99725110146361,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND08",
             "disk": 2,
             "true": 0.0,
-            "est": 2.6,
+            "est": 3.9213224816328083,
             "true_ang": 0.0,
-            "est_ang": 147.0
+            "est_ang": 119.5132589535419,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND09",
             "disk": 1,
             "true": 0.0,
-            "est": 4.1,
+            "est": 4.146287013454296,
             "true_ang": 0.0,
-            "est_ang": 14.0
+            "est_ang": -22.17424888263971,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND09",
             "disk": 2,
             "true": 0.0,
-            "est": 2.5,
+            "est": 3.59588910822502,
             "true_ang": 0.0,
-            "est_ang": 161.0
+            "est_ang": 124.77085583111511,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND10",
             "disk": 1,
             "true": 0.0,
-            "est": 2.0,
+            "est": 2.402636244999839,
             "true_ang": 0.0,
-            "est_ang": 0.0
+            "est_ang": -44.20300791603192,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND10",
             "disk": 2,
             "true": 0.0,
-            "est": 1.1,
+            "est": 2.2266128360779143,
             "true_ang": 0.0,
-            "est_ang": 149.0
+            "est_ang": 104.96485580835727,
+            "phase_label_valid": true
+          }
+        ]
+      },
+      "pinn_aniso": {
+        "mae": 3.2,
+        "rmse": 3.58,
+        "mae_loaded": 3.65,
+        "detect_acc": 0.85,
+        "detect_acc_wilson95": [
+          0.6396,
+          0.9476
+        ],
+        "detect_acc_cluster95": [
+          0.7,
+          1.0
+        ],
+        "specificity": 0.9091,
+        "sensitivity": 0.7778,
+        "roc_auc": 0.9495,
+        "phase_err_hi": 6.5,
+        "phase_err_hi_n": 5,
+        "confusion": {
+          "tp": 7,
+          "fp": 1,
+          "fn": 2,
+          "tn": 10
+        },
+        "points": [
+          {
+            "cid": "BLND01",
+            "disk": 1,
+            "true": 48.0,
+            "est": 44.23893541061457,
+            "true_ang": 180.0,
+            "est_ang": 168.51193054189264,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND01",
+            "disk": 2,
+            "true": 48.0,
+            "est": 42.407007962127246,
+            "true_ang": 135.0,
+            "est_ang": 142.5951836431702,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND02",
+            "disk": 1,
+            "true": 3.0,
+            "est": 7.837805456320773,
+            "true_ang": 135.0,
+            "est_ang": 29.687715142417062,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND02",
+            "disk": 2,
+            "true": 48.0,
+            "est": 46.30750850499857,
+            "true_ang": 135.0,
+            "est_ang": 140.8579354079102,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND03",
+            "disk": 1,
+            "true": 6.0,
+            "est": 3.830431663978401,
+            "true_ang": 225.0,
+            "est_ang": -123.37949607318312,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND03",
+            "disk": 2,
+            "true": 12.0,
+            "est": 10.90876270528882,
+            "true_ang": 270.0,
+            "est_ang": -94.49791733963443,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND04",
+            "disk": 1,
+            "true": 36.0,
+            "est": 30.189936217068357,
+            "true_ang": 157.0,
+            "est_ang": 153.41646699806338,
+            "phase_label_valid": false
+          },
+          {
+            "cid": "BLND04",
+            "disk": 2,
+            "true": 6.0,
+            "est": 4.461129964041164,
+            "true_ang": 67.5,
+            "est_ang": 85.52593072479885,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND05",
+            "disk": 1,
+            "true": 36.0,
+            "est": 29.65669794490681,
+            "true_ang": 157.5,
+            "est_ang": 154.53071270111442,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND05",
+            "disk": 2,
+            "true": 24.0,
+            "est": 28.89134377889078,
+            "true_ang": 247.5,
+            "est_ang": -117.19434160830306,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND06",
+            "disk": 1,
+            "true": 0.0,
+            "est": 2.356138429124456,
+            "true_ang": 0.0,
+            "est_ang": -4.987755310219444,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND06",
+            "disk": 2,
+            "true": 0.0,
+            "est": 1.5522476392328082,
+            "true_ang": 0.0,
+            "est_ang": 133.63204549748588,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND07",
+            "disk": 1,
+            "true": 0.0,
+            "est": 3.839608780773821,
+            "true_ang": 0.0,
+            "est_ang": 7.9404392799087615,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND07",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.414152591054161,
+            "true_ang": 0.0,
+            "est_ang": 148.38519138071584,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND08",
+            "disk": 1,
+            "true": 0.0,
+            "est": 3.881261005707469,
+            "true_ang": 0.0,
+            "est_ang": 5.327066382645498,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND08",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.5921971274445594,
+            "true_ang": 0.0,
+            "est_ang": 146.96696173627467,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND09",
+            "disk": 1,
+            "true": 0.0,
+            "est": 4.094190348282699,
+            "true_ang": 0.0,
+            "est_ang": 13.954663270883904,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND09",
+            "disk": 2,
+            "true": 0.0,
+            "est": 2.488367024878485,
+            "true_ang": 0.0,
+            "est_ang": 161.20752259207705,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND10",
+            "disk": 1,
+            "true": 0.0,
+            "est": 1.989458732828496,
+            "true_ang": 0.0,
+            "est_ang": 0.43968055145722784,
+            "phase_label_valid": true
+          },
+          {
+            "cid": "BLND10",
+            "disk": 2,
+            "true": 0.0,
+            "est": 1.120659121841524,
+            "true_ang": 0.0,
+            "est_ang": 149.1492790307929,
+            "phase_label_valid": true
           }
         ]
       },
       "pinn_aniso+res": {
-        "mae": 3.0,
-        "rmse": 3.32,
+        "mae": 3.01,
+        "rmse": 3.33,
         "mae_loaded": 2.7,
         "detect_acc": 0.95,
         "detect_acc_wilson95": [
@@ -404,8 +444,8 @@
         "specificity": 1.0,
         "sensitivity": 0.8889,
         "roc_auc": 0.9899,
-        "phase_err_hi": 1.8,
-        "phase_err_hi_n": 6,
+        "phase_err_hi": 2.0,
+        "phase_err_hi_n": 5,
         "confusion": {
           "tp": 8,
           "fp": 0,
@@ -417,175 +457,221 @@
             "cid": "BLND01",
             "disk": 1,
             "true": 48.0,
-            "est": 45.9,
+            "est": 45.89431515981449,
             "true_ang": 180.0,
-            "est_ang": 176.0
+            "est_ang": 176.0578542559604,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND01",
             "disk": 2,
             "true": 48.0,
-            "est": 48.2,
+            "est": 48.19377053366475,
             "true_ang": 135.0,
-            "est_ang": 134.0
+            "est_ang": 134.48337814855412,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND02",
             "disk": 1,
             "true": 3.0,
-            "est": 5.6,
+            "est": 5.636079606585277,
             "true_ang": 135.0,
-            "est_ang": -22.0
+            "est_ang": -21.894838084700297,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND02",
             "disk": 2,
             "true": 48.0,
-            "est": 51.4,
+            "est": 51.38513089293545,
             "true_ang": 135.0,
-            "est_ang": 135.0
+            "est_ang": 134.95953113866128,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND03",
             "disk": 1,
             "true": 6.0,
-            "est": 5.3,
+            "est": 5.337534131009727,
             "true_ang": 225.0,
-            "est_ang": -120.0
+            "est_ang": -120.30404786759259,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND03",
             "disk": 2,
             "true": 12.0,
-            "est": 10.3,
+            "est": 10.267972785706595,
             "true_ang": 270.0,
-            "est_ang": -90.0
+            "est_ang": -89.5108700931654,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND04",
             "disk": 1,
             "true": 36.0,
-            "est": 30.4,
+            "est": 30.366663116711294,
             "true_ang": 157.0,
-            "est_ang": 157.0
+            "est_ang": 156.95921736075164,
+            "phase_label_valid": false
           },
           {
             "cid": "BLND04",
             "disk": 2,
             "true": 6.0,
-            "est": 7.1,
+            "est": 7.111495845259055,
             "true_ang": 67.5,
-            "est_ang": 81.0
+            "est_ang": 80.82856792887004,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND05",
             "disk": 1,
             "true": 36.0,
-            "est": 30.7,
+            "est": 30.679294452369277,
             "true_ang": 157.5,
-            "est_ang": 153.0
+            "est_ang": 153.32078868107018,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND05",
             "disk": 2,
             "true": 24.0,
-            "est": 28.2,
+            "est": 28.175327950138218,
             "true_ang": 247.5,
-            "est_ang": -114.0
+            "est_ang": -113.70809321347225,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND06",
             "disk": 1,
             "true": 0.0,
-            "est": 2.7,
+            "est": 2.686529447789963,
             "true_ang": 0.0,
-            "est_ang": -39.0
+            "est_ang": -39.14062458826168,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND06",
             "disk": 2,
             "true": 0.0,
-            "est": 2.6,
+            "est": 2.6243819644328306,
             "true_ang": 0.0,
-            "est_ang": 111.0
+            "est_ang": 110.59010948408816,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND07",
             "disk": 1,
             "true": 0.0,
-            "est": 3.8,
+            "est": 3.8319767943348126,
             "true_ang": 0.0,
-            "est_ang": -33.0
+            "est_ang": -32.59512017444844,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND07",
             "disk": 2,
             "true": 0.0,
-            "est": 4.0,
+            "est": 4.02300200133337,
             "true_ang": 0.0,
-            "est_ang": 115.0
+            "est_ang": 114.99113351566328,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND08",
             "disk": 1,
             "true": 0.0,
-            "est": 3.9,
+            "est": 3.9343817912573575,
             "true_ang": 0.0,
-            "est_ang": -33.0
+            "est_ang": -33.26683528484395,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND08",
             "disk": 2,
             "true": 0.0,
-            "est": 4.1,
+            "est": 4.126249905247049,
             "true_ang": 0.0,
-            "est_ang": 116.0
+            "est_ang": 115.91244714697505,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND09",
             "disk": 1,
             "true": 0.0,
-            "est": 3.8,
+            "est": 3.793613851732888,
             "true_ang": 0.0,
-            "est_ang": -26.0
+            "est_ang": -25.86025423410978,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND09",
             "disk": 2,
             "true": 0.0,
-            "est": 3.8,
+            "est": 3.7845468774970694,
             "true_ang": 0.0,
-            "est_ang": 121.0
+            "est_ang": 121.15953801565047,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND10",
             "disk": 1,
             "true": 0.0,
-            "est": 2.4,
+            "est": 2.3959674331920113,
             "true_ang": 0.0,
-            "est_ang": -36.0
+            "est_ang": -35.75966873158925,
+            "phase_label_valid": true
           },
           {
             "cid": "BLND10",
             "disk": 2,
             "true": 0.0,
-            "est": 2.1,
+            "est": 2.0590797270105163,
             "true_ang": 0.0,
-            "est_ang": 115.0
+            "est_ang": 114.57584815535428,
+            "phase_label_valid": true
           }
         ]
       }
-    }
+    },
+    "phase_exclusions": [
+      {
+        "condition_id": "BLND04",
+        "disk": 1,
+        "angle_deg": 157.0,
+        "reason": "reference angle is not on the 22.5-degree fixture grid"
+      }
+    ]
   },
   "forward": {
     "what": "held-out response prediction from the KNOWN unbalance; the label is an input here, not a target",
     "response_r2_pred": 0.9562,
-    "rel_error_median_all": 0.3328,
-    "rel_error_median_loaded": 0.2994,
-    "rel_error_median_unloaded": 0.5475,
+    "rel_error_median_all": 0.3409,
+    "rel_error_median_loaded": 0.3341,
+    "rel_error_median_unloaded": 0.4975,
     "n_rows": 492,
     "n_conditions": 82,
-    "note": "relative error is inflated on near-balanced conditions because the denominator is the small measured amplitude; read the loaded column"
+    "methods": {
+      "operator": {
+        "response_r2_pred": 0.9562,
+        "rel_error_median_all": 0.3409,
+        "rel_error_median_loaded": 0.3341,
+        "rel_error_median_unloaded": 0.4975,
+        "n_rows": 492,
+        "n_conditions": 82
+      },
+      "icm": {
+        "response_r2_pred": 0.97,
+        "rel_error_median_all": 0.2991,
+        "rel_error_median_loaded": 0.2882,
+        "rel_error_median_unloaded": 0.4645,
+        "n_rows": 492,
+        "n_conditions": 82
+      }
+    },
+    "note": "relative error is inflated on near-balanced conditions because the denominator is the small measured amplitude; relative-error medians are first aggregated within condition"
   },
   "nested_selection": {
     "random_acquisition": {
@@ -597,7 +683,7 @@
       "phase_hi": 5.32,
       "phase_hi_n": 64,
       "crosstalk": 1.918,
-      "localization": 0.9268,
+      "localization": 0.8049,
       "n_points": 164,
       "chosen_per_fold": [
         "iso",
@@ -617,7 +703,7 @@
       "phase_hi": 5.86,
       "phase_hi_n": 64,
       "crosstalk": 1.96,
-      "localization": 0.9268,
+      "localization": 0.8049,
       "n_points": 164,
       "chosen_per_fold": [
         "iso",
@@ -629,24 +715,29 @@
       "selection_stable": true
     },
     "magnitude_interpolating": {
-      "r2_pred": 0.9435,
-      "r2_line": 0.9531,
-      "slope": 1.0185,
-      "rmse": 3.413,
-      "mae": 1.969,
-      "phase_hi": 5.8,
-      "phase_hi_n": 64,
-      "crosstalk": 2.176,
-      "localization": 0.9146,
-      "n_points": 164,
+      "r2_pred": 0.9277,
+      "r2_line": 0.9389,
+      "slope": 0.9893,
+      "rmse": 3.402,
+      "mae": 1.9,
+      "phase_hi": 6.08,
+      "phase_hi_n": 60,
+      "crosstalk": 2.085,
+      "localization": 0.8,
+      "n_points": 160,
       "chosen_per_fold": [
         "iso",
         "iso",
         "iso",
         "iso",
+        "iso",
+        "aniso+res",
+        "iso",
+        "iso",
+        "iso",
         "iso"
       ],
-      "selection_stable": true
+      "selection_stable": false
     },
     "magnitude_extrapolating": {
       "r2_pred": 0.8334,
@@ -673,10 +764,9 @@
       "phase_hi": 5.92,
       "phase_hi_n": 64,
       "crosstalk": 2.073,
-      "localization": 0.9268,
+      "localization": 0.7927,
       "n_points": 164,
       "chosen_per_fold": [
-        "iso",
         "iso",
         "iso",
         "iso",
@@ -687,15 +777,18 @@
     "angle_sector": {
       "r2_pred": 0.9383,
       "r2_line": 0.9492,
-      "slope": 1.026,
+      "slope": 1.0259,
       "rmse": 3.567,
-      "mae": 2.003,
+      "mae": 2.001,
       "phase_hi": 6.66,
       "phase_hi_n": 64,
-      "crosstalk": 2.258,
-      "localization": 0.939,
+      "crosstalk": 2.259,
+      "localization": 0.7927,
       "n_points": 164,
       "chosen_per_fold": [
+        "iso",
+        "iso",
+        "iso",
         "iso",
         "iso",
         "iso",

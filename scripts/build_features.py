@@ -101,8 +101,8 @@ def main():
             "U1_mag": abs(u1) if labeled else "", "U2_mag": abs(u2) if labeled else "",
             "U1_ang": np.degrees(np.angle(u1)) if labeled and abs(u1) > 1e-9 else "",
             "U2_ang": np.degrees(np.angle(u2)) if labeled and abs(u2) > 1e-9 else "",
-            "disk1_loaded": int(labeled and abs(u1) > LOAD_THRESH),
-            "disk2_loaded": int(labeled and abs(u2) > LOAD_THRESH),
+            "disk1_loaded": int(labeled and abs(u1) >= LOAD_THRESH),
+            "disk2_loaded": int(labeled and abs(u2) >= LOAD_THRESH),
         }
         rec.update(feat)
         rows.append(rec)

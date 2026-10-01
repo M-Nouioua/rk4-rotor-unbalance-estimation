@@ -83,8 +83,8 @@ def _derive(pred: np.ndarray) -> dict:
         "U1": u1, "U2": u2,
         "U1_mag": np.abs(u1), "U2_mag": np.abs(u2),
         "U1_ang": np.degrees(np.angle(u1)), "U2_ang": np.degrees(np.angle(u2)),
-        "disk1_loaded": (np.abs(u1) > LOAD_THRESH).astype(int),
-        "disk2_loaded": (np.abs(u2) > LOAD_THRESH).astype(int),
+        "disk1_loaded": (np.abs(u1) >= LOAD_THRESH).astype(int),
+        "disk2_loaded": (np.abs(u2) >= LOAD_THRESH).astype(int),
     }
 
 

@@ -87,13 +87,13 @@
         "phase_hi_n": 192,
         "crosstalk": 11.84180192879512
       },
-      "localization_acc": 0.3780487804878049,
+      "localization_acc": 0.45121951219512196,
       "localization_n": 82,
       "confusion": {
-        "tp": 549,
-        "fp": 370,
-        "fn": 3,
-        "tn": 62
+        "tp": 680,
+        "fp": 239,
+        "fn": 16,
+        "tn": 49
       },
       "condition": {
         "unit": "condition-disk (complex-averaged repeats) -- THE UNIT TO CITE",
@@ -145,121 +145,121 @@
           "phase_hi_n": 32,
           "crosstalk": 11.57563134781941
         },
-        "localization_acc": 0.4268292682926829,
+        "localization_acc": 0.5121951219512195,
         "localization_n": 82,
         "localization_wilson95": [
-          0.3254,
-          0.5348
+          0.4059,
+          0.6174
         ],
         "confusion": {
-          "tp": 92,
-          "fp": 63,
-          "fn": 0,
-          "tn": 9
+          "tp": 114,
+          "fp": 41,
+          "fn": 2,
+          "tn": 7
         },
         "detection": {
-          "roc_auc": 0.8933,
-          "pr_auc": 0.9283,
-          "trivial_acc": 0.561,
+          "roc_auc": 0.812,
+          "pr_auc": 0.9209,
+          "trivial_acc": 0.7073,
           "prevalence_note": "trivial_acc = accuracy of always predicting 'loaded'",
           "sweep": [
             {
               "thresh": 0.5,
-              "acc": 0.561,
+              "acc": 0.7073,
               "sens": 1.0,
               "spec": 0.0,
-              "localization": 0.3659
+              "localization": 0.4634
             },
             {
               "thresh": 1,
-              "acc": 0.561,
+              "acc": 0.7073,
               "sens": 1.0,
               "spec": 0.0,
-              "localization": 0.3659
+              "localization": 0.4634
             },
             {
               "thresh": 2,
-              "acc": 0.5732,
+              "acc": 0.7195,
               "sens": 1.0,
-              "spec": 0.0278,
-              "localization": 0.378
-            },
-            {
-              "thresh": 3,
-              "acc": 0.5732,
-              "sens": 1.0,
-              "spec": 0.0278,
-              "localization": 0.378
-            },
-            {
-              "thresh": 4,
-              "acc": 0.6037,
-              "sens": 1.0,
-              "spec": 0.0972,
-              "localization": 0.4024
-            },
-            {
-              "thresh": 5,
-              "acc": 0.6037,
-              "sens": 1.0,
-              "spec": 0.0972,
-              "localization": 0.4024
-            },
-            {
-              "thresh": 6,
-              "acc": 0.6159,
-              "sens": 1.0,
-              "spec": 0.125,
-              "localization": 0.4268
-            },
-            {
-              "thresh": 7,
-              "acc": 0.6646,
-              "sens": 1.0,
-              "spec": 0.2361,
+              "spec": 0.0417,
               "localization": 0.4756
             },
             {
-              "thresh": 8,
-              "acc": 0.6829,
-              "sens": 0.9891,
+              "thresh": 3,
+              "acc": 0.7195,
+              "sens": 1.0,
+              "spec": 0.0417,
+              "localization": 0.4756
+            },
+            {
+              "thresh": 4,
+              "acc": 0.7256,
+              "sens": 0.9828,
+              "spec": 0.1042,
+              "localization": 0.4878
+            },
+            {
+              "thresh": 5,
+              "acc": 0.7256,
+              "sens": 0.9828,
+              "spec": 0.1042,
+              "localization": 0.4878
+            },
+            {
+              "thresh": 6,
+              "acc": 0.7378,
+              "sens": 0.9828,
+              "spec": 0.1458,
+              "localization": 0.5122
+            },
+            {
+              "thresh": 7,
+              "acc": 0.7744,
+              "sens": 0.9741,
               "spec": 0.2917,
-              "localization": 0.5
+              "localization": 0.5732
+            },
+            {
+              "thresh": 8,
+              "acc": 0.7683,
+              "sens": 0.9483,
+              "spec": 0.3333,
+              "localization": 0.5732
             },
             {
               "thresh": 10,
-              "acc": 0.7012,
-              "sens": 0.9457,
-              "spec": 0.3889,
-              "localization": 0.5244
+              "acc": 0.75,
+              "sens": 0.8879,
+              "spec": 0.4167,
+              "localization": 0.5732
             },
             {
               "thresh": 12,
-              "acc": 0.7317,
-              "sens": 0.8696,
-              "spec": 0.5556,
-              "localization": 0.5732
+              "acc": 0.7073,
+              "sens": 0.7759,
+              "spec": 0.5417,
+              "localization": 0.5244
             },
             {
               "thresh": 15,
-              "acc": 0.811,
-              "sens": 0.8261,
-              "spec": 0.7917,
-              "localization": 0.7073
+              "acc": 0.7012,
+              "sens": 0.681,
+              "spec": 0.75,
+              "localization": 0.561
             },
             {
               "thresh": 20,
-              "acc": 0.811,
-              "sens": 0.6957,
-              "spec": 0.9583,
-              "localization": 0.6951
+              "acc": 0.6646,
+              "sens": 0.5517,
+              "spec": 0.9375,
+              "localization": 0.5
             },
             {
               "thresh": 25,
-              "acc": 0.7378,
-              "sens": 0.5435,
-              "spec": 0.9861,
-              "localization": 0.5732
+              "acc": 0.5915,
+              "sens": 0.431,
+              "spec": 0.9792,
+              "localization": 0.378
             }
           ]
         }
@@ -293,10 +293,10 @@
         "r2": 0.7710585412064439,
         "r2_line": 0.7710585412064439,
         "r2_pred": 0.5108237323765672,
-        "rmse": 10.04483049432094,
+        "rmse": 10.044830494320939,
         "mae": 7.717028170808137,
         "n": 366,
-        "phase_all": 13.816705909234226,
+        "phase_all": 13.816705909234223,
         "phase_hi": 6.258565511532247,
         "phase_hi_med": 0.5258820629325385,
         "phase_hi_n": 192,
@@ -324,7 +324,7 @@
         "r2_line": 0.7929959731099142,
         "r2_pred": 0.6009231024173025,
         "rmse": 8.983038326563998,
-        "mae": 6.910738267561569,
+        "mae": 6.91073826756157,
         "n": 378,
         "phase_all": 11.063327870924791,
         "phase_hi": 2.966737927257991,
@@ -347,13 +347,13 @@
         "phase_hi_n": 192,
         "crosstalk": 7.939372057337209
       },
-      "localization_acc": 0.5,
+      "localization_acc": 0.34146341463414637,
       "localization_n": 82,
       "confusion": {
-        "tp": 477,
-        "fp": 151,
-        "fn": 75,
-        "tn": 281
+        "tp": 492,
+        "fp": 136,
+        "fn": 204,
+        "tn": 152
       },
       "condition": {
         "unit": "condition-disk (complex-averaged repeats) -- THE UNIT TO CITE",
@@ -397,7 +397,7 @@
           "r2_line": 0.748476511083705,
           "r2_pred": 0.44850282240601425,
           "rmse": 10.77234877127187,
-          "mae": 8.474329649308801,
+          "mae": 8.474329649308803,
           "n": 59,
           "phase_all": 14.961811233065518,
           "phase_hi": 8.56526073419861,
@@ -405,121 +405,121 @@
           "phase_hi_n": 32,
           "crosstalk": 7.835754594605302
         },
-        "localization_acc": 0.6341463414634146,
+        "localization_acc": 0.47560975609756095,
         "localization_n": 82,
         "localization_wilson95": [
-          0.5261,
-          0.7302
+          0.371,
+          0.5824
         ],
         "confusion": {
-          "tp": 81,
-          "fp": 25,
-          "fn": 11,
-          "tn": 47
+          "tp": 84,
+          "fp": 22,
+          "fn": 32,
+          "tn": 26
         },
         "detection": {
-          "roc_auc": 0.8564,
-          "pr_auc": 0.8751,
-          "trivial_acc": 0.561,
+          "roc_auc": 0.6879,
+          "pr_auc": 0.8542,
+          "trivial_acc": 0.7073,
           "prevalence_note": "trivial_acc = accuracy of always predicting 'loaded'",
           "sweep": [
             {
               "thresh": 0.5,
-              "acc": 0.5671,
-              "sens": 1.0,
-              "spec": 0.0139,
-              "localization": 0.3659
+              "acc": 0.7012,
+              "sens": 0.9914,
+              "spec": 0.0,
+              "localization": 0.4634
             },
             {
               "thresh": 1,
-              "acc": 0.5671,
-              "sens": 1.0,
-              "spec": 0.0139,
-              "localization": 0.3659
+              "acc": 0.7012,
+              "sens": 0.9914,
+              "spec": 0.0,
+              "localization": 0.4634
             },
             {
               "thresh": 2,
-              "acc": 0.622,
-              "sens": 1.0,
-              "spec": 0.1389,
-              "localization": 0.378
+              "acc": 0.6707,
+              "sens": 0.931,
+              "spec": 0.0417,
+              "localization": 0.4512
             },
             {
               "thresh": 3,
               "acc": 0.6829,
-              "sens": 1.0,
-              "spec": 0.2778,
-              "localization": 0.4146
+              "sens": 0.8966,
+              "spec": 0.1667,
+              "localization": 0.4634
             },
             {
               "thresh": 4,
-              "acc": 0.7256,
-              "sens": 0.9674,
-              "spec": 0.4167,
-              "localization": 0.5
+              "acc": 0.689,
+              "sens": 0.8448,
+              "spec": 0.3125,
+              "localization": 0.4634
             },
             {
               "thresh": 5,
-              "acc": 0.7622,
-              "sens": 0.9348,
-              "spec": 0.5417,
-              "localization": 0.5854
+              "acc": 0.6646,
+              "sens": 0.7759,
+              "spec": 0.3958,
+              "localization": 0.4512
             },
             {
               "thresh": 6,
-              "acc": 0.7805,
-              "sens": 0.8804,
-              "spec": 0.6528,
-              "localization": 0.6341
+              "acc": 0.6707,
+              "sens": 0.7241,
+              "spec": 0.5417,
+              "localization": 0.4756
             },
             {
               "thresh": 7,
-              "acc": 0.7683,
-              "sens": 0.8152,
-              "spec": 0.7083,
-              "localization": 0.5976
+              "acc": 0.6585,
+              "sens": 0.6724,
+              "spec": 0.625,
+              "localization": 0.439
             },
             {
               "thresh": 8,
-              "acc": 0.7439,
-              "sens": 0.7391,
-              "spec": 0.75,
-              "localization": 0.5732
+              "acc": 0.622,
+              "sens": 0.6034,
+              "spec": 0.6667,
+              "localization": 0.4024
             },
             {
               "thresh": 10,
-              "acc": 0.7561,
-              "sens": 0.7065,
-              "spec": 0.8194,
-              "localization": 0.5732
+              "acc": 0.6098,
+              "sens": 0.5603,
+              "spec": 0.7292,
+              "localization": 0.378
             },
             {
               "thresh": 12,
-              "acc": 0.7439,
-              "sens": 0.6196,
-              "spec": 0.9028,
-              "localization": 0.6098
+              "acc": 0.5976,
+              "sens": 0.4914,
+              "spec": 0.8542,
+              "localization": 0.4146
             },
             {
               "thresh": 15,
-              "acc": 0.6768,
-              "sens": 0.4891,
-              "spec": 0.9167,
-              "localization": 0.5
+              "acc": 0.5305,
+              "sens": 0.3879,
+              "spec": 0.875,
+              "localization": 0.3049
             },
             {
               "thresh": 20,
-              "acc": 0.5976,
-              "sens": 0.3152,
-              "spec": 0.9583,
-              "localization": 0.4268
+              "acc": 0.4512,
+              "sens": 0.25,
+              "spec": 0.9375,
+              "localization": 0.2317
             },
             {
               "thresh": 25,
-              "acc": 0.5549,
-              "sens": 0.2065,
+              "acc": 0.4085,
+              "sens": 0.1638,
               "spec": 1.0,
-              "localization": 0.3659
+              "localization": 0.1707
             }
           ]
         }
@@ -545,7 +545,7 @@
         "phase_hi": 6.3559665072415505,
         "phase_hi_med": 0.3894411341123316,
         "phase_hi_n": 384,
-        "crosstalk": 5.767810440394864
+        "crosstalk": 5.767810440394863
       },
       "N1": {
         "slope": 0.7793426607646374,
@@ -583,7 +583,7 @@
         "r2": 0.8420900580616939,
         "r2_line": 0.8420900580616939,
         "r2_pred": 0.7164874201709457,
-        "rmse": 7.571486038793056,
+        "rmse": 7.571486038793057,
         "mae": 5.736146571832129,
         "n": 378,
         "phase_all": 10.65625986278195,
@@ -607,13 +607,13 @@
         "phase_hi_n": 192,
         "crosstalk": 5.544700898261037
       },
-      "localization_acc": 0.5975609756097561,
+      "localization_acc": 0.4634146341463415,
       "localization_n": 82,
       "confusion": {
-        "tp": 488,
-        "fp": 101,
-        "fn": 64,
-        "tn": 331
+        "tp": 510,
+        "fp": 79,
+        "fn": 186,
+        "tn": 209
       },
       "condition": {
         "unit": "condition-disk (complex-averaged repeats) -- THE UNIT TO CITE",
@@ -622,12 +622,12 @@
         "n_acq_collapsed": 984,
         "overall": {
           "slope": 0.7877357257348678,
-          "intercept": -1.07042789882219,
-          "r2": 0.8078998417287866,
-          "r2_line": 0.8078998417287866,
+          "intercept": -1.0704278988221887,
+          "r2": 0.8078998417287867,
+          "r2_line": 0.8078998417287867,
           "r2_pred": 0.6592428001745645,
           "rmse": 8.38363656784446,
-          "mae": 6.248818224830679,
+          "mae": 6.24881822483068,
           "n": 122,
           "phase_all": 11.853908627514361,
           "phase_hi": 6.086629730045704,
@@ -665,128 +665,128 @@
           "phase_hi_n": 32,
           "crosstalk": 5.367974029829852
         },
-        "localization_acc": 0.7195121951219512,
+        "localization_acc": 0.5609756097560976,
         "localization_n": 82,
         "localization_wilson95": [
-          0.6141,
-          0.8052
+          0.4532,
+          0.6633
         ],
         "confusion": {
-          "tp": 81,
-          "fp": 15,
-          "fn": 11,
-          "tn": 57
+          "tp": 84,
+          "fp": 12,
+          "fn": 32,
+          "tn": 36
         },
         "detection": {
-          "roc_auc": 0.9183,
-          "pr_auc": 0.9356,
-          "trivial_acc": 0.561,
+          "roc_auc": 0.7924,
+          "pr_auc": 0.9113,
+          "trivial_acc": 0.7073,
           "prevalence_note": "trivial_acc = accuracy of always predicting 'loaded'",
           "sweep": [
             {
               "thresh": 0.5,
-              "acc": 0.5732,
-              "sens": 1.0,
-              "spec": 0.0278,
-              "localization": 0.3659
+              "acc": 0.6951,
+              "sens": 0.9828,
+              "spec": 0.0,
+              "localization": 0.4634
             },
             {
               "thresh": 1,
-              "acc": 0.5854,
-              "sens": 1.0,
-              "spec": 0.0556,
-              "localization": 0.378
+              "acc": 0.6951,
+              "sens": 0.9741,
+              "spec": 0.0208,
+              "localization": 0.4634
             },
             {
               "thresh": 2,
-              "acc": 0.6463,
-              "sens": 0.9891,
-              "spec": 0.2083,
-              "localization": 0.4268
+              "acc": 0.7195,
+              "sens": 0.9397,
+              "spec": 0.1875,
+              "localization": 0.5122
             },
             {
               "thresh": 3,
-              "acc": 0.7561,
-              "sens": 0.9783,
-              "spec": 0.4722,
+              "acc": 0.7195,
+              "sens": 0.8534,
+              "spec": 0.3958,
               "localization": 0.5366
             },
             {
               "thresh": 4,
-              "acc": 0.8171,
-              "sens": 0.9674,
-              "spec": 0.625,
-              "localization": 0.6585
+              "acc": 0.7683,
+              "sens": 0.8362,
+              "spec": 0.6042,
+              "localization": 0.5976
             },
             {
               "thresh": 5,
-              "acc": 0.811,
-              "sens": 0.9022,
-              "spec": 0.6944,
-              "localization": 0.6585
+              "acc": 0.7134,
+              "sens": 0.75,
+              "spec": 0.625,
+              "localization": 0.5244
             },
             {
               "thresh": 6,
-              "acc": 0.8415,
-              "sens": 0.8804,
-              "spec": 0.7917,
-              "localization": 0.7195
+              "acc": 0.7317,
+              "sens": 0.7241,
+              "spec": 0.75,
+              "localization": 0.561
             },
             {
               "thresh": 7,
-              "acc": 0.8476,
-              "sens": 0.837,
-              "spec": 0.8611,
-              "localization": 0.7317
+              "acc": 0.7134,
+              "sens": 0.6724,
+              "spec": 0.8125,
+              "localization": 0.5488
             },
             {
               "thresh": 8,
-              "acc": 0.8476,
-              "sens": 0.8261,
-              "spec": 0.875,
-              "localization": 0.7195
+              "acc": 0.7134,
+              "sens": 0.6638,
+              "spec": 0.8333,
+              "localization": 0.5366
             },
             {
               "thresh": 10,
-              "acc": 0.8049,
-              "sens": 0.7283,
-              "spec": 0.9028,
-              "localization": 0.6585
+              "acc": 0.6585,
+              "sens": 0.5776,
+              "spec": 0.8542,
+              "localization": 0.4634
             },
             {
               "thresh": 12,
-              "acc": 0.7866,
-              "sens": 0.6848,
-              "spec": 0.9167,
-              "localization": 0.6341
+              "acc": 0.6402,
+              "sens": 0.5431,
+              "spec": 0.875,
+              "localization": 0.439
             },
             {
               "thresh": 15,
-              "acc": 0.75,
-              "sens": 0.587,
-              "spec": 0.9583,
-              "localization": 0.622
+              "acc": 0.6037,
+              "sens": 0.4655,
+              "spec": 0.9375,
+              "localization": 0.4268
             },
             {
               "thresh": 20,
-              "acc": 0.6463,
-              "sens": 0.3804,
-              "spec": 0.9861,
-              "localization": 0.4756
+              "acc": 0.5,
+              "sens": 0.3017,
+              "spec": 0.9792,
+              "localization": 0.2805
             },
             {
               "thresh": 25,
-              "acc": 0.5854,
-              "sens": 0.2717,
-              "spec": 0.9861,
-              "localization": 0.4146
+              "acc": 0.439,
+              "sens": 0.2155,
+              "spec": 0.9792,
+              "localization": 0.2195
             }
           ]
         }
       },
       "cross_speed": {
         "mean_abs_gmm": 1.9384277725191592,
-        "rms_gmm": 2.8258746305264264,
+        "rms_gmm": 2.825874630526427,
         "n": 122
       }
     }
@@ -870,9 +870,9 @@
     "protocols": {
       "random_acquisition": "LEAKY NEGATIVE CONTROL -- repeats of one condition straddle folds. Included only to quantify what the field's default split buys.",
       "condition": "Interpolation to unseen mass/angle COMBINATIONS on the sampled grid.",
-      "magnitude_interpolating": "Leave-one-severity-level-out. The held-out level is BRACKETED by trained levels, so this is interpolation, not extrapolation.",
-      "magnitude_extrapolating": "Train on total U<36 g.mm, test on >=36. The deployment question the blind two-plane cases actually posed.",
-      "configuration": "Leave-one-configuration-out (D1 / D2 / in-phase / anti-phase).",
+      "magnitude_interpolating": "Leave one interior total-unbalance level out at a time. Endpoint levels are excluded, so every scored level is bracketed by lower and higher levels in training.",
+      "magnitude_extrapolating": "Train on total U<36 g.mm and test on total U>=36 g.mm. This is a high-total-unbalance holdout; loading composition is not matched.",
+      "configuration": "Leave-one-loaded-configuration-out (D1 / D2 / in-phase / anti-phase); the baseline-only calibration group is not scored.",
       "angle_sector": "Leave-one-angle-sector-out. Only 4 distinct angles exist at U>=24 g.mm, so on-grid phase scores cannot be read as generalization."
     },
     "methods": {
@@ -886,7 +886,7 @@
           "phase_hi": 0.31,
           "phase_hi_n": 64,
           "crosstalk": 1.451,
-          "localization": 0.9634,
+          "localization": 0.7927,
           "localization_n": 82,
           "n_points": 164
         },
@@ -899,22 +899,22 @@
           "phase_hi": 6.09,
           "phase_hi_n": 64,
           "crosstalk": 5.651,
-          "localization": 0.7195,
+          "localization": 0.561,
           "localization_n": 82,
           "n_points": 164
         },
         "magnitude_interpolating": {
-          "r2_pred": 0.6733,
-          "r2_line": 0.8074,
-          "slope": 0.7717,
-          "rmse": 8.209,
-          "mae": 5.96,
-          "phase_hi": 5.88,
-          "phase_hi_n": 64,
-          "crosstalk": 4.333,
-          "localization": 0.7073,
-          "localization_n": 82,
-          "n_points": 164
+          "r2_pred": 0.6434,
+          "r2_line": 0.7839,
+          "slope": 0.807,
+          "rmse": 7.552,
+          "mae": 5.39,
+          "phase_hi": 5.98,
+          "phase_hi_n": 60,
+          "crosstalk": 4.83,
+          "localization": 0.625,
+          "localization_n": 80,
+          "n_points": 160
         },
         "magnitude_extrapolating": {
           "r2_pred": -4.4603,
@@ -938,20 +938,20 @@
           "phase_hi": 10.11,
           "phase_hi_n": 64,
           "crosstalk": 8.777,
-          "localization": 0.3902,
+          "localization": 0.2195,
           "localization_n": 82,
           "n_points": 164
         },
         "angle_sector": {
-          "r2_pred": -1.12,
-          "r2_line": 0.0834,
-          "slope": 0.089,
-          "rmse": 20.911,
-          "mae": 16.441,
+          "r2_pred": -1.1201,
+          "r2_line": 0.0835,
+          "slope": 0.0891,
+          "rmse": 20.912,
+          "mae": 16.443,
           "phase_hi": 67.36,
           "phase_hi_n": 64,
-          "crosstalk": 4.648,
-          "localization": 0.4146,
+          "crosstalk": 4.652,
+          "localization": 0.2195,
           "localization_n": 82,
           "n_points": 164
         }
@@ -966,7 +966,7 @@
           "phase_hi": 0.27,
           "phase_hi_n": 64,
           "crosstalk": 2.44,
-          "localization": 0.9634,
+          "localization": 0.7927,
           "localization_n": 82,
           "n_points": 164
         },
@@ -979,22 +979,22 @@
           "phase_hi": 5.65,
           "phase_hi_n": 64,
           "crosstalk": 8.315,
-          "localization": 0.6341,
+          "localization": 0.4756,
           "localization_n": 82,
           "n_points": 164
         },
         "magnitude_interpolating": {
-          "r2_pred": 0.5988,
-          "r2_line": 0.8086,
-          "slope": 0.7016,
-          "rmse": 9.097,
-          "mae": 6.758,
-          "phase_hi": 5.77,
-          "phase_hi_n": 64,
-          "crosstalk": 6.676,
-          "localization": 0.7073,
-          "localization_n": 82,
-          "n_points": 164
+          "r2_pred": 0.5496,
+          "r2_line": 0.7703,
+          "slope": 0.7214,
+          "rmse": 8.487,
+          "mae": 6.199,
+          "phase_hi": 5.67,
+          "phase_hi_n": 60,
+          "crosstalk": 6.894,
+          "localization": 0.5625,
+          "localization_n": 80,
+          "n_points": 160
         },
         "magnitude_extrapolating": {
           "r2_pred": -4.82,
@@ -1018,35 +1018,108 @@
           "phase_hi": 19.87,
           "phase_hi_n": 64,
           "crosstalk": 11.853,
-          "localization": 0.3415,
+          "localization": 0.1707,
           "localization_n": 82,
           "n_points": 164
         },
         "angle_sector": {
-          "r2_pred": -1.2213,
-          "r2_line": 0.0301,
-          "slope": 0.0409,
-          "rmse": 21.405,
-          "mae": 16.564,
+          "r2_pred": -1.2216,
+          "r2_line": 0.0308,
+          "slope": 0.0413,
+          "rmse": 21.406,
+          "mae": 16.573,
           "phase_hi": 92.95,
           "phase_hi_n": 64,
-          "crosstalk": 5.114,
-          "localization": 0.3659,
+          "crosstalk": 5.097,
+          "localization": 0.1951,
           "localization_n": 82,
           "n_points": 164
         }
       },
       "physics": {
-        "protocol_invariant": {
+        "random_acquisition": {
           "r2_pred": 0.6235,
           "r2_line": 0.7161,
           "slope": 0.8884,
           "rmse": 8.813,
+          "mae": 6.463,
           "phase_hi": 22.9,
+          "phase_hi_n": 64,
           "crosstalk": 11.824,
-          "localization": 0.4268,
+          "localization": 0.5122,
           "localization_n": 82,
-          "note": "ICM is fitted only from the fixed calibration conditions, so it does not depend on the train/test split of the scored set."
+          "n_points": 164,
+          "note": "Fixed ICM coefficients; metrics evaluated on this protocol's test observations."
+        },
+        "condition": {
+          "r2_pred": 0.6235,
+          "r2_line": 0.7161,
+          "slope": 0.8884,
+          "rmse": 8.813,
+          "mae": 6.463,
+          "phase_hi": 22.9,
+          "phase_hi_n": 64,
+          "crosstalk": 11.824,
+          "localization": 0.5122,
+          "localization_n": 82,
+          "n_points": 164,
+          "note": "Fixed ICM coefficients; metrics evaluated on this protocol's test observations."
+        },
+        "magnitude_interpolating": {
+          "r2_pred": 0.5022,
+          "r2_line": 0.6403,
+          "slope": 0.8542,
+          "rmse": 8.923,
+          "mae": 6.577,
+          "phase_hi": 23.58,
+          "phase_hi_n": 60,
+          "crosstalk": 11.824,
+          "localization": 0.5,
+          "localization_n": 80,
+          "n_points": 160,
+          "note": "Fixed ICM coefficients; metrics evaluated on this protocol's test observations."
+        },
+        "magnitude_extrapolating": {
+          "r2_pred": 0.4084,
+          "r2_line": 0.6518,
+          "slope": 1.0468,
+          "rmse": 9.101,
+          "mae": 6.282,
+          "phase_hi": 23.99,
+          "phase_hi_n": 48,
+          "crosstalk": 7.891,
+          "localization": 0.9231,
+          "localization_n": 26,
+          "n_points": 52,
+          "note": "Fixed ICM coefficients; metrics evaluated on this protocol's test observations."
+        },
+        "configuration": {
+          "r2_pred": 0.6235,
+          "r2_line": 0.7161,
+          "slope": 0.8884,
+          "rmse": 8.813,
+          "mae": 6.463,
+          "phase_hi": 22.9,
+          "phase_hi_n": 64,
+          "crosstalk": 11.824,
+          "localization": 0.5122,
+          "localization_n": 82,
+          "n_points": 164,
+          "note": "Fixed ICM coefficients; metrics evaluated on this protocol's test observations."
+        },
+        "angle_sector": {
+          "r2_pred": 0.6235,
+          "r2_line": 0.7161,
+          "slope": 0.8884,
+          "rmse": 8.813,
+          "mae": 6.463,
+          "phase_hi": 22.9,
+          "phase_hi_n": 64,
+          "crosstalk": 11.824,
+          "localization": 0.5122,
+          "localization_n": 82,
+          "n_points": 164,
+          "note": "Fixed ICM coefficients; metrics evaluated on this protocol's test observations."
         }
       }
     }
@@ -1060,8 +1133,8 @@
         "unit": "acquisition-level magnitude only (ablation, not the paper's unit)"
       },
       "angle_sector": {
-        "r2_pred_magnitude": -0.0495,
-        "slope": 0.2548,
+        "r2_pred_magnitude": -0.0492,
+        "slope": 0.2543,
         "unit": "acquisition-level magnitude only (ablation, not the paper's unit)"
       }
     }
@@ -1138,180 +1211,200 @@
           "cid": "BLND01",
           "disk": 1,
           "true": 48.0,
-          "est": 38.1,
+          "est": 38.068580807085915,
           "true_ang": 180.0,
-          "est_ang": -169.0,
+          "est_ang": -169.45095028459357,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND01",
           "disk": 2,
           "true": 48.0,
-          "est": 58.3,
+          "est": 58.270079083719374,
           "true_ang": 135.0,
-          "est_ang": 138.0,
+          "est_ang": 137.7043194114188,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND02",
           "disk": 1,
           "true": 3.0,
-          "est": 7.8,
+          "est": 7.8445153049240846,
           "true_ang": 135.0,
-          "est_ang": -16.0,
+          "est_ang": -16.2786513642461,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND02",
           "disk": 2,
           "true": 48.0,
-          "est": 51.3,
+          "est": 51.319581983738644,
           "true_ang": 135.0,
-          "est_ang": 139.0,
+          "est_ang": 138.72201224433462,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND03",
           "disk": 1,
           "true": 6.0,
-          "est": 0.3,
+          "est": 0.3247266328445893,
           "true_ang": 225.0,
-          "est_ang": 176.0,
+          "est_ang": 176.1906227648215,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND03",
           "disk": 2,
           "true": 12.0,
-          "est": 14.5,
+          "est": 14.534392663426528,
           "true_ang": 270.0,
-          "est_ang": -99.0,
+          "est_ang": -98.9234101723638,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND04",
           "disk": 1,
           "true": 36.0,
-          "est": 27.9,
+          "est": 27.935626202827542,
           "true_ang": 157.0,
-          "est_ang": 153.0,
+          "est_ang": 153.198543528781,
+          "phase_label_valid": false,
           "n_acq": 6
         },
         {
           "cid": "BLND04",
           "disk": 2,
           "true": 6.0,
-          "est": 6.5,
+          "est": 6.549841169193258,
           "true_ang": 67.5,
-          "est_ang": 117.0,
+          "est_ang": 116.79902603354172,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND05",
           "disk": 1,
           "true": 36.0,
-          "est": 24.8,
+          "est": 24.82865765978469,
           "true_ang": 157.5,
-          "est_ang": 150.0,
+          "est_ang": 150.37343034316484,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND05",
           "disk": 2,
           "true": 24.0,
-          "est": 31.3,
+          "est": 31.33741721755753,
           "true_ang": 247.5,
-          "est_ang": -125.0,
+          "est_ang": -125.44129416036633,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND06",
           "disk": 1,
           "true": 0.0,
-          "est": 5.8,
+          "est": 5.824950136813924,
           "true_ang": 0.0,
-          "est_ang": 14.0,
+          "est_ang": 13.820371770949254,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND06",
           "disk": 2,
           "true": 0.0,
-          "est": 4.2,
+          "est": 4.223608493235646,
           "true_ang": 0.0,
-          "est_ang": -173.0,
+          "est_ang": -173.33789700295117,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND07",
           "disk": 1,
           "true": 0.0,
-          "est": 8.4,
+          "est": 8.380192391583623,
           "true_ang": 0.0,
-          "est_ang": 21.0,
+          "est_ang": 21.004688310704186,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND07",
           "disk": 2,
           "true": 0.0,
-          "est": 6.1,
+          "est": 6.089688592418374,
           "true_ang": 0.0,
-          "est_ang": -168.0,
+          "est_ang": -167.81617834033315,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND08",
           "disk": 1,
           "true": 0.0,
-          "est": 8.0,
+          "est": 7.986038643127354,
           "true_ang": 0.0,
-          "est_ang": 21.0,
+          "est_ang": 21.331214516613844,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND08",
           "disk": 2,
           "true": 0.0,
-          "est": 5.8,
+          "est": 5.790686341615098,
           "true_ang": 0.0,
-          "est_ang": -168.0,
+          "est_ang": -167.8322558837548,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND09",
           "disk": 1,
           "true": 0.0,
-          "est": 8.4,
+          "est": 8.435618023726944,
           "true_ang": 0.0,
-          "est_ang": 28.0,
+          "est_ang": 27.96165264251265,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND09",
           "disk": 2,
           "true": 0.0,
-          "est": 6.1,
+          "est": 6.116588256476026,
           "true_ang": 0.0,
-          "est_ang": -159.0,
+          "est_ang": -158.9005294049672,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND10",
           "disk": 1,
           "true": 0.0,
-          "est": 5.3,
+          "est": 5.319801119851843,
           "true_ang": 0.0,
-          "est_ang": 3.0,
+          "est_ang": 2.569544307000213,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND10",
           "disk": 2,
           "true": 0.0,
-          "est": 3.9,
+          "est": 3.934154583308602,
           "true_ang": 0.0,
-          "est_ang": 174.0,
+          "est_ang": 174.3817805793575,
+          "phase_label_valid": true,
           "n_acq": 6
         }
       ],
@@ -1320,180 +1413,200 @@
           "cid": "BLND01",
           "disk": 1,
           "true": 48.0,
-          "est": 20.5,
+          "est": 20.54554817667701,
           "true_ang": 180.0,
-          "est_ang": 167.0,
+          "est_ang": 167.41197633557982,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND01",
           "disk": 2,
           "true": 48.0,
-          "est": 8.8,
+          "est": 8.788692438456232,
           "true_ang": 135.0,
-          "est_ang": 136.0,
+          "est_ang": 136.20632368964428,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND02",
           "disk": 1,
           "true": 3.0,
-          "est": 10.8,
+          "est": 10.829863081669023,
           "true_ang": 135.0,
-          "est_ang": 154.0,
+          "est_ang": 153.56747245902855,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND02",
           "disk": 2,
           "true": 48.0,
-          "est": 9.7,
+          "est": 9.696620054030278,
           "true_ang": 135.0,
-          "est_ang": 120.0,
+          "est_ang": 119.97855535399272,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND03",
           "disk": 1,
           "true": 6.0,
-          "est": 3.3,
+          "est": 3.336989081388385,
           "true_ang": 225.0,
-          "est_ang": -120.0,
+          "est_ang": -120.06299383547804,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND03",
           "disk": 2,
           "true": 12.0,
-          "est": 8.9,
+          "est": 8.874599673287301,
           "true_ang": 270.0,
-          "est_ang": -89.0,
+          "est_ang": -89.3339251406169,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND04",
           "disk": 1,
           "true": 36.0,
-          "est": 18.0,
+          "est": 18.02685099015433,
           "true_ang": 157.0,
-          "est_ang": 163.0,
+          "est_ang": 162.90302059422035,
+          "phase_label_valid": false,
           "n_acq": 6
         },
         {
           "cid": "BLND04",
           "disk": 2,
           "true": 6.0,
-          "est": 5.1,
+          "est": 5.1497041392901615,
           "true_ang": 67.5,
-          "est_ang": 54.0,
+          "est_ang": 53.904868747421,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND05",
           "disk": 1,
           "true": 36.0,
-          "est": 18.1,
+          "est": 18.12116849096936,
           "true_ang": 157.5,
-          "est_ang": -177.0,
+          "est_ang": -176.64709788157825,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND05",
           "disk": 2,
           "true": 24.0,
-          "est": 14.1,
+          "est": 14.148489742725191,
           "true_ang": 247.5,
-          "est_ang": -174.0,
+          "est_ang": -173.62492634455313,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND06",
           "disk": 1,
           "true": 0.0,
-          "est": 2.6,
+          "est": 2.616901062420266,
           "true_ang": 0.0,
-          "est_ang": 63.0,
+          "est_ang": 62.778857700228286,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND06",
           "disk": 2,
           "true": 0.0,
-          "est": 1.7,
+          "est": 1.7443373642382878,
           "true_ang": 0.0,
-          "est_ang": -106.0,
+          "est_ang": -106.20896380171465,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND07",
           "disk": 1,
           "true": 0.0,
-          "est": 4.1,
+          "est": 4.082680228007888,
           "true_ang": 0.0,
-          "est_ang": 76.0,
+          "est_ang": 76.35647086029631,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND07",
           "disk": 2,
           "true": 0.0,
-          "est": 2.8,
+          "est": 2.7985766273034027,
           "true_ang": 0.0,
-          "est_ang": -97.0,
+          "est_ang": -97.06407106914102,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND08",
           "disk": 1,
           "true": 0.0,
-          "est": 4.2,
+          "est": 4.220773787010045,
           "true_ang": 0.0,
-          "est_ang": 78.0,
+          "est_ang": 77.79241908552652,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND08",
           "disk": 2,
           "true": 0.0,
-          "est": 2.7,
+          "est": 2.73981471899916,
           "true_ang": 0.0,
-          "est_ang": -95.0,
+          "est_ang": -95.3228584826521,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND09",
           "disk": 1,
           "true": 0.0,
-          "est": 4.7,
+          "est": 4.662787074224465,
           "true_ang": 0.0,
-          "est_ang": 79.0,
+          "est_ang": 79.22959859374784,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND09",
           "disk": 2,
           "true": 0.0,
-          "est": 3.3,
+          "est": 3.2518523994452417,
           "true_ang": 0.0,
-          "est_ang": -95.0,
+          "est_ang": -95.29040610131949,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND10",
           "disk": 1,
           "true": 0.0,
-          "est": 2.2,
+          "est": 2.206395070235656,
           "true_ang": 0.0,
-          "est_ang": 73.0,
+          "est_ang": 73.14390578982946,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND10",
           "disk": 2,
           "true": 0.0,
-          "est": 1.7,
+          "est": 1.6896424753315253,
           "true_ang": 0.0,
-          "est_ang": -88.0,
+          "est_ang": -87.74440229614106,
+          "phase_label_valid": true,
           "n_acq": 6
         }
       ],
@@ -1502,189 +1615,209 @@
           "cid": "BLND01",
           "disk": 1,
           "true": 48.0,
-          "est": 19.0,
+          "est": 18.98035570966802,
           "true_ang": 180.0,
-          "est_ang": 171.0,
+          "est_ang": 171.42374611536664,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND01",
           "disk": 2,
           "true": 48.0,
-          "est": 15.4,
+          "est": 15.392258620632788,
           "true_ang": 135.0,
-          "est_ang": 155.0,
+          "est_ang": 155.05769074115534,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND02",
           "disk": 1,
           "true": 3.0,
-          "est": 7.2,
+          "est": 7.207629724311764,
           "true_ang": 135.0,
-          "est_ang": 157.0,
+          "est_ang": 157.41230907800005,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND02",
           "disk": 2,
           "true": 48.0,
-          "est": 14.6,
+          "est": 14.575057488927976,
           "true_ang": 135.0,
-          "est_ang": 143.0,
+          "est_ang": 142.61420608833203,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND03",
           "disk": 1,
           "true": 6.0,
-          "est": 1.8,
+          "est": 1.843658008122778,
           "true_ang": 225.0,
-          "est_ang": 122.0,
+          "est_ang": 122.25084286610529,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND03",
           "disk": 2,
           "true": 12.0,
-          "est": 14.0,
+          "est": 13.960726360043017,
           "true_ang": 270.0,
-          "est_ang": -90.0,
+          "est_ang": -90.3262752218188,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND04",
           "disk": 1,
           "true": 36.0,
-          "est": 18.4,
+          "est": 18.353053631436932,
           "true_ang": 157.0,
-          "est_ang": 157.0,
+          "est_ang": 157.20598962186452,
+          "phase_label_valid": false,
           "n_acq": 6
         },
         {
           "cid": "BLND04",
           "disk": 2,
           "true": 6.0,
-          "est": 4.9,
+          "est": 4.90601103239689,
           "true_ang": 67.5,
-          "est_ang": 55.0,
+          "est_ang": 55.47583845126977,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND05",
           "disk": 1,
           "true": 36.0,
-          "est": 18.7,
+          "est": 18.747812192024263,
           "true_ang": 157.5,
-          "est_ang": 177.0,
+          "est_ang": 176.7646839164138,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND05",
           "disk": 2,
           "true": 24.0,
-          "est": 7.0,
+          "est": 7.00445128313259,
           "true_ang": 247.5,
-          "est_ang": -149.0,
+          "est_ang": -149.49076935201055,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND06",
           "disk": 1,
           "true": 0.0,
-          "est": 2.7,
+          "est": 2.663859148476091,
           "true_ang": 0.0,
-          "est_ang": 74.0,
+          "est_ang": 73.58791524358872,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND06",
           "disk": 2,
           "true": 0.0,
-          "est": 1.9,
+          "est": 1.8887462037611678,
           "true_ang": 0.0,
-          "est_ang": -91.0,
+          "est_ang": -90.52582013596648,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND07",
           "disk": 1,
           "true": 0.0,
-          "est": 3.7,
+          "est": 3.669170290652899,
           "true_ang": 0.0,
-          "est_ang": 78.0,
+          "est_ang": 77.83447296691452,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND07",
           "disk": 2,
           "true": 0.0,
-          "est": 2.4,
+          "est": 2.3668284686474426,
           "true_ang": 0.0,
-          "est_ang": -86.0,
+          "est_ang": -85.9781984808732,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND08",
           "disk": 1,
           "true": 0.0,
-          "est": 3.3,
+          "est": 3.252856010065958,
           "true_ang": 0.0,
-          "est_ang": 78.0,
+          "est_ang": 78.04753788663241,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND08",
           "disk": 2,
           "true": 0.0,
-          "est": 1.9,
+          "est": 1.8532675348032068,
           "true_ang": 0.0,
-          "est_ang": -80.0,
+          "est_ang": -79.92098032162794,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND09",
           "disk": 1,
           "true": 0.0,
-          "est": 4.4,
+          "est": 4.352042853649307,
           "true_ang": 0.0,
-          "est_ang": 79.0,
+          "est_ang": 79.48790661475113,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND09",
           "disk": 2,
           "true": 0.0,
-          "est": 2.9,
+          "est": 2.878986723754654,
           "true_ang": 0.0,
-          "est_ang": -86.0,
+          "est_ang": -86.40876866473232,
+          "phase_label_valid": true,
           "n_acq": 3
         },
         {
           "cid": "BLND10",
           "disk": 1,
           "true": 0.0,
-          "est": 1.9,
+          "est": 1.9455780433902519,
           "true_ang": 0.0,
-          "est_ang": 77.0,
+          "est_ang": 77.3015537314649,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
           "cid": "BLND10",
           "disk": 2,
           "true": 0.0,
-          "est": 1.4,
+          "est": 1.4499294427277796,
           "true_ang": 0.0,
-          "est_ang": -67.0,
+          "est_ang": -66.81524612194194,
+          "phase_label_valid": true,
           "n_acq": 6
         }
       ]
     },
     "methods": {
       "physics": {
-        "mae": 6.28,
+        "mae": 6.29,
         "rmse": 6.82,
-        "mae_loaded": 6.53,
+        "mae_loaded": 6.54,
         "detect_acc": 0.65,
         "detect_acc_wilson95": [
           0.4329,
@@ -1711,16 +1844,16 @@
           "fn": 1,
           "tn": 5
         },
-        "phase_err_hi": 7.0,
-        "phase_err_hi_n": 6,
+        "phase_err_hi": 7.4,
+        "phase_err_hi_n": 5,
         "n_loaded_points": 9,
         "n_balanced_points": 11,
         "small_sample_warning": "10 independent conditions / 20 disk-points -- report intervals, never point estimates alone"
       },
       "ml": {
         "mae": 9.76,
-        "rmse": 15.3,
-        "mae_loaded": 17.5,
+        "rmse": 15.29,
+        "mae_loaded": 17.48,
         "detect_acc": 0.85,
         "detect_acc_wilson95": [
           0.6396,
@@ -1740,21 +1873,21 @@
           0.4526,
           0.9368
         ],
-        "roc_auc": 0.9141,
+        "roc_auc": 0.9192,
         "confusion": {
           "tp": 7,
           "fp": 1,
           "fn": 2,
           "tn": 10
         },
-        "phase_err_hi": 20.3,
-        "phase_err_hi_n": 6,
+        "phase_err_hi": 23.2,
+        "phase_err_hi_n": 5,
         "n_loaded_points": 9,
         "n_balanced_points": 11,
         "small_sample_warning": "10 independent conditions / 20 disk-points -- report intervals, never point estimates alone"
       },
       "hybrid": {
-        "mae": 9.25,
+        "mae": 9.23,
         "rmse": 14.21,
         "mae_loaded": 17.13,
         "detect_acc": 0.85,
@@ -1783,13 +1916,21 @@
           "fn": 2,
           "tn": 10
         },
-        "phase_err_hi": 15.5,
-        "phase_err_hi_n": 6,
+        "phase_err_hi": 18.5,
+        "phase_err_hi_n": 5,
         "n_loaded_points": 9,
         "n_balanced_points": 11,
         "small_sample_warning": "10 independent conditions / 20 disk-points -- report intervals, never point estimates alone"
       }
-    }
+    },
+    "phase_exclusions": [
+      {
+        "condition_id": "BLND04",
+        "disk": 1,
+        "angle_deg": 157.0,
+        "reason": "reference angle is not on the 22.5-degree fixture grid"
+      }
+    ]
   },
   "top_features": {
     "phys_U1_re": 0.1569097036223677,

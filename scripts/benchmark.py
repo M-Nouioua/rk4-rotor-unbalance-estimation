@@ -68,11 +68,18 @@ from estimation.stats import (circmean_deg, angdiff, r2_line, r2_pred, wilson,
 
 ANALYSIS = ROOT / "analysis"
 HIGH_U = 24.0    # g.mm, "well-resolved" regime for phase claims
+FIXTURE_STEP_DEG = 22.5
 METHODS = ("physics", "ml", "hybrid")
 
 
 def angerr(a, b):
     return angdiff(a, b)
+
+
+def _fixture_angle_valid(angle_deg: float, tol: float = 1e-6) -> bool:
+    """Whether a reference angle is reachable on the 22.5-degree hole grid."""
+    nearest = round(float(angle_deg) / FIXTURE_STEP_DEG) * FIXTURE_STEP_DEG
+    return abs(float(angdiff(float(angle_deg), nearest))) <= tol
 
 
 def load(name):
@@ -97,8 +104,12 @@ def _points(res: pd.DataFrame) -> pd.DataFrame:
                 true_ang=x[f"true_U{k}_ang"], est_ang=x[f"est_U{k}_ang"],
                 ang_err=abs(angerr(x[f"est_U{k}_ang"], x[f"true_U{k}_ang"])),
                 loaded=tmag > 1e-6,
-                true_load=int(x[f"true_disk{k}_loaded"]),
-                est_load=int(x[f"est_disk{k}_loaded"]),
+                # Recompute both calls from the unrounded magnitudes.  Older
+                # feature caches used a strict >6 rule, whereas the withheld-set
+                # code used >=6.  A value on the declared decision boundary must
+                # have one meaning everywhere.
+                true_load=int(tmag >= LOAD_THRESH),
+                est_load=int(x[f"est_U{k}_mag"] >= LOAD_THRESH),
                 std=x.get("est_std_gmm", np.nan)))
     return pd.DataFrame(recs)
 
@@ -131,8 +142,8 @@ def _block(sub: pd.DataFrame) -> dict:
 
 def _localization(P: pd.DataFrame, thresh: float = LOAD_THRESH) -> tuple[float, int]:
     """Fraction of conditions with BOTH disks' loaded/not calls correct."""
-    est = (P.est_mag > thresh).astype(int)
-    tru = (P.true_mag > LOAD_THRESH).astype(int)
+    est = (P.est_mag >= thresh).astype(int)
+    tru = (P.true_mag >= LOAD_THRESH).astype(int)
     ok = (pd.DataFrame({"cid": P.cid, "hit": est.values == tru.values})
             .groupby("cid").hit.all())
     return float(ok.mean()), int(len(ok))
@@ -148,11 +159,11 @@ def _detection(P: pd.DataFrame) -> dict:
     (and whether) the ranking inverts. `trivial_acc` is the always-loaded
     baseline -- no method that fails to beat it is doing useful detection.
     """
-    y = (P.true_mag > LOAD_THRESH).astype(int).to_numpy()
+    y = (P.true_mag >= LOAD_THRESH).astype(int).to_numpy()
     s = P.est_mag.to_numpy(float)
     sweep = []
     for t in [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 20, 25]:
-        yh = (s > t).astype(int)
+        yh = (s >= t).astype(int)
         tp = int(((y == 1) & (yh == 1)).sum()); tn = int(((y == 0) & (yh == 0)).sum())
         fp = int(((y == 0) & (yh == 1)).sum()); fn = int(((y == 1) & (yh == 0)).sum())
         loc, _ = _localization(P, t)
@@ -202,8 +213,8 @@ def _metrics_condition(res: pd.DataFrame) -> dict:
     acc, n = _localization(C)
     out["localization_acc"], out["localization_n"] = acc, n
     out["localization_wilson95"] = wilson(round(acc * n), n)
-    y = (C.true_mag > LOAD_THRESH).astype(int)
-    yh = (C.est_mag > LOAD_THRESH).astype(int)
+    y = (C.true_mag >= LOAD_THRESH).astype(int)
+    yh = (C.est_mag >= LOAD_THRESH).astype(int)
     tp = int(((y == 1) & (yh == 1)).sum()); fp = int(((y == 0) & (yh == 1)).sum())
     fn = int(((y == 1) & (yh == 0)).sum()); tn = int(((y == 0) & (yh == 0)).sum())
     out["confusion"] = {"tp": tp, "fp": fp, "fn": fn, "tn": tn}
@@ -265,30 +276,83 @@ def _protocols(lab: pd.DataFrame) -> dict:
     ang = np.where(lab.U1_mag.to_numpy() >= lab.U2_mag.to_numpy(),
                    lab.U1_ang.fillna(0).to_numpy(), lab.U2_ang.fillna(0).to_numpy())
     tot = (lab.U1_mag + lab.U2_mag).to_numpy()
+    severity = np.round(tot, 6)
+    levels = np.unique(severity)
+    # Only levels bracketed by lower and higher training levels answer an
+    # interpolation question.  Endpoint levels are deliberately left unscored
+    # here and are covered by the separate high-total-unbalance holdout.
+    interior_levels = levels[1:-1]
     return {
         "random_acquisition": dict(
             kind="kfold", groups=None,
             note="LEAKY NEGATIVE CONTROL -- repeats of one condition straddle folds. "
                  "Included only to quantify what the field's default split buys."),
         "condition": dict(
-            kind="group", groups=lab.condition_id.to_numpy(),
+            kind="group_kfold", groups=lab.condition_id.to_numpy(), n_splits=5,
             note="Interpolation to unseen mass/angle COMBINATIONS on the sampled grid."),
         "magnitude_interpolating": dict(
-            kind="group", groups=np.round(tot, 0),
-            note="Leave-one-severity-level-out. The held-out level is BRACKETED by "
-                 "trained levels, so this is interpolation, not extrapolation."),
+            kind="leave_one_group_out", groups=severity,
+            eligible_test_groups=interior_levels,
+            note="Leave one interior total-unbalance level out at a time. Endpoint "
+                 "levels are excluded, so every scored level is bracketed by lower "
+                 "and higher levels in training."),
         "magnitude_extrapolating": dict(
             kind="holdout", mask=tot < 36.0,
-            note="Train on total U<36 g.mm, test on >=36. The deployment question "
-                 "the blind two-plane cases actually posed."),
+            note="Train on total U<36 g.mm and test on total U>=36 g.mm. This is a "
+                 "high-total-unbalance holdout; loading composition is not matched."),
         "configuration": dict(
-            kind="group", groups=lab.config.astype(str).to_numpy(),
-            note="Leave-one-configuration-out (D1 / D2 / in-phase / anti-phase)."),
+            kind="leave_one_group_out", groups=lab.config.astype(str).to_numpy(),
+            eligible_test_groups=np.array(["D1", "D2", "inphase", "antiphase"]),
+            note="Leave-one-loaded-configuration-out (D1 / D2 / in-phase / "
+                 "anti-phase); the baseline-only calibration group is not scored."),
         "angle_sector": dict(
-            kind="group", groups=(np.round(ang / 45).astype(int) % 8),
+            kind="leave_one_group_out",
+            groups=(np.round(ang / 45).astype(int) % 8),
             note="Leave-one-angle-sector-out. Only 4 distinct angles exist at "
                  "U>=24 g.mm, so on-grid phase scores cannot be read as generalization."),
     }
+
+
+def _protocol_splits(n_samples: int, spec: dict) -> list[tuple[np.ndarray, np.ndarray]]:
+    """Return the exact train/test folds declared by one protocol.
+
+    Split strategy is explicit in the protocol specification.  This prevents a
+    group-count heuristic from silently turning a stated leave-one-group-out test
+    into five-fold grouped cross-validation.
+    """
+    idx = np.arange(n_samples)
+    kind = spec["kind"]
+    if kind == "holdout":
+        tr = np.asarray(spec["mask"], dtype=bool)
+        if tr.sum() < 10 or (~tr).sum() < 5:
+            return []
+        return [(idx[tr], idx[~tr])]
+    if kind == "kfold":
+        return list(KFold(n_splits=spec.get("n_splits", 5), shuffle=True,
+                          random_state=0).split(idx))
+
+    groups = np.asarray(spec["groups"])
+    if kind == "group_kfold":
+        n_splits = min(int(spec.get("n_splits", 5)), len(np.unique(groups)))
+        return list(GroupKFold(n_splits=n_splits).split(idx, groups=groups))
+    if kind == "leave_one_group_out":
+        folds = list(LeaveOneGroupOut().split(idx, groups=groups))
+        eligible = spec.get("eligible_test_groups")
+        if eligible is not None:
+            eligible = set(np.asarray(eligible).tolist())
+            folds = [(tr, te) for tr, te in folds
+                     if (groups[te[0]].item() if hasattr(groups[te[0]], "item")
+                         else groups[te[0]]) in eligible]
+        return folds
+    raise ValueError(f"unknown validation protocol kind: {kind}")
+
+
+def _protocol_test_mask(n_samples: int, spec: dict) -> np.ndarray:
+    """Rows evaluated by a protocol, independent of estimator implementation."""
+    out = np.zeros(n_samples, dtype=bool)
+    for _, te in _protocol_splits(n_samples, spec):
+        out[te] = True
+    return out
 
 
 def _cv_predict(X, Y, spec, kind_model="et", factory=None) -> np.ndarray:
@@ -301,21 +365,7 @@ def _cv_predict(X, Y, spec, kind_model="et", factory=None) -> np.ndarray:
     """
     make = factory if factory is not None else (lambda: build_regressor(kind_model))
     pred = np.full_like(Y, np.nan, dtype=float)
-    if spec["kind"] == "holdout":
-        tr = spec["mask"]
-        if tr.sum() < 10 or (~tr).sum() < 5:
-            return pred
-        p = make().fit(X[tr], Y[tr])
-        pred[~tr] = p.predict(X[~tr])
-        return pred
-    if spec["kind"] == "kfold":
-        splitter = KFold(n_splits=5, shuffle=True, random_state=0).split(X)
-    else:
-        g = spec["groups"]
-        uniq = len(np.unique(g))
-        sp = GroupKFold(n_splits=5) if uniq > 5 else LeaveOneGroupOut()
-        splitter = sp.split(X, Y, g)
-    for tr, te in splitter:
+    for tr, te in _protocol_splits(len(X), spec):
         p = make().fit(X[tr], Y[tr])
         pred[te] = p.predict(X[te])
     return pred
@@ -350,11 +400,11 @@ def _score_pred(lab: pd.DataFrame, pred: np.ndarray, scored: np.ndarray) -> dict
 
 def _factor_matrix(df: pd.DataFrame, physics_res: pd.DataFrame) -> dict:
     """
-    Score the learned estimators under every protocol; physics once.
+    Score every estimator on the observations tested by each protocol.
 
-    The ICM is fitted only from the fixed calibration conditions, so it is
-    protocol-invariant by construction -- that invariance IS the result, and it is
-    what makes it the reference row rather than a competitor per protocol.
+    The ICM coefficients are fixed, but its metrics are not: R2, MAE and phase
+    error depend on the evaluated subset.  Its predictions are therefore filtered
+    by the same protocol test mask used for the learned estimators.
     """
     aug = augment_with_physics(df)
     out = {"note": "condition-level scores. Protocols are distinct deployment "
@@ -376,21 +426,30 @@ def _factor_matrix(df: pd.DataFrame, physics_res: pd.DataFrame) -> dict:
                 print(f"    {tag:7s} {name:26s} R2pred={s['r2_pred']:7.3f} "
                       f"slope={s['slope']:5.2f} phase={s['phase_hi']:6.1f}d "
                       f"loc={s['localization']*100:5.1f}%")
-    # physics reference row
-    Pp = _points(physics_res[~physics_res.condition_id.isin(CALIB)])
-    Cp = aggregate_conditions(Pp)
-    bp = _block(Cp)
-    locp, np_ = _localization(Cp)
-    out["methods"]["physics"] = {"protocol_invariant": {
-        "r2_pred": round(bp["r2_pred"], 4), "r2_line": round(bp["r2_line"], 4),
-        "slope": round(bp["slope"], 4), "rmse": round(bp["rmse"], 3),
-        "phase_hi": round(bp["phase_hi"], 2), "crosstalk": round(bp["crosstalk"], 3),
-        "localization": round(locp, 4), "localization_n": np_,
-        "note": "ICM is fitted only from the fixed calibration conditions, so it "
-                "does not depend on the train/test split of the scored set."}}
-    print(f"    physics protocol-invariant       R2pred={bp['r2_pred']:7.3f} "
-          f"slope={bp['slope']:5.2f} phase={bp['phase_hi']:6.1f}d "
-          f"loc={locp*100:5.1f}%")
+    # Fixed ICM predictions, scored separately on each protocol's test rows.
+    lab = df[df.labeled == 1].reset_index(drop=True)
+    if not np.array_equal(lab.file.to_numpy(), physics_res.file.to_numpy()):
+        raise ValueError("physics predictions are not aligned to labeled feature rows")
+    components = []
+    for k in (1, 2):
+        z = (physics_res[f"est_U{k}_mag"].to_numpy(float)
+             * np.exp(1j * np.radians(
+                 physics_res[f"est_U{k}_ang"].to_numpy(float))))
+        components.extend([z.real, z.imag])
+    physics_pred = np.column_stack(components)
+    scored = (~lab.condition_id.isin(CALIB)).to_numpy()
+    out["methods"]["physics"] = {}
+    for name, spec in _protocols(lab).items():
+        test_rows = _protocol_test_mask(len(lab), spec)
+        s = _score_pred(lab, physics_pred, scored & test_rows)
+        if s:
+            s["note"] = ("Fixed ICM coefficients; metrics evaluated on this "
+                         "protocol's test observations.")
+        out["methods"]["physics"][name] = s
+        if s:
+            print(f"    physics {name:26s} R2pred={s['r2_pred']:7.3f} "
+                  f"slope={s['slope']:5.2f} phase={s['phase_hi']:6.1f}d "
+                  f"loc={s['localization']*100:5.1f}%")
     return out
 
 
@@ -484,16 +543,26 @@ def blind_validation(bp, conds):
                 else:
                     emag, eang = float(np.mean(mag)), None
                 pts[m].append({
-                    "cid": cid, "disk": disk, "true": round(tmag, 1),
-                    "est": round(emag, 1), "true_ang": tang,
-                    "est_ang": None if eang is None else round(eang, 0),
+                    # Preserve full precision for every metric.  Rounding belongs
+                    # only in tables/console formatting; doing it here can move a
+                    # prediction across the 6 g.mm decision boundary.
+                    "cid": cid, "disk": disk, "true": float(tmag),
+                    "est": float(emag), "true_ang": float(tang),
+                    "est_ang": None if eang is None else float(eang),
+                    "phase_label_valid": _fixture_angle_valid(tang),
                     "n_acq": int(len(g))})
 
+    exclusions = sorted({(p["cid"], p["disk"], p["true_ang"])
+                         for p in pts["physics"] if not p["phase_label_valid"]})
     out = {"conditions": ids,
            "unit": "condition-disk (complex-averaged repeats)",
            "n_loaded_cond": sum(1 for c in ids if conds[c]["config"] != "balanced"),
            "n_balanced_cond": sum(1 for c in ids if conds[c]["config"] == "balanced"),
-           "n_points": len(pts["physics"]), "points": pts, "methods": {}}
+           "n_points": len(pts["physics"]), "points": pts, "methods": {},
+           "phase_exclusions": [
+               {"condition_id": cid, "disk": disk, "angle_deg": angle,
+                "reason": "reference angle is not on the 22.5-degree fixture grid"}
+               for cid, disk, angle in exclusions]}
     for m, P in pts.items():
         t = np.array([p["true"] for p in P]); e = np.array([p["est"] for p in P])
         tl, el = t >= LOAD_THRESH, e >= LOAD_THRESH
@@ -502,7 +571,8 @@ def blind_validation(bp, conds):
         det = cluster_bootstrap_proportion(
             (tl == el).astype(float), [p["cid"] for p in P])
         pe = [abs(angdiff(p["est_ang"], p["true_ang"]))
-              for p in P if p["true"] >= HIGH_U and p["est_ang"] is not None]
+              for p in P if p["true"] >= HIGH_U and p["est_ang"] is not None
+              and p["phase_label_valid"]]
         nl = int(tl.sum()); ns = int((~tl).sum())
         out["methods"][m] = {
             "mae": round(float(np.mean(np.abs(e - t))), 2),
@@ -588,9 +658,10 @@ def write_results_md(bench: dict) -> None:
               f"{h.get('phase_hi', float('nan')):.1f}° | "
               f"{m.get('r2_pred', float('nan')):.3f} | "
               f"{m.get('phase_hi', float('nan')):.1f}° |")
-        pi = fm["methods"]["physics"]["protocol_invariant"]
-        w(f"| physics (protocol-invariant) | {pi['r2_pred']:.3f} | "
-          f"{pi['phase_hi']:.1f}° | — | — |")
+        for p, s in fm["methods"].get("physics", {}).items():
+            if s:
+                w(f"| physics / {p} | {s['r2_pred']:.3f} | "
+                  f"{s['phase_hi']:.1f}° | — | — |")
         w("\nProtocol definitions:\n")
         for p, note in fm["protocols"].items():
             w(f"- **{p}** — {note}")

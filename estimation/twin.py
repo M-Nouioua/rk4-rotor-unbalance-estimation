@@ -107,8 +107,8 @@ def physics_cross_estimate(df: pd.DataFrame) -> pd.DataFrame:
                  ["U1_mag", "U2_mag", "U1_ang", "U2_ang", "disk1_loaded", "disk2_loaded"]})
     res["est_U1_mag"] = np.abs(u1e); res["est_U2_mag"] = np.abs(u2e)
     res["est_U1_ang"] = np.degrees(np.angle(u1e)); res["est_U2_ang"] = np.degrees(np.angle(u2e))
-    res["est_disk1_loaded"] = (np.abs(u1e) > LOAD_THRESH).astype(int)
-    res["est_disk2_loaded"] = (np.abs(u2e) > LOAD_THRESH).astype(int)
+    res["est_disk1_loaded"] = (np.abs(u1e) >= LOAD_THRESH).astype(int)
+    res["est_disk2_loaded"] = (np.abs(u2e) >= LOAD_THRESH).astype(int)
     res["est_std_gmm"] = np.nan
     res["fold"] = -1
     return res
