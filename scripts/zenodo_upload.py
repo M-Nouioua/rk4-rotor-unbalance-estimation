@@ -26,10 +26,12 @@ skipped, so a run interrupted partway can simply be repeated with the same
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import pathlib
 import sys
+import time
 
 import requests
 
@@ -74,6 +76,79 @@ METADATA = {
                  "condition monitoring", "influence coefficient method",
                  "proximity probe", "vibration", "benchmark dataset"],
 }
+
+
+class _Progress:
+    """File wrapper that reports transfer progress as requests reads it.
+
+    A silent multi-hundred-megabyte PUT is indistinguishable from a hang, and
+    this upload has already been aborted once mid-file by local software.
+    """
+
+    def __init__(self, fh, size: int, name: str):
+        self.fh, self.size, self.name = fh, size, name
+        self.sent = 0
+        self.t0 = time.monotonic()
+        self.last = 0.0
+
+    def __len__(self) -> int:                      # requests reads this
+        return self.size
+
+    def read(self, n: int = -1) -> bytes:
+        b = self.fh.read(n)
+        self.sent += len(b)
+        now = time.monotonic()
+        if b and (now - self.last > 1.0 or self.sent == self.size):
+            self.last = now
+            el = max(now - self.t0, 1e-6)
+            rate = self.sent / el / 2**20
+            pct = 100.0 * self.sent / self.size if self.size else 100.0
+            eta = (self.size - self.sent) / (self.sent / el) if self.sent else 0
+            print(f"\r      {self.name:<18s} {pct:5.1f}%  "
+                  f"{self.sent / 2**20:8.1f}/{self.size / 2**20:.1f} MB  "
+                  f"{rate:5.1f} MB/s  ETA {eta / 60:4.1f} min   ",
+                  end="", flush=True)
+        return b
+
+
+def upload_one(s: requests.Session, bucket: str, p: pathlib.Path,
+               size: int, attempts: int = 6) -> None:
+    """PUT one file, retrying on a dropped connection.
+
+    Zenodo's bucket API takes a whole file per request, so a dropped transfer
+    has to be resent from the start; there is no byte-range resume. The retry
+    loop is therefore per file, with a backoff, and the local MD5 is checked
+    against the checksum Zenodo reports so a silently truncated transfer is
+    caught rather than trusted.
+    """
+    local_md5 = hashlib.md5()
+    with open(p, "rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            local_md5.update(chunk)
+    want = local_md5.hexdigest()
+
+    for k in range(1, attempts + 1):
+        try:
+            with open(p, "rb") as fh:
+                r = s.put(f"{bucket}/{p.name}",
+                          data=_Progress(fh, size, p.name),
+                          headers={"Content-Length": str(size)},
+                          timeout=TIMEOUT)
+            r.raise_for_status()
+            got = (r.json().get("checksum") or "").replace("md5:", "")
+            if got and got != want:
+                print(f"\r      {p.name:<18s} checksum mismatch, resending      ")
+                continue
+            print(f"\r      {p.name:<18s} done, checksum verified              ")
+            return
+        except (requests.ConnectionError, requests.Timeout,
+                requests.exceptions.ChunkedEncodingError) as e:
+            if k == attempts:
+                raise
+            wait = min(60, 2 ** k)
+            print(f"\r      {p.name:<18s} attempt {k} dropped ({type(e).__name__}), "
+                  f"retrying in {wait}s        ")
+            time.sleep(wait)
 
 
 def token() -> str:
@@ -140,14 +215,9 @@ def main() -> int:
         for p in files:
             size = p.stat().st_size
             if existing.get(p.name) == size:
-                print(f"    skip (already uploaded) {p.name}")
+                print(f"    skip (already uploaded)  {p.name}")
                 continue
-            print(f"    uploading {p.name} ({size / 2**20:.1f} MB) ...",
-                  end="", flush=True)
-            with open(p, "rb") as fh:
-                r = s.put(f"{bucket}/{p.name}", data=fh, timeout=TIMEOUT)
-            r.raise_for_status()
-            print(" ok")
+            upload_one(s, bucket, p, size)
 
         r = s.put(f"{API}/deposit/depositions/{dep_id}",
                   json={"metadata": METADATA}, timeout=TIMEOUT)
