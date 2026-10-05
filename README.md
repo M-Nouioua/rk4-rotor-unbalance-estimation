@@ -118,8 +118,12 @@ drawn from it.
 
 ## Licence
 
-Not yet chosen. Until a licence file is added, default copyright applies and no
-permissions are granted.
+MIT, see [LICENSE](LICENSE). This covers the code and the generated artefacts in
+this repository. The raw acquisitions are not held here; see Data below.
+
+## Citing
+
+Archived at Zenodo: [10.5281/zenodo.23152815](https://doi.org/10.5281/zenodo.23152815)
 
 ## Author
 
