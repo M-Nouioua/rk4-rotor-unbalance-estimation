@@ -10,8 +10,8 @@ The token is read from the ZENODO_TOKEN environment variable and is never
 written to disk, echoed, or included in any error message. Set it in the shell
 that runs this, not in a file that might be committed:
 
+    $env:ZENODO_TOKEN = "..."       # PowerShell  <- the usual shell here
     set ZENODO_TOKEN=...            # Windows cmd
-    $env:ZENODO_TOKEN = "..."       # PowerShell
     export ZENODO_TOKEN=...         # bash
 
 Usage:
@@ -79,8 +79,11 @@ METADATA = {
 def token() -> str:
     t = os.environ.get("ZENODO_TOKEN", "").strip()
     if not t:
-        sys.exit("ZENODO_TOKEN is not set. Export it in this shell and re-run; "
-                 "do not pass it as an argument, where it would land in shell history.")
+        sys.exit(
+            'ZENODO_TOKEN is not set. In PowerShell:\n'
+            '    $env:ZENODO_TOKEN = "<token>"\n'
+            'Then re-run. Do not pass it as an argument, where it would land in '
+            'shell history.')
     return t
 
 
