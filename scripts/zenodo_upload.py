@@ -199,6 +199,13 @@ def main() -> int:
         if args.deposition:
             dep_id = args.deposition
             r = s.get(f"{API}/deposit/depositions/{dep_id}", timeout=TIMEOUT)
+            if r.status_code == 404:
+                sys.exit(
+                    f"\n  draft {dep_id} no longer exists.\n"
+                    "  Zenodo discards a draft that never received a file, which is\n"
+                    "  what happens when the first upload is dropped. Nothing was\n"
+                    "  lost. Re-run without --deposition to start a fresh draft:\n\n"
+                    f"      python -m scripts.zenodo_upload --dir {args.dir} --create\n")
             r.raise_for_status()
             dep = r.json()
             print(f"\n  resuming draft {dep_id}")
