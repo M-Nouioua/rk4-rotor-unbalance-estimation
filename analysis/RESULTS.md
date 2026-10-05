@@ -63,8 +63,8 @@ Protocol definitions:
 | Method | MAE | Loaded MAE | Detect acc [95% CI] | Spec | Sens | ROC-AUC | Phase U≥24 |
 |---|--:|--:|---|--:|--:|--:|--:|
 | physics | 6.3 | 6.5 | 65% [40–90] | 45% | 89% | 0.849 | 7° |
-| ml | 9.8 | 17.5 | 85% [70–100] | 91% | 78% | 0.919 | 23° |
-| hybrid | 9.2 | 17.1 | 85% [70–100] | 91% | 78% | 0.879 | 18° |
+| ml | 9.8 | 17.5 | 85% [70–100] | 91% | 78% | 0.919 | 20° |
+| hybrid | 9.2 | 17.1 | 85% [70–100] | 91% | 78% | 0.879 | 16° |
 
 Detection intervals resample the 10 whole conditions, preserving the two disk outcomes within each condition.
 

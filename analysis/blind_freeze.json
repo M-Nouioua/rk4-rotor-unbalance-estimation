@@ -139,12 +139,25 @@
       "truth": {
         "config": "2plane",
         "disk1_gmm": 36.0,
-        "disk1_angle_deg": 157.0,
+        "disk1_angle_deg": 157.5,
         "disk2_gmm": 6.0,
         "disk2_angle_deg": 67.5
       },
       "first_timestamp": "2026-07-23T21:19:00",
-      "last_timestamp": "2026-07-23T21:20:03"
+      "last_timestamp": "2026-07-23T21:20:03",
+      "truth_as_sealed": {
+        "disk1_angle_deg": 157.0
+      },
+      "amendments": [
+        {
+          "date": "2026-10-04",
+          "field": "truth.disk1_angle_deg",
+          "from": 157.0,
+          "to": 157.5,
+          "kind": "transcription correction, confirmed by the author",
+          "reason": "157.0 degrees is not reachable on the 16-position, 22.5-degree hole circle; the intended position was 157.5. The applied mass, the acquired records and their hashes are unchanged."
+        }
+      ]
     },
     "BLND05": {
       "acquired_records": 6,
@@ -481,5 +494,6 @@
     "Never re-tune on BLND01-10 and then report them as confirmatory.",
     "Any post-hoc model change is exploratory until validated on a new block.",
     "Re-run with --verify before submission; any hash change invalidates the reported blind numbers until re-audited."
-  ]
+  ],
+  "amendment_note": "One sealed label carried a transcription error in its reference angle; see blind_conditions.BLND04.amendments. The sealed value is preserved under truth_as_sealed. No raw record, file hash or applied mass was altered."
 }

@@ -100,10 +100,26 @@ def test_high_total_holdout_is_exactly_ge_36():
     assert np.array_equal(test, total >= 36.0)
 
 
-def test_fixture_grid_rejects_unverifiable_blind_angle():
+def test_fixture_grid_accepts_only_reachable_angles():
     assert _fixture_angle_valid(157.5)
     assert _fixture_angle_valid(67.5)
     assert not _fixture_angle_valid(157.0)
+
+
+def test_every_logged_reference_angle_is_on_the_fixture_grid():
+    """No condition may carry an angle the hole circle cannot produce.
+
+    BLND04 was logged at 157.0 degrees, which is unreachable; the author
+    confirmed 157.5 and the table was corrected. This guards the whole table
+    against the same class of transcription error.
+    """
+    rows = pd.read_csv(ROOT / "datasets" / "conditions.csv")
+    bad = []
+    for col in ("disk1_angle_deg", "disk2_angle_deg"):
+        for cid, ang in zip(rows.condition_id, rows[col]):
+            if pd.notna(ang) and not _fixture_angle_valid(float(ang)):
+                bad.append((cid, col, float(ang)))
+    assert not bad, f"off-grid reference angles: {bad}"
 
 
 def test_icm_is_scored_on_each_protocol_subset():

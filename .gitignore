@@ -16,6 +16,11 @@ analysis/figures/
 # ---------------------------------------------------------------------------
 datasets/
 
+# Local safety copies taken before an edit. Provenance that matters is recorded
+# inside the artefact itself, not in a sibling backup.
+*.bak
+*.pre157
+
 # ---------------------------------------------------------------------------
 # Private and machine-local files
 # ---------------------------------------------------------------------------

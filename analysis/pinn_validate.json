@@ -30,8 +30,8 @@
         "specificity": 0.9091,
         "sensitivity": 0.7778,
         "roc_auc": 0.9798,
-        "phase_err_hi": 3.3,
-        "phase_err_hi_n": 5,
+        "phase_err_hi": 3.2,
+        "phase_err_hi_n": 6,
         "confusion": {
           "tp": 7,
           "fp": 1,
@@ -98,9 +98,9 @@
             "disk": 1,
             "true": 36.0,
             "est": 29.92592930196733,
-            "true_ang": 157.0,
+            "true_ang": 157.5,
             "est_ang": 154.65357048737167,
-            "phase_label_valid": false
+            "phase_label_valid": true
           },
           {
             "cid": "BLND04",
@@ -237,8 +237,8 @@
         "specificity": 0.9091,
         "sensitivity": 0.7778,
         "roc_auc": 0.9495,
-        "phase_err_hi": 6.5,
-        "phase_err_hi_n": 5,
+        "phase_err_hi": 6.1,
+        "phase_err_hi_n": 6,
         "confusion": {
           "tp": 7,
           "fp": 1,
@@ -305,9 +305,9 @@
             "disk": 1,
             "true": 36.0,
             "est": 30.189936217068357,
-            "true_ang": 157.0,
+            "true_ang": 157.5,
             "est_ang": 153.41646699806338,
-            "phase_label_valid": false
+            "phase_label_valid": true
           },
           {
             "cid": "BLND04",
@@ -444,8 +444,8 @@
         "specificity": 1.0,
         "sensitivity": 0.8889,
         "roc_auc": 0.9899,
-        "phase_err_hi": 2.0,
-        "phase_err_hi_n": 5,
+        "phase_err_hi": 1.7,
+        "phase_err_hi_n": 6,
         "confusion": {
           "tp": 8,
           "fp": 0,
@@ -512,9 +512,9 @@
             "disk": 1,
             "true": 36.0,
             "est": 30.366663116711294,
-            "true_ang": 157.0,
+            "true_ang": 157.5,
             "est_ang": 156.95921736075164,
-            "phase_label_valid": false
+            "phase_label_valid": true
           },
           {
             "cid": "BLND04",
@@ -636,14 +636,7 @@
         ]
       }
     },
-    "phase_exclusions": [
-      {
-        "condition_id": "BLND04",
-        "disk": 1,
-        "angle_deg": 157.0,
-        "reason": "reference angle is not on the 22.5-degree fixture grid"
-      }
-    ]
+    "phase_exclusions": []
   },
   "forward": {
     "what": "held-out response prediction from the KNOWN unbalance; the label is an input here, not a target",

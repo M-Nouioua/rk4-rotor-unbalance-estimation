@@ -296,11 +296,11 @@
         "rmse": 10.044830494320939,
         "mae": 7.717028170808137,
         "n": 366,
-        "phase_all": 13.816705909234223,
+        "phase_all": 13.816705909234226,
         "phase_hi": 6.258565511532247,
         "phase_hi_med": 0.5258820629325385,
         "phase_hi_n": 192,
-        "crosstalk": 7.05299788783831
+        "crosstalk": 7.052997887838311
       },
       "N2": {
         "slope": 0.7181898049899247,
@@ -324,7 +324,7 @@
         "r2_line": 0.7929959731099142,
         "r2_pred": 0.6009231024173025,
         "rmse": 8.983038326563998,
-        "mae": 6.91073826756157,
+        "mae": 6.910738267561569,
         "n": 378,
         "phase_all": 11.063327870924791,
         "phase_hi": 2.966737927257991,
@@ -365,7 +365,7 @@
           "intercept": -0.9811131915127165,
           "r2": 0.7744480148986562,
           "r2_line": 0.7744480148986562,
-          "r2_pred": 0.5309155332056494,
+          "r2_pred": 0.5309155332056497,
           "rmse": 9.836383416088637,
           "mae": 7.662834757852198,
           "n": 122,
@@ -397,7 +397,7 @@
           "r2_line": 0.748476511083705,
           "r2_pred": 0.44850282240601425,
           "rmse": 10.77234877127187,
-          "mae": 8.474329649308803,
+          "mae": 8.474329649308801,
           "n": 59,
           "phase_all": 14.961811233065518,
           "phase_hi": 8.56526073419861,
@@ -545,7 +545,7 @@
         "phase_hi": 6.3559665072415505,
         "phase_hi_med": 0.3894411341123316,
         "phase_hi_n": 384,
-        "crosstalk": 5.767810440394863
+        "crosstalk": 5.767810440394864
       },
       "N1": {
         "slope": 0.7793426607646374,
@@ -627,7 +627,7 @@
           "r2_line": 0.8078998417287867,
           "r2_pred": 0.6592428001745645,
           "rmse": 8.38363656784446,
-          "mae": 6.24881822483068,
+          "mae": 6.248818224830679,
           "n": 122,
           "phase_all": 11.853908627514361,
           "phase_hi": 6.086629730045704,
@@ -644,7 +644,7 @@
           "rmse": 7.4866740385324135,
           "mae": 5.73053229275195,
           "n": 63,
-          "phase_all": 9.261069998956014,
+          "phase_all": 9.261069998956012,
           "phase_hi": 2.9412747040729927,
           "phase_hi_med": 0.3639935320664165,
           "phase_hi_n": 32,
@@ -659,7 +659,7 @@
           "rmse": 9.245838296389007,
           "mae": 6.802242186202883,
           "n": 59,
-          "phase_all": 14.622532925805476,
+          "phase_all": 14.622532925805482,
           "phase_hi": 9.231984756018417,
           "phase_hi_med": 0.3451730018068986,
           "phase_hi_n": 32,
@@ -786,7 +786,7 @@
       },
       "cross_speed": {
         "mean_abs_gmm": 1.9384277725191592,
-        "rms_gmm": 2.825874630526427,
+        "rms_gmm": 2.8258746305264264,
         "n": 122
       }
     }
@@ -1272,9 +1272,9 @@
           "disk": 1,
           "true": 36.0,
           "est": 27.935626202827542,
-          "true_ang": 157.0,
+          "true_ang": 157.5,
           "est_ang": 153.198543528781,
-          "phase_label_valid": false,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
@@ -1413,9 +1413,9 @@
           "cid": "BLND01",
           "disk": 1,
           "true": 48.0,
-          "est": 20.54554817667701,
+          "est": 20.545548176677016,
           "true_ang": 180.0,
-          "est_ang": 167.41197633557982,
+          "est_ang": 167.41197633557985,
           "phase_label_valid": true,
           "n_acq": 6
         },
@@ -1465,7 +1465,7 @@
           "true": 12.0,
           "est": 8.874599673287301,
           "true_ang": 270.0,
-          "est_ang": -89.3339251406169,
+          "est_ang": -89.33392514061688,
           "phase_label_valid": true,
           "n_acq": 6
         },
@@ -1474,9 +1474,9 @@
           "disk": 1,
           "true": 36.0,
           "est": 18.02685099015433,
-          "true_ang": 157.0,
+          "true_ang": 157.5,
           "est_ang": 162.90302059422035,
-          "phase_label_valid": false,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
@@ -1655,7 +1655,7 @@
           "cid": "BLND03",
           "disk": 1,
           "true": 6.0,
-          "est": 1.843658008122778,
+          "est": 1.8436580081227776,
           "true_ang": 225.0,
           "est_ang": 122.25084286610529,
           "phase_label_valid": true,
@@ -1676,9 +1676,9 @@
           "disk": 1,
           "true": 36.0,
           "est": 18.353053631436932,
-          "true_ang": 157.0,
-          "est_ang": 157.20598962186452,
-          "phase_label_valid": false,
+          "true_ang": 157.5,
+          "est_ang": 157.20598962186455,
+          "phase_label_valid": true,
           "n_acq": 6
         },
         {
@@ -1844,8 +1844,8 @@
           "fn": 1,
           "tn": 5
         },
-        "phase_err_hi": 7.4,
-        "phase_err_hi_n": 5,
+        "phase_err_hi": 6.9,
+        "phase_err_hi_n": 6,
         "n_loaded_points": 9,
         "n_balanced_points": 11,
         "small_sample_warning": "10 independent conditions / 20 disk-points -- report intervals, never point estimates alone"
@@ -1880,8 +1880,8 @@
           "fn": 2,
           "tn": 10
         },
-        "phase_err_hi": 23.2,
-        "phase_err_hi_n": 5,
+        "phase_err_hi": 20.2,
+        "phase_err_hi_n": 6,
         "n_loaded_points": 9,
         "n_balanced_points": 11,
         "small_sample_warning": "10 independent conditions / 20 disk-points -- report intervals, never point estimates alone"
@@ -1916,21 +1916,14 @@
           "fn": 2,
           "tn": 10
         },
-        "phase_err_hi": 18.5,
-        "phase_err_hi_n": 5,
+        "phase_err_hi": 15.5,
+        "phase_err_hi_n": 6,
         "n_loaded_points": 9,
         "n_balanced_points": 11,
         "small_sample_warning": "10 independent conditions / 20 disk-points -- report intervals, never point estimates alone"
       }
     },
-    "phase_exclusions": [
-      {
-        "condition_id": "BLND04",
-        "disk": 1,
-        "angle_deg": 157.0,
-        "reason": "reference angle is not on the 22.5-degree fixture grid"
-      }
-    ]
+    "phase_exclusions": []
   },
   "top_features": {
     "phys_U1_re": 0.1569097036223677,
