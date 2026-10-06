@@ -49,6 +49,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True, help="output directory for the upload set")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--hashes-only", action="store_true",
+                    help="rewrite SHA256SUMS for whatever is currently in --out, "
+                         "without rebuilding any archive. Use after removing files "
+                         "from the upload set by hand.")
     ap.add_argument("--max-part-mb", type=int, default=0,
                     help="split a block into parts of at most this size. Each part "
                          "is a standalone tar, so a dropped upload costs one part "
@@ -56,6 +60,22 @@ def main() -> int:
     args = ap.parse_args()
 
     out = pathlib.Path(args.out)
+
+    if args.hashes_only:
+        if not out.is_dir():
+            sys.exit(f"{out} does not exist")
+        lines, total = [], 0
+        for p in sorted(out.iterdir()):
+            if p.name == "SHA256SUMS" or p.is_dir():
+                continue
+            lines.append(f"{sha256(p)}  {p.name}")
+            total += p.stat().st_size
+            print(f"    {p.name}")
+        (out / "SHA256SUMS").write_text("\n".join(lines) + "\n", encoding="utf-8")
+        print(f"\n  SHA256SUMS rewritten for {len(lines)} files, "
+              f"{total / 2**30:.2f} GB")
+        return 0
+
     cid_block = blocks()
 
     groups: dict[str, list[pathlib.Path]] = {}

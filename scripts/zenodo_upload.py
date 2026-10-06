@@ -134,20 +134,35 @@ def upload_one(s: requests.Session, bucket: str, p: pathlib.Path,
                           data=_Progress(fh, size, p.name),
                           headers={"Content-Length": str(size)},
                           timeout=TIMEOUT)
+            # 5xx is Zenodo or its gateway failing transiently, not a bad
+            # request. A 502 arriving after the body is fully sent is common on
+            # a large upload and is worth retrying; the file may even be stored,
+            # in which case the next attempt sees it and the size check skips it.
+            if r.status_code >= 500:
+                raise requests.HTTPError(f"{r.status_code} from the server",
+                                         response=r)
             r.raise_for_status()
             got = (r.json().get("checksum") or "").replace("md5:", "")
             if got and got != want:
-                print(f"\r      {p.name:<18s} checksum mismatch, resending      ")
+                print(f"\r      {p.name:<24s} checksum mismatch, resending" + " " * 24)
                 continue
-            print(f"\r      {p.name:<18s} done, checksum verified              ")
+            print(f"\r      {p.name:<24s} done, checksum verified" + " " * 28)
             return
         except (requests.ConnectionError, requests.Timeout,
                 requests.exceptions.ChunkedEncodingError) as e:
             if k == attempts:
                 raise
             wait = min(60, 2 ** k)
-            print(f"\r      {p.name:<18s} attempt {k} dropped ({type(e).__name__}), "
-                  f"retrying in {wait}s        ")
+            print(f"\r      {p.name:<24s} attempt {k} dropped "
+                  f"({type(e).__name__}), retrying in {wait}s" + " " * 12)
+            time.sleep(wait)
+        except requests.HTTPError as e:
+            code = e.response.status_code if e.response is not None else 0
+            if code < 500 or k == attempts:
+                raise
+            wait = min(120, 5 * 2 ** k)
+            print(f"\r      {p.name:<24s} attempt {k} got {code} from the server, "
+                  f"retrying in {wait}s" + " " * 8)
             time.sleep(wait)
 
 
