@@ -219,6 +219,12 @@ def main() -> int:
         bucket = dep["links"]["bucket"]
         existing = {f["filename"]: f["filesize"] for f in dep.get("files", [])}
 
+        # Smallest first. On a slow or unstable uplink this gets the metadata and
+        # the small archives safely stored within seconds, so the draft is never
+        # empty (Zenodo discards an empty draft) and a later drop costs only the
+        # one large file still in flight.
+        files = sorted(files, key=lambda q: q.stat().st_size)
+
         for p in files:
             size = p.stat().st_size
             if existing.get(p.name) == size:

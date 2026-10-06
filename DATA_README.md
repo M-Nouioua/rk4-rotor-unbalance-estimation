@@ -20,6 +20,10 @@ them. The analysis code that consumes these files is archived separately; see
 | `speeds.csv` | dwell-speed definitions | — | — |
 | `runup_1x.csv` | order-tracked first-order amplitude and phase against speed | — | — |
 
+Large blocks may be split into parts, named for example
+`B_phase.part01.tar`, each a standalone tar that extracts on its own; the table
+above gives the per-block totals regardless of how many parts a block occupies.
+
 Totals: 563 recordings, about 2.2 GB. The archives are uncompressed `tar`,
 because `.npz` is already a compressed container and re-compressing gains under
 5 per cent.

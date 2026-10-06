@@ -49,6 +49,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True, help="output directory for the upload set")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--max-part-mb", type=int, default=0,
+                    help="split a block into parts of at most this size. Each part "
+                         "is a standalone tar, so a dropped upload costs one part "
+                         "rather than the whole block. 0 means one tar per block.")
     args = ap.parse_args()
 
     out = pathlib.Path(args.out)
@@ -74,26 +78,45 @@ def main() -> int:
         print("  resolve these before depositing")
         return 1
 
+    cap = args.max_part_mb * 2**20 if args.max_part_mb else 0
+
+    # Decide the archive layout before reporting it, so a dry run previews
+    # exactly what a real run would write.
+    plan: list[tuple[str, list[pathlib.Path]]] = []
+    for b in sorted(groups):
+        parts: list[list[pathlib.Path]] = [[]]
+        running = 0
+        for p in groups[b]:
+            sz = p.stat().st_size
+            if cap and parts[-1] and running + sz > cap:
+                parts.append([])
+                running = 0
+            parts[-1].append(p)
+            running += sz
+        for i, members in enumerate(parts, 1):
+            name = f"{b}.tar" if len(parts) == 1 else f"{b}.part{i:02d}.tar"
+            plan.append((name, members))
+
     total = sum(p.stat().st_size for ps in groups.values() for p in ps)
     print(f"  {sum(len(v) for v in groups.values())} recordings, "
-          f"{total / 2**30:.2f} GB, in {len(groups)} archives\n")
-    for b in sorted(groups):
-        n = len(groups[b])
-        sz = sum(p.stat().st_size for p in groups[b]) / 2**30
-        print(f"    {b:14s} {n:4d} files  {sz:5.2f} GB  ->  {b}.tar")
+          f"{total / 2**30:.2f} GB, in {len(plan)} archives"
+          + (f" capped at {args.max_part_mb} MB\n" if cap else "\n"))
+    for name, members in plan:
+        sz = sum(p.stat().st_size for p in members) / 2**20
+        print(f"    {name:26s} {len(members):4d} files  {sz:7.0f} MB")
 
     if args.dry_run:
         print("\n  dry run, nothing written")
         return 0
 
     out.mkdir(parents=True, exist_ok=True)
-    for b in sorted(groups):
-        dest = out / f"{b}.tar"
-        print(f"\n  writing {dest.name} ...", end="", flush=True)
+    for name, members in plan:
+        dest = out / name
+        print(f"\n  writing {name} ({len(members)} files) ...", end="", flush=True)
         with tarfile.open(dest, "w") as t:
-            for p in groups[b]:
+            for p in members:
                 t.add(p, arcname=p.name)
-        print(f" {dest.stat().st_size / 2**30:.2f} GB")
+        print(f" {dest.stat().st_size / 2**20:.0f} MB")
 
     for name in METADATA:
         src = DATASETS / name
