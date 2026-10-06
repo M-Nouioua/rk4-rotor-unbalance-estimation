@@ -39,8 +39,23 @@ API = "https://zenodo.org/api"
 CODE_DOI = "10.5281/zenodo.23152815"
 TIMEOUT = (30, 1800)   # connect, read
 
+IRC = ("Interdisciplinary Research Center for Intelligent Manufacturing and "
+       "Robotics, King Fahd University of Petroleum and Minerals")
+
+# Imran is a mononym: the single name is the full published name, not a missing
+# surname. Zenodo takes a free-text name field, so it is given as it stands.
+CREATORS = [
+    {"name": "Nouioua, Mourad", "affiliation": IRC, "orcid": "0000-0003-0439-2112"},
+    {"name": "Ganie, Aadil Gani", "affiliation": IRC, "orcid": "0000-0002-6607-6994"},
+    {"name": "Imran", "affiliation": IRC, "orcid": "0000-0002-6197-1025"},
+    {"name": "Bashmal, Salem", "affiliation": IRC, "orcid": "0000-0002-6985-0316"},
+    {"name": "Arif, Abul Fazal Muhammad", "affiliation": IRC,
+     "orcid": "0000-0002-3278-0983"},
+]
+
 METADATA = {
     "title": "Raw acquisitions: Bently Nevada RK-4 rotor-kit unbalance campaign",
+    "creators": CREATORS,
     "upload_type": "dataset",
     "description": (
         "<p>Raw proximity-probe and keyphasor recordings for a two-plane rotor "
