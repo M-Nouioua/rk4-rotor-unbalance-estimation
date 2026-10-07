@@ -1,0 +1,511 @@
+condition_id,role,sector,total_gmm,config,protocol,protocol_label,n_folds
+A001,split,0,3.0,D1,random_acquisition,Random records,5
+A002,split,0,6.0,D1,random_acquisition,Random records,5
+A003,split,0,12.0,D1,random_acquisition,Random records,5
+A004,split,0,24.0,D1,random_acquisition,Random records,5
+A005,train,0,30.0,D1,random_acquisition,Random records,5
+A006,split,0,36.0,D1,random_acquisition,Random records,5
+A007,calibration,0,48.0,D1,random_acquisition,Random records,5
+A008,split,0,60.0,D1,random_acquisition,Random records,5
+A009,split,0,3.0,D2,random_acquisition,Random records,5
+A010,train,0,6.0,D2,random_acquisition,Random records,5
+A011,split,0,12.0,D2,random_acquisition,Random records,5
+A012,split,0,24.0,D2,random_acquisition,Random records,5
+A013,train,0,30.0,D2,random_acquisition,Random records,5
+A014,split,0,36.0,D2,random_acquisition,Random records,5
+A015,calibration,0,48.0,D2,random_acquisition,Random records,5
+A016,split,0,60.0,D2,random_acquisition,Random records,5
+A017,split,0,6.0,inphase,random_acquisition,Random records,5
+A018,train,0,12.0,inphase,random_acquisition,Random records,5
+A019,split,0,24.0,inphase,random_acquisition,Random records,5
+A020,split,0,48.0,inphase,random_acquisition,Random records,5
+A021,split,0,60.0,inphase,random_acquisition,Random records,5
+A022,split,0,72.0,inphase,random_acquisition,Random records,5
+A023,split,0,96.0,inphase,random_acquisition,Random records,5
+A024,train,0,120.0,inphase,random_acquisition,Random records,5
+A025,split,0,6.0,antiphase,random_acquisition,Random records,5
+A026,split,0,12.0,antiphase,random_acquisition,Random records,5
+A027,train,0,24.0,antiphase,random_acquisition,Random records,5
+A028,train,0,48.0,antiphase,random_acquisition,Random records,5
+A029,train,0,60.0,antiphase,random_acquisition,Random records,5
+A030,train,0,72.0,antiphase,random_acquisition,Random records,5
+A031,split,0,96.0,antiphase,random_acquisition,Random records,5
+A032,split,0,120.0,antiphase,random_acquisition,Random records,5
+B001,split,2,6.0,D1,random_acquisition,Random records,5
+B002,split,4,6.0,D1,random_acquisition,Random records,5
+B003,split,6,6.0,D1,random_acquisition,Random records,5
+B004,split,2,12.0,D1,random_acquisition,Random records,5
+B005,split,4,12.0,D1,random_acquisition,Random records,5
+B006,split,6,12.0,D1,random_acquisition,Random records,5
+B007,train,2,24.0,D1,random_acquisition,Random records,5
+B008,split,4,24.0,D1,random_acquisition,Random records,5
+B009,split,6,24.0,D1,random_acquisition,Random records,5
+B010,train,2,30.0,D1,random_acquisition,Random records,5
+B011,split,4,30.0,D1,random_acquisition,Random records,5
+B012,split,6,30.0,D1,random_acquisition,Random records,5
+B013,train,2,6.0,D2,random_acquisition,Random records,5
+B014,split,4,6.0,D2,random_acquisition,Random records,5
+B015,train,6,6.0,D2,random_acquisition,Random records,5
+B016,split,2,12.0,D2,random_acquisition,Random records,5
+B017,split,4,12.0,D2,random_acquisition,Random records,5
+B018,split,6,12.0,D2,random_acquisition,Random records,5
+B019,split,2,24.0,D2,random_acquisition,Random records,5
+B020,split,4,24.0,D2,random_acquisition,Random records,5
+B021,split,6,24.0,D2,random_acquisition,Random records,5
+B022,train,2,30.0,D2,random_acquisition,Random records,5
+B023,split,4,30.0,D2,random_acquisition,Random records,5
+B024,split,6,30.0,D2,random_acquisition,Random records,5
+B025,split,2,12.0,inphase,random_acquisition,Random records,5
+B026,split,4,12.0,inphase,random_acquisition,Random records,5
+B027,split,6,12.0,inphase,random_acquisition,Random records,5
+B028,split,2,24.0,inphase,random_acquisition,Random records,5
+B029,split,4,24.0,inphase,random_acquisition,Random records,5
+B030,split,6,24.0,inphase,random_acquisition,Random records,5
+B031,split,2,48.0,inphase,random_acquisition,Random records,5
+B032,split,4,48.0,inphase,random_acquisition,Random records,5
+B033,split,6,48.0,inphase,random_acquisition,Random records,5
+B034,train,2,60.0,inphase,random_acquisition,Random records,5
+B035,split,4,60.0,inphase,random_acquisition,Random records,5
+B036,split,6,60.0,inphase,random_acquisition,Random records,5
+B037,split,2,12.0,antiphase,random_acquisition,Random records,5
+B038,split,4,12.0,antiphase,random_acquisition,Random records,5
+B039,train,6,12.0,antiphase,random_acquisition,Random records,5
+B040,train,2,24.0,antiphase,random_acquisition,Random records,5
+B041,train,4,24.0,antiphase,random_acquisition,Random records,5
+B042,split,6,24.0,antiphase,random_acquisition,Random records,5
+B043,split,2,48.0,antiphase,random_acquisition,Random records,5
+B044,split,4,48.0,antiphase,random_acquisition,Random records,5
+B045,train,6,48.0,antiphase,random_acquisition,Random records,5
+B046,split,2,60.0,antiphase,random_acquisition,Random records,5
+B047,split,4,60.0,antiphase,random_acquisition,Random records,5
+B048,split,6,60.0,antiphase,random_acquisition,Random records,5
+BASE,calibration,0,0.0,baseline,random_acquisition,Random records,5
+C001,split,1,12.0,D1,random_acquisition,Random records,5
+C002,split,3,12.0,D1,random_acquisition,Random records,5
+C003,train,5,12.0,D1,random_acquisition,Random records,5
+C004,train,7,12.0,D1,random_acquisition,Random records,5
+A001,train,0,3.0,D1,condition,Condition,5
+A002,train,0,6.0,D1,condition,Condition,5
+A003,train,0,12.0,D1,condition,Condition,5
+A004,train,0,24.0,D1,condition,Condition,5
+A005,test,0,30.0,D1,condition,Condition,5
+A006,train,0,36.0,D1,condition,Condition,5
+A007,calibration,0,48.0,D1,condition,Condition,5
+A008,train,0,60.0,D1,condition,Condition,5
+A009,train,0,3.0,D2,condition,Condition,5
+A010,test,0,6.0,D2,condition,Condition,5
+A011,train,0,12.0,D2,condition,Condition,5
+A012,train,0,24.0,D2,condition,Condition,5
+A013,train,0,30.0,D2,condition,Condition,5
+A014,train,0,36.0,D2,condition,Condition,5
+A015,calibration,0,48.0,D2,condition,Condition,5
+A016,train,0,60.0,D2,condition,Condition,5
+A017,train,0,6.0,inphase,condition,Condition,5
+A018,train,0,12.0,inphase,condition,Condition,5
+A019,train,0,24.0,inphase,condition,Condition,5
+A020,test,0,48.0,inphase,condition,Condition,5
+A021,train,0,60.0,inphase,condition,Condition,5
+A022,train,0,72.0,inphase,condition,Condition,5
+A023,train,0,96.0,inphase,condition,Condition,5
+A024,train,0,120.0,inphase,condition,Condition,5
+A025,test,0,6.0,antiphase,condition,Condition,5
+A026,train,0,12.0,antiphase,condition,Condition,5
+A027,train,0,24.0,antiphase,condition,Condition,5
+A028,train,0,48.0,antiphase,condition,Condition,5
+A029,train,0,60.0,antiphase,condition,Condition,5
+A030,test,0,72.0,antiphase,condition,Condition,5
+A031,train,0,96.0,antiphase,condition,Condition,5
+A032,train,0,120.0,antiphase,condition,Condition,5
+B001,train,2,6.0,D1,condition,Condition,5
+B002,train,4,6.0,D1,condition,Condition,5
+B003,test,6,6.0,D1,condition,Condition,5
+B004,train,2,12.0,D1,condition,Condition,5
+B005,train,4,12.0,D1,condition,Condition,5
+B006,train,6,12.0,D1,condition,Condition,5
+B007,train,2,24.0,D1,condition,Condition,5
+B008,test,4,24.0,D1,condition,Condition,5
+B009,train,6,24.0,D1,condition,Condition,5
+B010,train,2,30.0,D1,condition,Condition,5
+B011,train,4,30.0,D1,condition,Condition,5
+B012,train,6,30.0,D1,condition,Condition,5
+B013,test,2,6.0,D2,condition,Condition,5
+B014,train,4,6.0,D2,condition,Condition,5
+B015,train,6,6.0,D2,condition,Condition,5
+B016,train,2,12.0,D2,condition,Condition,5
+B017,train,4,12.0,D2,condition,Condition,5
+B018,test,6,12.0,D2,condition,Condition,5
+B019,train,2,24.0,D2,condition,Condition,5
+B020,train,4,24.0,D2,condition,Condition,5
+B021,train,6,24.0,D2,condition,Condition,5
+B022,train,2,30.0,D2,condition,Condition,5
+B023,test,4,30.0,D2,condition,Condition,5
+B024,train,6,30.0,D2,condition,Condition,5
+B025,train,2,12.0,inphase,condition,Condition,5
+B026,train,4,12.0,inphase,condition,Condition,5
+B027,train,6,12.0,inphase,condition,Condition,5
+B028,test,2,24.0,inphase,condition,Condition,5
+B029,train,4,24.0,inphase,condition,Condition,5
+B030,train,6,24.0,inphase,condition,Condition,5
+B031,train,2,48.0,inphase,condition,Condition,5
+B032,train,4,48.0,inphase,condition,Condition,5
+B033,test,6,48.0,inphase,condition,Condition,5
+B034,train,2,60.0,inphase,condition,Condition,5
+B035,train,4,60.0,inphase,condition,Condition,5
+B036,train,6,60.0,inphase,condition,Condition,5
+B037,train,2,12.0,antiphase,condition,Condition,5
+B038,test,4,12.0,antiphase,condition,Condition,5
+B039,train,6,12.0,antiphase,condition,Condition,5
+B040,train,2,24.0,antiphase,condition,Condition,5
+B041,train,4,24.0,antiphase,condition,Condition,5
+B042,train,6,24.0,antiphase,condition,Condition,5
+B043,test,2,48.0,antiphase,condition,Condition,5
+B044,train,4,48.0,antiphase,condition,Condition,5
+B045,train,6,48.0,antiphase,condition,Condition,5
+B046,train,2,60.0,antiphase,condition,Condition,5
+B047,train,4,60.0,antiphase,condition,Condition,5
+B048,test,6,60.0,antiphase,condition,Condition,5
+BASE,calibration,0,0.0,baseline,condition,Condition,5
+C001,train,1,12.0,D1,condition,Condition,5
+C002,train,3,12.0,D1,condition,Condition,5
+C003,train,5,12.0,D1,condition,Condition,5
+C004,test,7,12.0,D1,condition,Condition,5
+A001,test,0,3.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+A002,train,0,6.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+A003,train,0,12.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+A004,train,0,24.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+A005,train,0,30.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+A006,train,0,36.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+A007,calibration,0,48.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+A008,train,0,60.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+A009,test,0,3.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+A010,train,0,6.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+A011,train,0,12.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+A012,train,0,24.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+A013,train,0,30.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+A014,train,0,36.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+A015,calibration,0,48.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+A016,train,0,60.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+A017,train,0,6.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+A018,train,0,12.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+A019,train,0,24.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+A020,train,0,48.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+A021,train,0,60.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+A022,train,0,72.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+A023,train,0,96.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+A024,train,0,120.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+A025,train,0,6.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+A026,train,0,12.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+A027,train,0,24.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+A028,train,0,48.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+A029,train,0,60.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+A030,train,0,72.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+A031,train,0,96.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+A032,train,0,120.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B001,train,2,6.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B002,train,4,6.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B003,train,6,6.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B004,train,2,12.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B005,train,4,12.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B006,train,6,12.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B007,train,2,24.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B008,train,4,24.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B009,train,6,24.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B010,train,2,30.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B011,train,4,30.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B012,train,6,30.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+B013,train,2,6.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B014,train,4,6.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B015,train,6,6.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B016,train,2,12.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B017,train,4,12.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B018,train,6,12.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B019,train,2,24.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B020,train,4,24.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B021,train,6,24.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B022,train,2,30.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B023,train,4,30.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B024,train,6,30.0,D2,magnitude_interpolating,"Magnitude, interpolating",10
+B025,train,2,12.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B026,train,4,12.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B027,train,6,12.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B028,train,2,24.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B029,train,4,24.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B030,train,6,24.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B031,train,2,48.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B032,train,4,48.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B033,train,6,48.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B034,train,2,60.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B035,train,4,60.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B036,train,6,60.0,inphase,magnitude_interpolating,"Magnitude, interpolating",10
+B037,train,2,12.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B038,train,4,12.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B039,train,6,12.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B040,train,2,24.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B041,train,4,24.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B042,train,6,24.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B043,train,2,48.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B044,train,4,48.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B045,train,6,48.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B046,train,2,60.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B047,train,4,60.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+B048,train,6,60.0,antiphase,magnitude_interpolating,"Magnitude, interpolating",10
+BASE,calibration,0,0.0,baseline,magnitude_interpolating,"Magnitude, interpolating",10
+C001,train,1,12.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+C002,train,3,12.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+C003,train,5,12.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+C004,train,7,12.0,D1,magnitude_interpolating,"Magnitude, interpolating",10
+A001,train,0,3.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+A002,train,0,6.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+A003,train,0,12.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+A004,train,0,24.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+A005,train,0,30.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+A006,test,0,36.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+A007,calibration,0,48.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+A008,test,0,60.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+A009,train,0,3.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+A010,train,0,6.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+A011,train,0,12.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+A012,train,0,24.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+A013,train,0,30.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+A014,test,0,36.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+A015,calibration,0,48.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+A016,test,0,60.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+A017,train,0,6.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A018,train,0,12.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A019,train,0,24.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A020,test,0,48.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A021,test,0,60.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A022,test,0,72.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A023,test,0,96.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A024,test,0,120.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A025,train,0,6.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A026,train,0,12.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A027,train,0,24.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A028,test,0,48.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A029,test,0,60.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A030,test,0,72.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A031,test,0,96.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+A032,test,0,120.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B001,train,2,6.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B002,train,4,6.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B003,train,6,6.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B004,train,2,12.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B005,train,4,12.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B006,train,6,12.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B007,train,2,24.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B008,train,4,24.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B009,train,6,24.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B010,train,2,30.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B011,train,4,30.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B012,train,6,30.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+B013,train,2,6.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B014,train,4,6.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B015,train,6,6.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B016,train,2,12.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B017,train,4,12.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B018,train,6,12.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B019,train,2,24.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B020,train,4,24.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B021,train,6,24.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B022,train,2,30.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B023,train,4,30.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B024,train,6,30.0,D2,magnitude_extrapolating,"Magnitude, extrapolating",1
+B025,train,2,12.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B026,train,4,12.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B027,train,6,12.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B028,train,2,24.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B029,train,4,24.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B030,train,6,24.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B031,test,2,48.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B032,test,4,48.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B033,test,6,48.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B034,test,2,60.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B035,test,4,60.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B036,test,6,60.0,inphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B037,train,2,12.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B038,train,4,12.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B039,train,6,12.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B040,train,2,24.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B041,train,4,24.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B042,train,6,24.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B043,test,2,48.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B044,test,4,48.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B045,test,6,48.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B046,test,2,60.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B047,test,4,60.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+B048,test,6,60.0,antiphase,magnitude_extrapolating,"Magnitude, extrapolating",1
+BASE,calibration,0,0.0,baseline,magnitude_extrapolating,"Magnitude, extrapolating",1
+C001,train,1,12.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+C002,train,3,12.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+C003,train,5,12.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+C004,train,7,12.0,D1,magnitude_extrapolating,"Magnitude, extrapolating",1
+A001,test,0,3.0,D1,configuration,Configuration,4
+A002,test,0,6.0,D1,configuration,Configuration,4
+A003,test,0,12.0,D1,configuration,Configuration,4
+A004,test,0,24.0,D1,configuration,Configuration,4
+A005,test,0,30.0,D1,configuration,Configuration,4
+A006,test,0,36.0,D1,configuration,Configuration,4
+A007,calibration,0,48.0,D1,configuration,Configuration,4
+A008,test,0,60.0,D1,configuration,Configuration,4
+A009,train,0,3.0,D2,configuration,Configuration,4
+A010,train,0,6.0,D2,configuration,Configuration,4
+A011,train,0,12.0,D2,configuration,Configuration,4
+A012,train,0,24.0,D2,configuration,Configuration,4
+A013,train,0,30.0,D2,configuration,Configuration,4
+A014,train,0,36.0,D2,configuration,Configuration,4
+A015,calibration,0,48.0,D2,configuration,Configuration,4
+A016,train,0,60.0,D2,configuration,Configuration,4
+A017,train,0,6.0,inphase,configuration,Configuration,4
+A018,train,0,12.0,inphase,configuration,Configuration,4
+A019,train,0,24.0,inphase,configuration,Configuration,4
+A020,train,0,48.0,inphase,configuration,Configuration,4
+A021,train,0,60.0,inphase,configuration,Configuration,4
+A022,train,0,72.0,inphase,configuration,Configuration,4
+A023,train,0,96.0,inphase,configuration,Configuration,4
+A024,train,0,120.0,inphase,configuration,Configuration,4
+A025,train,0,6.0,antiphase,configuration,Configuration,4
+A026,train,0,12.0,antiphase,configuration,Configuration,4
+A027,train,0,24.0,antiphase,configuration,Configuration,4
+A028,train,0,48.0,antiphase,configuration,Configuration,4
+A029,train,0,60.0,antiphase,configuration,Configuration,4
+A030,train,0,72.0,antiphase,configuration,Configuration,4
+A031,train,0,96.0,antiphase,configuration,Configuration,4
+A032,train,0,120.0,antiphase,configuration,Configuration,4
+B001,test,2,6.0,D1,configuration,Configuration,4
+B002,test,4,6.0,D1,configuration,Configuration,4
+B003,test,6,6.0,D1,configuration,Configuration,4
+B004,test,2,12.0,D1,configuration,Configuration,4
+B005,test,4,12.0,D1,configuration,Configuration,4
+B006,test,6,12.0,D1,configuration,Configuration,4
+B007,test,2,24.0,D1,configuration,Configuration,4
+B008,test,4,24.0,D1,configuration,Configuration,4
+B009,test,6,24.0,D1,configuration,Configuration,4
+B010,test,2,30.0,D1,configuration,Configuration,4
+B011,test,4,30.0,D1,configuration,Configuration,4
+B012,test,6,30.0,D1,configuration,Configuration,4
+B013,train,2,6.0,D2,configuration,Configuration,4
+B014,train,4,6.0,D2,configuration,Configuration,4
+B015,train,6,6.0,D2,configuration,Configuration,4
+B016,train,2,12.0,D2,configuration,Configuration,4
+B017,train,4,12.0,D2,configuration,Configuration,4
+B018,train,6,12.0,D2,configuration,Configuration,4
+B019,train,2,24.0,D2,configuration,Configuration,4
+B020,train,4,24.0,D2,configuration,Configuration,4
+B021,train,6,24.0,D2,configuration,Configuration,4
+B022,train,2,30.0,D2,configuration,Configuration,4
+B023,train,4,30.0,D2,configuration,Configuration,4
+B024,train,6,30.0,D2,configuration,Configuration,4
+B025,train,2,12.0,inphase,configuration,Configuration,4
+B026,train,4,12.0,inphase,configuration,Configuration,4
+B027,train,6,12.0,inphase,configuration,Configuration,4
+B028,train,2,24.0,inphase,configuration,Configuration,4
+B029,train,4,24.0,inphase,configuration,Configuration,4
+B030,train,6,24.0,inphase,configuration,Configuration,4
+B031,train,2,48.0,inphase,configuration,Configuration,4
+B032,train,4,48.0,inphase,configuration,Configuration,4
+B033,train,6,48.0,inphase,configuration,Configuration,4
+B034,train,2,60.0,inphase,configuration,Configuration,4
+B035,train,4,60.0,inphase,configuration,Configuration,4
+B036,train,6,60.0,inphase,configuration,Configuration,4
+B037,train,2,12.0,antiphase,configuration,Configuration,4
+B038,train,4,12.0,antiphase,configuration,Configuration,4
+B039,train,6,12.0,antiphase,configuration,Configuration,4
+B040,train,2,24.0,antiphase,configuration,Configuration,4
+B041,train,4,24.0,antiphase,configuration,Configuration,4
+B042,train,6,24.0,antiphase,configuration,Configuration,4
+B043,train,2,48.0,antiphase,configuration,Configuration,4
+B044,train,4,48.0,antiphase,configuration,Configuration,4
+B045,train,6,48.0,antiphase,configuration,Configuration,4
+B046,train,2,60.0,antiphase,configuration,Configuration,4
+B047,train,4,60.0,antiphase,configuration,Configuration,4
+B048,train,6,60.0,antiphase,configuration,Configuration,4
+BASE,calibration,0,0.0,baseline,configuration,Configuration,4
+C001,test,1,12.0,D1,configuration,Configuration,4
+C002,test,3,12.0,D1,configuration,Configuration,4
+C003,test,5,12.0,D1,configuration,Configuration,4
+C004,test,7,12.0,D1,configuration,Configuration,4
+A001,test,0,3.0,D1,angle_sector,Angle sector,8
+A002,test,0,6.0,D1,angle_sector,Angle sector,8
+A003,test,0,12.0,D1,angle_sector,Angle sector,8
+A004,test,0,24.0,D1,angle_sector,Angle sector,8
+A005,test,0,30.0,D1,angle_sector,Angle sector,8
+A006,test,0,36.0,D1,angle_sector,Angle sector,8
+A007,calibration,0,48.0,D1,angle_sector,Angle sector,8
+A008,test,0,60.0,D1,angle_sector,Angle sector,8
+A009,test,0,3.0,D2,angle_sector,Angle sector,8
+A010,test,0,6.0,D2,angle_sector,Angle sector,8
+A011,test,0,12.0,D2,angle_sector,Angle sector,8
+A012,test,0,24.0,D2,angle_sector,Angle sector,8
+A013,test,0,30.0,D2,angle_sector,Angle sector,8
+A014,test,0,36.0,D2,angle_sector,Angle sector,8
+A015,calibration,0,48.0,D2,angle_sector,Angle sector,8
+A016,test,0,60.0,D2,angle_sector,Angle sector,8
+A017,test,0,6.0,inphase,angle_sector,Angle sector,8
+A018,test,0,12.0,inphase,angle_sector,Angle sector,8
+A019,test,0,24.0,inphase,angle_sector,Angle sector,8
+A020,test,0,48.0,inphase,angle_sector,Angle sector,8
+A021,test,0,60.0,inphase,angle_sector,Angle sector,8
+A022,test,0,72.0,inphase,angle_sector,Angle sector,8
+A023,test,0,96.0,inphase,angle_sector,Angle sector,8
+A024,test,0,120.0,inphase,angle_sector,Angle sector,8
+A025,test,0,6.0,antiphase,angle_sector,Angle sector,8
+A026,test,0,12.0,antiphase,angle_sector,Angle sector,8
+A027,test,0,24.0,antiphase,angle_sector,Angle sector,8
+A028,test,0,48.0,antiphase,angle_sector,Angle sector,8
+A029,test,0,60.0,antiphase,angle_sector,Angle sector,8
+A030,test,0,72.0,antiphase,angle_sector,Angle sector,8
+A031,test,0,96.0,antiphase,angle_sector,Angle sector,8
+A032,test,0,120.0,antiphase,angle_sector,Angle sector,8
+B001,train,2,6.0,D1,angle_sector,Angle sector,8
+B002,train,4,6.0,D1,angle_sector,Angle sector,8
+B003,train,6,6.0,D1,angle_sector,Angle sector,8
+B004,train,2,12.0,D1,angle_sector,Angle sector,8
+B005,train,4,12.0,D1,angle_sector,Angle sector,8
+B006,train,6,12.0,D1,angle_sector,Angle sector,8
+B007,train,2,24.0,D1,angle_sector,Angle sector,8
+B008,train,4,24.0,D1,angle_sector,Angle sector,8
+B009,train,6,24.0,D1,angle_sector,Angle sector,8
+B010,train,2,30.0,D1,angle_sector,Angle sector,8
+B011,train,4,30.0,D1,angle_sector,Angle sector,8
+B012,train,6,30.0,D1,angle_sector,Angle sector,8
+B013,train,2,6.0,D2,angle_sector,Angle sector,8
+B014,train,4,6.0,D2,angle_sector,Angle sector,8
+B015,train,6,6.0,D2,angle_sector,Angle sector,8
+B016,train,2,12.0,D2,angle_sector,Angle sector,8
+B017,train,4,12.0,D2,angle_sector,Angle sector,8
+B018,train,6,12.0,D2,angle_sector,Angle sector,8
+B019,train,2,24.0,D2,angle_sector,Angle sector,8
+B020,train,4,24.0,D2,angle_sector,Angle sector,8
+B021,train,6,24.0,D2,angle_sector,Angle sector,8
+B022,train,2,30.0,D2,angle_sector,Angle sector,8
+B023,train,4,30.0,D2,angle_sector,Angle sector,8
+B024,train,6,30.0,D2,angle_sector,Angle sector,8
+B025,train,2,12.0,inphase,angle_sector,Angle sector,8
+B026,train,4,12.0,inphase,angle_sector,Angle sector,8
+B027,train,6,12.0,inphase,angle_sector,Angle sector,8
+B028,train,2,24.0,inphase,angle_sector,Angle sector,8
+B029,train,4,24.0,inphase,angle_sector,Angle sector,8
+B030,train,6,24.0,inphase,angle_sector,Angle sector,8
+B031,train,2,48.0,inphase,angle_sector,Angle sector,8
+B032,train,4,48.0,inphase,angle_sector,Angle sector,8
+B033,train,6,48.0,inphase,angle_sector,Angle sector,8
+B034,train,2,60.0,inphase,angle_sector,Angle sector,8
+B035,train,4,60.0,inphase,angle_sector,Angle sector,8
+B036,train,6,60.0,inphase,angle_sector,Angle sector,8
+B037,train,2,12.0,antiphase,angle_sector,Angle sector,8
+B038,train,4,12.0,antiphase,angle_sector,Angle sector,8
+B039,train,6,12.0,antiphase,angle_sector,Angle sector,8
+B040,train,2,24.0,antiphase,angle_sector,Angle sector,8
+B041,train,4,24.0,antiphase,angle_sector,Angle sector,8
+B042,train,6,24.0,antiphase,angle_sector,Angle sector,8
+B043,train,2,48.0,antiphase,angle_sector,Angle sector,8
+B044,train,4,48.0,antiphase,angle_sector,Angle sector,8
+B045,train,6,48.0,antiphase,angle_sector,Angle sector,8
+B046,train,2,60.0,antiphase,angle_sector,Angle sector,8
+B047,train,4,60.0,antiphase,angle_sector,Angle sector,8
+B048,train,6,60.0,antiphase,angle_sector,Angle sector,8
+BASE,calibration,0,0.0,baseline,angle_sector,Angle sector,8
+C001,train,1,12.0,D1,angle_sector,Angle sector,8
+C002,train,3,12.0,D1,angle_sector,Angle sector,8
+C003,train,5,12.0,D1,angle_sector,Angle sector,8
+C004,train,7,12.0,D1,angle_sector,Angle sector,8

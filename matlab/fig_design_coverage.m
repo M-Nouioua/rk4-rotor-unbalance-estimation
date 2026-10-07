@@ -25,12 +25,20 @@ for k = 1:numel(cfgs)
     end
 end
 cols = {C.physics, C.ml, C.hybrid, C.pinn, C.neutral};
+% Many disk points share an (angle, magnitude) pair, and plotting them as equal
+% markers hid both the repetition and the configurations underneath. Marker area
+% is made proportional to the number of coincident points, so density is read
+% rather than guessed, and each configuration is offset slightly in angle so a
+% shared position does not bury one series under another.
 h = gobjects(1, numel(cfgs));
+off = linspace(-4.5, 4.5, numel(cfgs));
 for k = 1:numel(cfgs)
     s = L(strcmp(L.config, cfgs{k}), :);
     cc = cols{min(k, numel(cols))};
-    h(k) = plot(ax, s.angle_deg, s.U_gmm, 'o', 'MarkerSize', 4, ...
-                'Color', cc, 'MarkerFaceColor', cc, 'LineStyle', 'none');
+    [u, ~, ic] = unique([s.angle_deg, s.U_gmm], 'rows');
+    n = accumarray(ic, 1);
+    h(k) = scatter(ax, u(:, 1) + off(k), u(:, 2), 9 + 11 * (n - 1), cc, ...
+                   'filled', 'MarkerFaceAlpha', 0.85, 'MarkerEdgeColor', 'none');
 end
 yline(ax, 24, '--', 'Color', C.neutral, 'LineWidth', 0.9);
 xlabel(ax, 'Unbalance angle (deg)');
